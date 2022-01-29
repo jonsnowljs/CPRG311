@@ -3,6 +3,7 @@ package Shapes;
 /**
  * Inherit from shape class, represent the Cylinder shape
  * @author Jiasheng Lu
+ * new changes
  *
  */
 public class Cylinder extends Shape {
