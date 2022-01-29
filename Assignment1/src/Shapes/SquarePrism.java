@@ -58,6 +58,6 @@ public class SquarePrism extends Prism {
 	 */
 	@Override
 	public String toString() {
-		return "Square Prism: " + getHeight() + getSide();
+		return "Square Prism: " + getHeight() + " " + getSide();
 	}
 }

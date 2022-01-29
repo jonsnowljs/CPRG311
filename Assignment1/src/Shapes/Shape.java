@@ -1,6 +1,6 @@
 package Shapes;
 
-public abstract class Shape {
+public abstract class Shape implements Comparable<Shape> {
 	//Fields
 	double height;
 	
@@ -15,5 +15,11 @@ public abstract class Shape {
 	 * @return base area
 	 */
 	public abstract double calcBaseArea();
+	
+	@Override
+	public int compareTo(Shape o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 }

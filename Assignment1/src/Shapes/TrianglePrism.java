@@ -58,7 +58,7 @@ public class TrianglePrism extends Prism {
 	 */
 	@Override
 	public String toString() {
-		return "Triangular Prism: " + getHeight() + getSide();
+		return "Triangular Prism: " + getHeight() + " " + getSide();
 	}
 
 }

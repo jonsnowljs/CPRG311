@@ -7,5 +7,8 @@ public class OctagonalPrism extends Prism {
 		// TODO Auto-generated constructor stub
 	}
 
-	
+	@Override
+	public String toString() {
+		return "Square Prism: " + getHeight() + " " + getSide();
+	}
 }
