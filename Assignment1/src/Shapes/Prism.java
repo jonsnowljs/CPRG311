@@ -20,5 +20,30 @@ public class Prism extends Shape {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	
 
+	public double getSide() {
+		return side;
+	}
+
+	public void setSide(double side) {
+		this.side = side;
+	}
+	
+	public double getHeight() {
+		return height;
+	}
+
+	public void setHeight(double height) {
+		this.height = height;
+	}
+
+	/**
+	 * toString method to display the object
+	 */
+	@Override
+	public String toString() {
+		return "Prism: " + getHeight() + getSide();
+	}
 }

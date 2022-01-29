@@ -15,4 +15,5 @@ public abstract class Shape {
 	 * @return base area
 	 */
 	public abstract double calcBaseArea();
+
 }

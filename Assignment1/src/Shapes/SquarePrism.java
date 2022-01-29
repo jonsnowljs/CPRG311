@@ -53,4 +53,11 @@ public class SquarePrism extends Prism {
 		this.height = height;
 	}
 
+	/**
+	 * toString method to display the object
+	 */
+	@Override
+	public String toString() {
+		return "Square Prism: " + getHeight() + getSide();
+	}
 }

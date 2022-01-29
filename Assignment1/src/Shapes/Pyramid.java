@@ -62,5 +62,10 @@ public class Pyramid extends Shape {
 	public void setHeight(double height) {
 		this.height = height;
 	}
+	
+	@Override
+	public String toString() {
+		return "Pyramid: " + getHeight() + getSide();
+	}
 
 }
