@@ -52,5 +52,13 @@ public class TrianglePrism extends Prism {
 	public void setHeight(double height) {
 		this.height = height;
 	}
+	
+	/**
+	 * toString method to display the object
+	 */
+	@Override
+	public String toString() {
+		return "Triangular Prism: " + getHeight() + getSide();
+	}
 
 }
