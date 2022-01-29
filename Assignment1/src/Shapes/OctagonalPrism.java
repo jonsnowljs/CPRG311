@@ -7,4 +7,5 @@ public class OctagonalPrism extends Prism {
 		// TODO Auto-generated constructor stub
 	}
 
+	
 }

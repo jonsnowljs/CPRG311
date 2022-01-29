@@ -83,5 +83,10 @@ public class Cylinder extends Shape {
 		// TODO Auto-generated method stub
 		return Math.PI * Math.pow(radius, 2);
 	}
+	
+	@Override
+	public String toString() {
+		return "Cylinder" + " "+ this.getHeight() + " " + this.getRadius();
+	}
 
 }

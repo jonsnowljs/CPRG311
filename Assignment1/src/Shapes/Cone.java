@@ -76,5 +76,10 @@ public class Cone extends Shape {
 		// TODO Auto-generated method stub
 		return Math.PI * Math.pow(radius, 2);
 	}
+	
+	@Override
+	public String toString() {
+		return "Cone" + " "+ this.getHeight() + " " + this.getRadius();
+	}
 
 }
