@@ -14,11 +14,13 @@
 
 ### Make some changes in the code
 
+### import the repo in Eclipse to Github desktop
+
 ### Commit you changes
   
 ### Push your changes to Github
-
-### Fetch others new changes 
+  ![](img/push.png)
+### When we push some changes to github, you can fetch the commits we made by fetch it
 
 
 --- 
