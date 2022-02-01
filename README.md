@@ -2,36 +2,36 @@
 
 ## Collaborating process for Assignment 1
 
-### Copy [this](https://github.com/jonsnowljs/CPRG311) git repo link
+- Copy [this](https://github.com/jonsnowljs/CPRG311) git repo link
 
  ![](img/copyGit1.png)
 
-### import the repo to Eclipse
+- Import the repo to Eclipse
 
   ![](img/importToEclipse.png)
   ![](img/cloneurl.png)
   ![](img/addgiturl.png)
 
-### Make some changes in the code
+- Make some changes in the code
 
-### import the repo in Eclipse to Github desktop
+- Import the repo in Eclipse to Github desktop
 
-### Commit you changes
+- Commit you changes
   
-### Push your changes to Github
+- Push your changes to Github
   ![](img/push.png)
-### When we push some changes to github, you can fetch the commits we made by fetch it
-
+- When we push some changes to github, you can fetch the commits we made by fetch it
+  ![](img/fetch.png)
 
 --- 
 ## Collaborate process for assignment 2
 
-### Fork the repo
+- Fork the repo
 
 - Fork [this](https://github.com/jonsnowljs/CPRG311) repo into your Github
   ![](img/fork.png)
 
-### Clone your forked repo to Eclipse
+- Clone your forked repo to Eclipse
 
 - Copy the repo link in your repo (not in my repo)
 
@@ -42,5 +42,5 @@
   ![](img/cloneurl.png)
   ![](img/addgiturl.png)
 
-### Create a new branch and switch to 
+- Create a new branch and switch to 
 - 
