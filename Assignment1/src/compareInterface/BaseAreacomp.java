@@ -1,20 +1,15 @@
-/**
- * 
- */
 package compareInterface;
 
 import java.util.Comparator;
 
 import Shapes.Shape;
 
-/**
- * @author Jason
- *
- */
-public interface BaseAreacomp extends Comparator<Shape> {
+public class BaseAreaComp implements Comparator<Shape> {
+
 	@Override
-	default int compare(Shape o1, Shape o2) {
+	public int compare(Shape o1, Shape o2) {
 		// TODO Auto-generated method stub
-		return 0;
+		return (int) Math.signum(o1.calcBaseArea() - o2.calcBaseArea());
 	}
+
 }
