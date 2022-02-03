@@ -3,7 +3,7 @@ package Shapes;
 
 /**
  * Inherit from shape class, represent the Cone shape
- * @author Jiasheng Lu, Desmond test
+ * @author Jiasheng Lu
  *
  */
 public class Cone extends Shape {
