@@ -19,7 +19,7 @@ public class Cone extends Shape {
 	 * Constructor with height and radius, create a cone object
 	 * @param radius
 	 */
-	public Cone(double radius, double height) {
+	public Cone( double height, double radius) {
 		this.radius = radius;
 		this.height = height;
 	}	

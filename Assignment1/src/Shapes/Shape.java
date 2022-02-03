@@ -18,8 +18,7 @@ public abstract class Shape implements Comparable<Shape> {
 	
 	@Override
 	public int compareTo(Shape o) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
+		return (int) (this.height - o.height);
+	};
+	
 }
