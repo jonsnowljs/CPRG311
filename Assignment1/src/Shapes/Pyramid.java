@@ -1,4 +1,4 @@
-package Shapes;
+package shapes;
 
 public class Pyramid extends Shape {
 	double side;

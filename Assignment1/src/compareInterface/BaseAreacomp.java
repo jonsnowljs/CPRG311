@@ -2,7 +2,7 @@ package compareInterface;
 
 import java.util.Comparator;
 
-import Shapes.Shape;
+import shapes.Shape;
 
 public class BaseAreaComp implements Comparator<Shape> {
 

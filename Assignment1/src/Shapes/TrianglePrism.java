@@ -1,4 +1,4 @@
-package Shapes;
+package shapes;
 
 public class TrianglePrism extends Prism {
 

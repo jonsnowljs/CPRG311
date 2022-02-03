@@ -1,4 +1,4 @@
-package Shapes;
+package shapes;
 
 public class SquarePrism extends Prism {
 

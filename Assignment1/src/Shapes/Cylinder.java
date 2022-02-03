@@ -1,4 +1,4 @@
-package Shapes;
+package shapes;
 
 /**
  * Inherit from shape class, represent the Cylinder shape
