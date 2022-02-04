@@ -21,7 +21,7 @@ public class AllSorts {
 	}
 
 	public static <T extends Comparable<? super T>> void selectionSort(T[] arr) {
-
+		//	 test
 	}
 
 	public static <T extends Comparable<? super T>> void insertionSort(T[] arr) {
