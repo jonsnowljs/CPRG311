@@ -50,7 +50,7 @@ public class AllSorts {
 		
 		default:
 			System.out.println("Invalid Input");
-			System.out.println("Please use H for height comparison, A for base area comparison and V for volume comparison");
+			System.out.println("Please use -TH for height comparison, -TA for base area comparison and -TV for volume comparison");
 		}
 		
 		
