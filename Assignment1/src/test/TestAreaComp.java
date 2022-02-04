@@ -1,5 +1,7 @@
 package test;
 
+import java.util.Arrays;
+
 import compareInterface.BaseAreaComp;
 import shapes.Cone;
 import shapes.Cylinder;
@@ -15,16 +17,13 @@ public class TestAreaComp {
 		Cylinder c3 = new Cylinder(15, 15);
 		SquarePrism c4 = new SquarePrism(16, 16);
 		Shape[] shapes = {c1, c2, c3, c4};
-		for (int i = 0; i < shapes.length; i++) {
-			System.out.println(shapes[i]);
-			}
+		System.out.println(Arrays.toString(shapes));
+		
 
 		AllSorts.bubbleSort(shapes);
 
 		
-		for (int i = 0; i < shapes.length; i++) {
-			System.out.println(shapes[i]);
-			}
+		System.out.println(Arrays.toString(shapes));
 
 	}
 
