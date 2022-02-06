@@ -70,8 +70,8 @@ public class AllSorts {
 		int N = arr.length;
 		
 		int mid = N / 2;
-	    T[] l = new T[mid];
-	    T[] r = new T[N - mid];
+	    T[] l = (T[])new Object[mid];
+	    T[] r = (T[])new Object[N - mid];
 
 		switch (Character.toUpperCase(command)) {
 		case 'H':
