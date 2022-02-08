@@ -2,9 +2,11 @@ package test;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.Scanner;
 
+import compareInterface.BaseAreaComp;
 import shapes.Cylinder;
 import shapes.Cone;
 import shapes.OctagonalPrism;
@@ -66,7 +68,9 @@ public class MyTestShape {
 				}
 			}
 			
-			AllSorts.bubbleSort(shapes);
+			
+			Comparator<Shape> baseAreaComparator = new BaseAreaComp();
+			AllSorts.bubbleSort(shapes, baseAreaComparator);
 			
 			for (int i = 0; i < shapes.length; i++) {
 				System.out.println(shapes[i]);

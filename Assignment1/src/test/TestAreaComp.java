@@ -1,6 +1,7 @@
 package test;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 import compareInterface.BaseAreaComp;
 import shapes.Cone;
@@ -19,10 +20,9 @@ public class TestAreaComp {
 		Shape[] shapes = {c1, c2, c3, c4};
 		System.out.println(Arrays.toString(shapes));
 		
+		Comparator<Shape> baseAreaComparator = new BaseAreaComp();
+		AllSorts.bubbleSort(shapes, baseAreaComparator);
 
-		AllSorts.bubbleSort(shapes);
-
-		
 		System.out.println(Arrays.toString(shapes));
 
 	}
