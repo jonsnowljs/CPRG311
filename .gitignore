@@ -6,3 +6,7 @@
 /demo03-Reflection
 /CPRG
 *.pdf
+*.class
+/Assignment1\bin
+**/bin
+*.class
