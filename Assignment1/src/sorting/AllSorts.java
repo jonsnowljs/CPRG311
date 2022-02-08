@@ -1,59 +1,25 @@
 package sorting;
 
+import java.util.Comparator;
+
 import compareInterface.BaseAreaComp;
 import compareInterface.VolumeComp;
 import shapes.Shape;
 
 public class AllSorts {
-	public static <T extends Comparable<? super T>> void bubbleSort(T[] arr, char command) {
-
+	public static <T extends Comparable<? super T>> void bubbleSort(T[] arr, Comparator<T> comparator) {
 		int N = arr.length;
 
-		switch (Character.toUpperCase(command)) {
-		case 'H':
-			for (int i = N - 1; i > 0; --i) { // i >= 0 --> OK
-				for (int j = 0; j < i; ++j) {
-					if (arr[j].compareTo(arr[j + 1]) > 0) {
-						T temp = arr[j];
-						arr[j] = arr[j + 1];
-						arr[j + 1] = temp;
-					}
+		for (int i = N - 1; i > 0; --i) {
+			for (int j = 0; j < i; ++j) {
+				if (comparator.compare(arr[j], arr[j+1]) > 0) {
+					T temp = arr[j];
+					arr[j] = arr[j + 1];
+					arr[j + 1] = temp;
 				}
 			}
-			break;
-
-		case 'A':
-			for (int i = N - 1; i > 0; --i) { // i >= 0 --> OK
-				for (int j = 0; j < i; ++j) {
-					BaseAreaComp baseAreaComp = new BaseAreaComp((Shape) arr[j], (Shape) arr[j + 1]);
-					if (baseAreaComp.IfSwap()) {
-						T temp = arr[j];
-						arr[j] = arr[j + 1];
-						arr[j + 1] = temp;
-					}
-				}
-			}
-			break;
-
-		case 'V':
-			for (int i = N - 1; i > 0; --i) { // i >= 0 --> OK
-				for (int j = 0; j < i; ++j) {
-					VolumeComp baseAreaComp = new VolumeComp((Shape) arr[j], (Shape) arr[j + 1]);
-					if (baseAreaComp.IfSwap()) {
-						T temp = arr[j];
-						arr[j] = arr[j + 1];
-						arr[j + 1] = temp;
-					}
-				}
-			}
-			break;
-
-		default:
-			System.out.println("Invalid Input");
-			System.out.println(
-					"Please use -TH for height comparison, -TA for base area comparison and -TV for volume comparison");
 		}
-
+		
 	}
 
 //	Desmond
@@ -128,8 +94,8 @@ public class AllSorts {
 	}
 
 //Jiasheng
-	public static <T extends Comparable<? super T>> void Sort(T[] arr) {
-
+	public static <T extends Comparable<? super T>> void Sort(T[] arr, Comparator<T> comparator) {
+		
 	}
 
 }
