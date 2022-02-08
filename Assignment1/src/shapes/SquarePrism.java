@@ -38,22 +38,6 @@ public class SquarePrism extends Prism {
 	}
 	
 	/**
-	 * Gets the height of the SquarePrism 
-	 * @return height of the SquarePrism
-	 */
-	public double getHeight() {
-		return height;
-	}
-	
-	/**
-	 * Sets the height of the SquarePrism
-	 * @param height new height value
-	 */
-	public void setHeight(double height) {
-		this.height = height;
-	}
-
-	/**
 	 * toString method to display the object
 	 */
 	@Override

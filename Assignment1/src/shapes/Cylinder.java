@@ -28,25 +28,6 @@ public class Cylinder extends Shape {
 	}
 
 	/**
-	 * get the height of cylinder
-	 * 
-	 * @return the height
-	 */
-	public double getHeight() {
-		return height;
-	}
-
-	/**
-	 * set the height of cylinder
-	 * 
-	 * @param height the height to set
-	 */
-	public void setHeight(double height) {
-		this.height = height;
-	}
-
-
-	/**
 	 * Get the radius of cylinder
 	 * 
 	 * @return the radius

@@ -21,21 +21,6 @@ public class OctagonalPrism extends Prism {
 	public double calcBaseArea() {
 		return 5 * Math.pow(side, 2) * Math.tan(54 * Math.PI / 180);
 	}
-	
-	
-	/**
-	 * @return the height
-	 */
-	public double getHeight() {
-		return height;
-	}
-
-	/**
-	 * @param height the height to set
-	 */
-	public void setHeight(double height) {
-		this.height = height;
-	}
 
 	/**
 	 * @return the side

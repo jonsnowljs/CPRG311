@@ -37,21 +37,6 @@ public class TrianglePrism extends Prism {
 		this.side = side;
 	}
 	
-	/**
-	 * Gets the height of the TrianglePrism 
-	 * @return height of the TrianglePrism
-	 */
-	public double getHeight() {
-		return height;
-	}
-	
-	/**
-	 * Sets the height of the TrianglePrism
-	 * @param height new height value
-	 */
-	public void setHeight(double height) {
-		this.height = height;
-	}
 	
 	/**
 	 * toString method to display the object

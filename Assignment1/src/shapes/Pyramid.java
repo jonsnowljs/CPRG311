@@ -47,21 +47,6 @@ public class Pyramid extends Shape {
 		this.side = side;
 	}
 
-	/**
-	 * Gets the height of the Pyramid 
-	 * @return height of the Pyramid
-	 */
-	public double getHeight() {
-		return height;
-	}
-
-	/**
-	 * Sets the height of the Pyramid
-	 * @param height new height value
-	 */
-	public void setHeight(double height) {
-		this.height = height;
-	}
 	
 	@Override
 	public String toString() {

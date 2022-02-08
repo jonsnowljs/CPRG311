@@ -24,23 +24,6 @@ public class Cone extends Shape {
 		this.height = height;
 	}	
 
-	/**
-	 * get the height of cone
-	 * 
-	 * @return the height
-	 */
-	public double getHeight() {
-		return height;
-	}
-
-	/**
-	 * set the height of cone
-	 * 
-	 * @param height the height to set
-	 */
-	public void setHeight(double height) {
-		this.height = height;
-	}
 
 	/**
 	 * Get the radius of cone
