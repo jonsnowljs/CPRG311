@@ -23,16 +23,16 @@ public class AllSorts {
 	}
 
 //	Desmond
-	public static <T extends Comparable<? super T>> void selectionSort(T[] arr) {
+	public static <T extends Comparable<? super T>> void selectionSort(T[] arr, Comparator<T> comparator) {
 		// test
 	}
 
-	public static <T extends Comparable<? super T>> void insertionSort(T[] arr) {
+	public static <T extends Comparable<? super T>> void insertionSort(T[] ar, Comparator<T> comparatorr) {
 
 	}
 
 //Hardish
-	public static <T extends Comparable<? super T>> void mergeSort(T[] arr, char command) {
+	public static <T extends Comparable<? super T>> void mergeSort(T[] arr, Comparator<T> comparator) {
 		int N = arr.length;
 		
 		int mid = N / 2;
@@ -89,7 +89,7 @@ public class AllSorts {
 			    }
 			}
 
-	public static <T extends Comparable<? super T>> void quickSort(T[] arr) {
+	public static <T extends Comparable<? super T>> void quickSort(T[] arr, Comparator<T> comparator) {
 
 	}
 
