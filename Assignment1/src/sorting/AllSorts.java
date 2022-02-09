@@ -68,12 +68,12 @@ public class AllSorts {
 			int small = i;
 
 			for (int j = i + 1; j < n; j++) {
-				if (arr[j].compareTo(arr[small] < 0)) {
+				if (arr[j].compareTo(arr[small]) < 0) {
 					small = j;
 				}
 			}
 
-			int temp = arr[small];
+			T temp = arr[small];
 			arr[small] = arr[i];
 			arr[i] = temp;
 		}
@@ -104,7 +104,7 @@ public class AllSorts {
 				}
 			}
 
-			int temp = arr[small];
+			T temp = arr[small];
 			arr[small] = arr[i];
 			arr[i] = temp;
 		}
