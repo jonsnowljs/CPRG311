@@ -49,81 +49,170 @@ public class AllSorts {
 
 	}
 
-//	Desmond
+	/**
+	 * selection sort for comparable array
+	 * 
+	 * @param <T>
+	 * @param arr
+	 */
+	public static <T extends Comparable<? super T>> void selectionSort(T[] arr) {
+
+		if (arr == null || arr.length <= 1) {
+			return;
+		}
+
+		int n = arr.length;
+
+		for (int i = 0; i < n - 1; i++) {
+
+			int small = i;
+
+			for (int j = i + 1; j < n; j++) {
+				if (arr[j].compareTo(arr[small] < 0)) {
+					small = j;
+				}
+			}
+
+			int temp = arr[small];
+			arr[small] = arr[i];
+			arr[i] = temp;
+		}
+	}
+
+	/**
+	 * selection sort for comparable array and comparator
+	 * 
+	 * @param <T>
+	 * @param arr
+	 * @param comparator
+	 */
 	public static <T extends Comparable<? super T>> void selectionSort(T[] arr, Comparator<T> comparator) {
-		// test
+
+		if (arr == null || arr.length <= 1) {
+			return;
+		}
+
+		int n = arr.length;
+
+		for (int i = 0; i < n - 1; i++) {
+
+			int small = i;
+
+			for (int j = i + 1; j < n; j++) {
+				if (comparator.compare(arr[j], arr[small]) < 0) {
+					small = j;
+				}
+			}
+
+			int temp = arr[small];
+			arr[small] = arr[i];
+			arr[i] = temp;
+		}
+
 	}
 
-	public static <T extends Comparable<? super T>> void insertionSort(T[] ar, Comparator<T> comparatorr) {
+	/**
+	 * insertion sort for comparable array
+	 * 
+	 * @param <T>
+	 * @param arr
+	 */
+	public static <T extends Comparable<? super T>> void insertionSort(T[] arr) {
 
+		int n = arr.length;
+        for (int i = 1; i < n; ++i) {
+        	
+            int j = i - 1;
+ 
+            while (j >= 0 && arr[j].compareTo(arr[i]) > 0) {
+                arr[j + 1] = arr[j];
+                j = j - 1;
+            }
+            arr[j + 1] = arr[i];
+        }
+		
 	}
-/**
- * merge sorting using comparable
- * 
- * @param <T>
- * @param arr
- */
-	public static <T extends Comparable<? super T>> void mergeSort(T[] arr) {
-		if(arr == null)
-        {
-            return;
-        }
- 
-        if(arr.length > 1)
-        {
-            int mid = arr.length / 2;
- 
-            // Split left part
-            T[] left = (T[]) new Shape[mid];
-            for(int i = 0; i < mid; i++)
-            {
-                left[i] = arr[i];
-            }
-             
-            // Split right part
-            T[] right = (T[])new Shape[arr.length - mid];
-            for(int i = mid; i < arr.length; i++)
-            {
-                right[i - mid] = arr[i];
-            }
-            mergeSort(left);
-            mergeSort(right);
- 
-            int i = 0;
-            int j = 0;
-            int k = 0;
- 
-            // Merge left and right arrays
-            while(i < left.length && j < right.length)
-            {
-                if(left[i].compareTo(right[j]) < 0)
-                {
-                	arr[k] = left[i];
-                    i++;
-                }
-                else
-                {
-                	arr[k] = right[j];
-                    j++;
-                }
-                k++;
-            }
-            // Collect remaining elements
-            while(i < left.length)
-            {
-            	arr[k] = left[i];
-                i++;
-                k++;
-            }
-            while(j < right.length)
-            {
-            	arr[k] = right[j];
-                j++;
-                k++;
-            }
-        }
-    }
 	
+	/**
+	 * insertion sort for comparable array and comparator
+	 * 
+	 * @param <T>
+	 * @param arr
+	 * @param comparator
+	 */
+	public static <T extends Comparable<? super T>> void insertionSort(T[] arr, Comparator<T> comparator) {
+		
+		int n = arr.length;
+        for (int i = 1; i < n; ++i) {
+        	
+            int j = i - 1;
+ 
+            while (j >= 0 && comparator.compare(arr[j], arr[i]) > 0) {
+                arr[j + 1] = arr[j];
+                j = j - 1;
+            }
+            arr[j + 1] = arr[i];
+        }
+
+	}
+
+	/**
+	 * merge sorting using comparable
+	 * 
+	 * @param <T>
+	 * @param arr
+	 */
+	public static <T extends Comparable<? super T>> void mergeSort(T[] arr) {
+		if (arr == null) {
+			return;
+		}
+
+		if (arr.length > 1) {
+			int mid = arr.length / 2;
+
+			// Split left part
+			T[] left = (T[]) new Shape[mid];
+			for (int i = 0; i < mid; i++) {
+				left[i] = arr[i];
+			}
+
+			// Split right part
+			T[] right = (T[]) new Shape[arr.length - mid];
+			for (int i = mid; i < arr.length; i++) {
+				right[i - mid] = arr[i];
+			}
+			mergeSort(left);
+			mergeSort(right);
+
+			int i = 0;
+			int j = 0;
+			int k = 0;
+
+			// Merge left and right arrays
+			while (i < left.length && j < right.length) {
+				if (left[i].compareTo(right[j]) < 0) {
+					arr[k] = left[i];
+					i++;
+				} else {
+					arr[k] = right[j];
+					j++;
+				}
+				k++;
+			}
+			// Collect remaining elements
+			while (i < left.length) {
+				arr[k] = left[i];
+				i++;
+				k++;
+			}
+			while (j < right.length) {
+				arr[k] = right[j];
+				j++;
+				k++;
+			}
+		}
+	}
+
 	/**
 	 * merge sorting using comparator
 	 * 
@@ -132,66 +221,55 @@ public class AllSorts {
 	 * @param comparator
 	 */
 	public static <T> void mergeSort(T[] arr, Comparator<T> comparator) {
-		if(arr == null)
-        {
-            return;
-        }
- 
-        if(arr.length > 1)
-        {
-            int mid = arr.length / 2;
- 
-            // Split left part
-            T[] left = (T[]) new Shape[mid];
-            for(int i = 0; i < mid; i++)
-            {
-                left[i] = arr[i];
-            }
-             
-            // Split right part
-            T[] right = (T[])new Shape[arr.length - mid];
-            for(int i = mid; i < arr.length; i++)
-            {
-                right[i - mid] = arr[i];
-            }
-            mergeSort(left, comparator);
-            mergeSort(right, comparator);
- 
-            int i = 0;
-            int j = 0;
-            int k = 0;
- 
-            // Merge left and right arrays
-            while(i < left.length && j < right.length)
-            {
-                if(comparator.compare(left[i], right[j]) < 0)
-                {
-                	arr[k] = left[i];
-                    i++;
-                }
-                else
-                {
-                	arr[k] = right[j];
-                    j++;
-                }
-                k++;
-            }
-            // Collect remaining elements
-            while(i < left.length)
-            {
-            	arr[k] = left[i];
-                i++;
-                k++;
-            }
-            while(j < right.length)
-            {
-            	arr[k] = right[j];
-                j++;
-                k++;
-            }
-        }
-    }
+		if (arr == null) {
+			return;
+		}
 
+		if (arr.length > 1) {
+			int mid = arr.length / 2;
+
+			// Split left part
+			T[] left = (T[]) new Shape[mid];
+			for (int i = 0; i < mid; i++) {
+				left[i] = arr[i];
+			}
+
+			// Split right part
+			T[] right = (T[]) new Shape[arr.length - mid];
+			for (int i = mid; i < arr.length; i++) {
+				right[i - mid] = arr[i];
+			}
+			mergeSort(left, comparator);
+			mergeSort(right, comparator);
+
+			int i = 0;
+			int j = 0;
+			int k = 0;
+
+			// Merge left and right arrays
+			while (i < left.length && j < right.length) {
+				if (comparator.compare(left[i], right[j]) < 0) {
+					arr[k] = left[i];
+					i++;
+				} else {
+					arr[k] = right[j];
+					j++;
+				}
+				k++;
+			}
+			// Collect remaining elements
+			while (i < left.length) {
+				arr[k] = left[i];
+				i++;
+				k++;
+			}
+			while (j < right.length) {
+				arr[k] = right[j];
+				j++;
+				k++;
+			}
+		}
+	}
 
 	public static <T extends Comparable<? super T>> void quickSort(T[] arr, Comparator<T> comparator) {
 		
