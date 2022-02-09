@@ -50,7 +50,12 @@ public class AllSorts {
 
 	}
 
-//	Desmond
+	/**
+	 * selection sort for comparable array
+	 * 
+	 * @param <T>
+	 * @param arr
+	 */
 	public static <T extends Comparable<? super T>> void selectionSort(T[] arr) {
 
 		if (arr == null || arr.length <= 1) {
@@ -75,6 +80,13 @@ public class AllSorts {
 		}
 	}
 
+	/**
+	 * selection sort for comparable array and comparator
+	 * 
+	 * @param <T>
+	 * @param arr
+	 * @param comparator
+	 */
 	public static <T extends Comparable<? super T>> void selectionSort(T[] arr, Comparator<T> comparator) {
 
 		if (arr == null || arr.length <= 1) {
@@ -100,7 +112,48 @@ public class AllSorts {
 
 	}
 
-	public static <T extends Comparable<? super T>> void insertionSort(T[] ar, Comparator<T> comparatorr) {
+	/**
+	 * insertion sort for comparable array
+	 * 
+	 * @param <T>
+	 * @param arr
+	 */
+	public static <T extends Comparable<? super T>> void insertionSort(T[] arr) {
+
+		int n = arr.length;
+        for (int i = 1; i < n; ++i) {
+        	
+            int j = i - 1;
+ 
+            while (j >= 0 && arr[j].compareTo(arr[i]) > 0) {
+                arr[j + 1] = arr[j];
+                j = j - 1;
+            }
+            arr[j + 1] = arr[i];
+        }
+		
+	}
+	
+	/**
+	 * insertion sort for comparable array and comparator
+	 * 
+	 * @param <T>
+	 * @param arr
+	 * @param comparator
+	 */
+	public static <T extends Comparable<? super T>> void insertionSort(T[] arr, Comparator<T> comparator) {
+		
+		int n = arr.length;
+        for (int i = 1; i < n; ++i) {
+        	
+            int j = i - 1;
+ 
+            while (j >= 0 && comparator.compare(arr[j], arr[i]) > 0) {
+                arr[j + 1] = arr[j];
+                j = j - 1;
+            }
+            arr[j + 1] = arr[i];
+        }
 
 	}
 
