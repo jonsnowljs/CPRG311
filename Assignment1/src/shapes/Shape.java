@@ -34,7 +34,7 @@ public abstract class Shape implements Comparable<Shape> {
 	
 	@Override
 	public int compareTo(Shape o) {
-		return (int) (this.height - o.height);
+		return (int) Math.signum(this.height - o.height);
 	};
 	
 }

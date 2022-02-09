@@ -21,7 +21,8 @@ public class TestAreaComp {
 		System.out.println(Arrays.toString(shapes));
 		
 		Comparator<Shape> baseAreaComparator = new BaseAreaComp();
-		AllSorts.bubbleSort(shapes, baseAreaComparator);
+//		AllSorts.bubbleSort(shapes, baseAreaComparator);
+		AllSorts.HeapSort(shapes, baseAreaComparator);
 
 		System.out.println(Arrays.toString(shapes));
 

@@ -68,7 +68,7 @@ public class MyTestShape {
 				}
 			}
 			
-			
+//			use bubble sort to test shape's Base Area
 			Comparator<Shape> baseAreaComparator = new BaseAreaComp();
 			AllSorts.bubbleSort(shapes, baseAreaComparator);
 			
@@ -78,9 +78,6 @@ public class MyTestShape {
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-//		} catch (ClassNotFoundException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
 		}
 
 	}

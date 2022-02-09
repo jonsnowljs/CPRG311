@@ -6,7 +6,6 @@ import shapes.Shape;
 
 public class BaseAreaComp implements Comparator<Shape> {
 	public BaseAreaComp() {
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
