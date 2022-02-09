@@ -54,7 +54,7 @@ public class MyTestShape {
 					break;
 				}
 				case "PentagonalPrism": {
-					shapes[i] = new OctagonalPrism(height, side);
+					shapes[i] = new PentagonalPrism(height, side);
 					break;
 				}
 				case "SquarePrism": {
