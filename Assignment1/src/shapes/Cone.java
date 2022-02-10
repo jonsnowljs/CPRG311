@@ -62,7 +62,7 @@ public class Cone extends Shape {
 	
 	@Override
 	public String toString() {
-		return "Cone" + " "+ this.getHeight() + " " + this.getRadius();
+		return "Cone" + " "+ this.getHeight() + " " + this.getRadius() + "\n";
 	}
 
 }

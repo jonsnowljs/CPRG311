@@ -37,6 +37,6 @@ public class Prism extends Shape {
 	 */
 	@Override
 	public String toString() {
-		return "Prism: " + getHeight() + " " + getSide();
+		return "Prism: " + getHeight() + " " + getSide() + "\n";
 	}
 }

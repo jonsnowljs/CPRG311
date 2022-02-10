@@ -63,7 +63,7 @@ public class PentagonalPrism extends Prism {
 	 */
 	@Override
 	public String toString() {
-		return "Pentagonal Prism: " + getHeight() + " " + getSide();
+		return "Pentagonal Prism: " + getHeight() + " " + getSide() + "\n";
 	}
 
 }
