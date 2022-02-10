@@ -184,6 +184,7 @@ public class AllSorts {
 			for (int i = mid; i < arr.length; i++) {
 				right[i - mid] = arr[i];
 			}
+
 			mergeSort(left);
 			mergeSort(right);
 
@@ -275,12 +276,115 @@ public class AllSorts {
 	}
 
 	public static <T extends Comparable<? super T>> void quickSort(T[] arr) {
-
+		int low = 0;
+		int high = arr.length - 1;
+		quickSorting(arr, low, high);
+	  }
+	
+	public static <T extends Comparable<? super T>> void quickSorting(T[] arr, int low, int high) {
+		  //check for empty or null array
+	    if (arr == null || arr.length == 0){
+	      return;
+	    }
+	     
+	    if (low >= high){
+	      return;
+	    }
+	 
+	    //Get the pivot element from the middle of the list
+	    int middle = low + (high - low) / 2;
+	    T pivot = arr[middle];
+	 
+	    // make left < pivot and right > pivot
+	    int i = low, j = high;
+	    while (i <= j) 
+	    {
+	      //Check until all values on left side array are lower than pivot
+	      while (arr[i].compareTo(pivot) < 0) 
+	      {
+	        i++;
+	      }
+	      //Check until all values on left side array are greater than pivot
+	      while (arr[j].compareTo(pivot) > 0) 
+	      {
+	        j--;
+	      }
+	      //Now compare values from both side of lists to see if they need swapping 
+	      //After swapping move the iterator on both lists
+	      if (i <= j) 
+	      {
+	    	 swapQuick (arr, i, j);
+	        i++;
+	        j--;
+	      }
+	    }
+	    //Do same operation as above recursively to sort two sub arrays
+	    if (low < j){
+	      quickSorting(arr, low, j);
+	    }
+	    if (high > i){
+			quickSorting(arr, i, high);
+	    }
 	}
 
 	public static <T> void quickSort(T[] arr, Comparator<T> comparator) {
-
+		int low = 0;
+		int high = arr.length - 1;
+		quickSorting(arr, low, high, comparator);
+	  }
+	
+	public static <T> void quickSorting(T[] arr, int low, int high, Comparator<T> comparator) {
+		  //check for empty or null array
+	    if (arr == null || arr.length == 0){
+	      return;
+	    }
+	     
+	    if (low >= high){
+	      return;
+	    }
+	 
+	    //Get the pivot element from the middle of the list
+	    int middle = low + (high - low) / 2;
+	    T pivot = arr[middle];
+	 
+	    // make left < pivot and right > pivot
+	    int i = low, j = high;
+	    while (i <= j) 
+	    {
+	      //Check until all values on left side array are lower than pivot
+	      while (comparator.compare(arr[i], pivot) < 0)
+	      {
+	        i++;
+	      }
+	      //Check until all values on left side array are greater than pivot
+	      while (comparator.compare(arr[j], pivot) > 0) 
+	      {
+	        j--;
+	      }
+	      //Now compare values from both side of lists to see if they need swapping 
+	      //After swapping move the iterator on both lists
+	      if (i <= j) 
+	      {
+	    	 swapQuick (arr, i, j);
+	        i++;
+	        j--;
+	      }
+	    }
+	    //Do same operation as above recursively to sort two sub arrays
+	    if (low < j){
+	      quickSorting(arr, low, j, comparator);
+	    }
+	    if (high > i){
+			quickSorting(arr, i, high, comparator);
+	    }
 	}
+	  public static <T> void swapQuick (T[] arr, int x, int y)
+	    {
+	    T temp = arr[x];
+	    arr[x] = arr[y];
+	    arr[y] = temp;
+	    }
+	
 
 	// Jiasheng
 	/**
