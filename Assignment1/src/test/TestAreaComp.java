@@ -22,7 +22,7 @@ public class TestAreaComp {
 		
 		Comparator<Shape> baseAreaComparator = new BaseAreaComp();
 //		AllSorts.bubbleSort(shapes, baseAreaComparator);
-		AllSorts.HeapSort(shapes, baseAreaComparator);
+		AllSorts.heapSort(shapes, baseAreaComparator);
 
 		System.out.println(Arrays.toString(shapes));
 

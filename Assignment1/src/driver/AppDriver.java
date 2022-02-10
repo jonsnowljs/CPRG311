@@ -3,6 +3,9 @@
  */
 package driver;
 
+import java.util.Arrays;
+
+import shapes.Shape;
 import sorting.PolygonSorter;
 
 /**
@@ -26,7 +29,11 @@ public class AppDriver {
 		System.out.println(sorter.getFile());
 		System.out.println(sorter.getSort());
 		System.out.println(sorter.getType());
-		System.out.println(sorter.getShapes().toString());
+		System.out.println(sorter.getShapes());
+		System.out.println(Arrays.toString(sorter.getShapes()));
+//		for (Shape shape: sorter.getShapes()) {
+//			shape.toString();
+//		}
 
 		// sorter.loadPolygonArray();
 		// sorter.Sortpolygon();

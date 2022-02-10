@@ -10,3 +10,8 @@
 /Assignment1\bin
 **/bin
 *.class
+*.xml
+/.idea
+*.iml
+**/.idea
+
