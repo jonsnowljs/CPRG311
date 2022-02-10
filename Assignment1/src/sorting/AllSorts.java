@@ -122,16 +122,15 @@ public class AllSorts {
 	 */
 	public static <T extends Comparable<? super T>> void insertionSort(T[] arr) {
 
-		int n = arr.length;
-		for (int i = 1; i < n; ++i) {
-
-			int j = i - 1;
-
-			while (j >= 0 && arr[j].compareTo(arr[i]) > 0) {
+		
+		for (int i = 1; i < arr.length; i++) {
+			T temp = arr[i];
+			int j;
+			for (j = i - 1; j >= 0 && temp.compareTo(arr[j]) < 0; j--) {
 				arr[j + 1] = arr[j];
-				j = j - 1;
 			}
-			arr[j + 1] = arr[i];
+			arr[j + 1] = temp;
+
 		}
 
 	}
@@ -145,16 +144,14 @@ public class AllSorts {
 	 */
 	public static <T extends Comparable<? super T>> void insertionSort(T[] arr, Comparator<T> comparator) {
 
-		int n = arr.length;
-		for (int i = 1; i < n; ++i) {
-
-			int j = i - 1;
-
-			while (j >= 0 && comparator.compare(arr[j], arr[i]) > 0) {
+		for (int i = 1; i < arr.length; i++) {
+			T temp = arr[i];
+			int j;
+			for (j = i - 1; j >= 0 && comparator.compare(temp, arr[j]) < 0; j--) {
 				arr[j + 1] = arr[j];
-				j = j - 1;
 			}
-			arr[j + 1] = arr[i];
+			arr[j + 1] = temp;
+
 		}
 
 	}
@@ -279,112 +276,103 @@ public class AllSorts {
 		int low = 0;
 		int high = arr.length - 1;
 		quickSorting(arr, low, high);
-	  }
-	
+	}
+
 	public static <T extends Comparable<? super T>> void quickSorting(T[] arr, int low, int high) {
-		  //check for empty or null array
-	    if (arr == null || arr.length == 0){
-	      return;
-	    }
-	     
-	    if (low >= high){
-	      return;
-	    }
-	 
-	    //Get the pivot element from the middle of the list
-	    int middle = low + (high - low) / 2;
-	    T pivot = arr[middle];
-	 
-	    // make left < pivot and right > pivot
-	    int i = low, j = high;
-	    while (i <= j) 
-	    {
-	      //Check until all values on left side array are lower than pivot
-	      while (arr[i].compareTo(pivot) < 0) 
-	      {
-	        i++;
-	      }
-	      //Check until all values on left side array are greater than pivot
-	      while (arr[j].compareTo(pivot) > 0) 
-	      {
-	        j--;
-	      }
-	      //Now compare values from both side of lists to see if they need swapping 
-	      //After swapping move the iterator on both lists
-	      if (i <= j) 
-	      {
-	    	 swapQuick (arr, i, j);
-	        i++;
-	        j--;
-	      }
-	    }
-	    //Do same operation as above recursively to sort two sub arrays
-	    if (low < j){
-	      quickSorting(arr, low, j);
-	    }
-	    if (high > i){
+		// check for empty or null array
+		if (arr == null || arr.length == 0) {
+			return;
+		}
+
+		if (low >= high) {
+			return;
+		}
+
+		// Get the pivot element from the middle of the list
+		int middle = low + (high - low) / 2;
+		T pivot = arr[middle];
+
+		// make left < pivot and right > pivot
+		int i = low, j = high;
+		while (i <= j) {
+			// Check until all values on left side array are lower than pivot
+			while (arr[i].compareTo(pivot) < 0) {
+				i++;
+			}
+			// Check until all values on left side array are greater than pivot
+			while (arr[j].compareTo(pivot) > 0) {
+				j--;
+			}
+			// Now compare values from both side of lists to see if they need swapping
+			// After swapping move the iterator on both lists
+			if (i <= j) {
+				swapQuick(arr, i, j);
+				i++;
+				j--;
+			}
+		}
+		// Do same operation as above recursively to sort two sub arrays
+		if (low < j) {
+			quickSorting(arr, low, j);
+		}
+		if (high > i) {
 			quickSorting(arr, i, high);
-	    }
+		}
 	}
 
 	public static <T> void quickSort(T[] arr, Comparator<T> comparator) {
 		int low = 0;
 		int high = arr.length - 1;
 		quickSorting(arr, low, high, comparator);
-	  }
-	
-	public static <T> void quickSorting(T[] arr, int low, int high, Comparator<T> comparator) {
-		  //check for empty or null array
-	    if (arr == null || arr.length == 0){
-	      return;
-	    }
-	     
-	    if (low >= high){
-	      return;
-	    }
-	 
-	    //Get the pivot element from the middle of the list
-	    int middle = low + (high - low) / 2;
-	    T pivot = arr[middle];
-	 
-	    // make left < pivot and right > pivot
-	    int i = low, j = high;
-	    while (i <= j) 
-	    {
-	      //Check until all values on left side array are lower than pivot
-	      while (comparator.compare(arr[i], pivot) < 0)
-	      {
-	        i++;
-	      }
-	      //Check until all values on left side array are greater than pivot
-	      while (comparator.compare(arr[j], pivot) > 0) 
-	      {
-	        j--;
-	      }
-	      //Now compare values from both side of lists to see if they need swapping 
-	      //After swapping move the iterator on both lists
-	      if (i <= j) 
-	      {
-	    	 swapQuick (arr, i, j);
-	        i++;
-	        j--;
-	      }
-	    }
-	    //Do same operation as above recursively to sort two sub arrays
-	    if (low < j){
-	      quickSorting(arr, low, j, comparator);
-	    }
-	    if (high > i){
-			quickSorting(arr, i, high, comparator);
-	    }
 	}
-	  public static <T> void swapQuick (T[] arr, int x, int y)
-	    {
-	    T temp = arr[x];
-	    arr[x] = arr[y];
-	    arr[y] = temp;
-	    }
-	
+
+	public static <T> void quickSorting(T[] arr, int low, int high, Comparator<T> comparator) {
+		// check for empty or null array
+		if (arr == null || arr.length == 0) {
+			return;
+		}
+
+		if (low >= high) {
+			return;
+		}
+
+		// Get the pivot element from the middle of the list
+		int middle = low + (high - low) / 2;
+		T pivot = arr[middle];
+
+		// make left < pivot and right > pivot
+		int i = low, j = high;
+		while (i <= j) {
+			// Check until all values on left side array are lower than pivot
+			while (comparator.compare(arr[i], pivot) < 0) {
+				i++;
+			}
+			// Check until all values on left side array are greater than pivot
+			while (comparator.compare(arr[j], pivot) > 0) {
+				j--;
+			}
+			// Now compare values from both side of lists to see if they need swapping
+			// After swapping move the iterator on both lists
+			if (i <= j) {
+				swapQuick(arr, i, j);
+				i++;
+				j--;
+			}
+		}
+		// Do same operation as above recursively to sort two sub arrays
+		if (low < j) {
+			quickSorting(arr, low, j, comparator);
+		}
+		if (high > i) {
+			quickSorting(arr, i, high, comparator);
+		}
+	}
+
+	public static <T> void swapQuick(T[] arr, int x, int y) {
+		T temp = arr[x];
+		arr[x] = arr[y];
+		arr[y] = temp;
+	}
 
 	// Jiasheng
 	/**
