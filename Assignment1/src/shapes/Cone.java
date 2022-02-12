@@ -2,6 +2,7 @@ package shapes;
 
 /**
  * Inherit from shape class, represent the Cone shape
+ * 
  * @author Jiasheng Lu
  *
  */
@@ -14,11 +15,10 @@ public class Cone extends Shape {
 	 * @param height height of the cone
 	 * @param radius radius of the cone
 	 */
-	public Cone( double height, double radius) {
+	public Cone(double height, double radius) {
 		this.radius = radius;
 		this.height = height;
-	}	
-
+	}
 
 	/**
 	 * Get the radius of cone
@@ -45,7 +45,7 @@ public class Cone extends Shape {
 	 */
 	@Override
 	public double calcVolume() {
-		return 1/3 * Math.PI * Math.pow(radius, 2) * height;
+		return 1.0 / 3.0 * Math.PI * Math.pow(radius, 2) * height;
 	}
 
 	/**
