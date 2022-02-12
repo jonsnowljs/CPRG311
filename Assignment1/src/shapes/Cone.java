@@ -9,15 +9,10 @@ public class Cone extends Shape {
 	double radius;
 
 	/**
-	 * no-args constructor
-	 */
-	public Cone() {
-
-	}	
-
-	/**
-	 * Constructor with height and radius, create a cone object
-	 * @param radius
+	 * Constructor for a Cone with height and radius
+	 * 
+	 * @param height height of the cone
+	 * @param radius radius of the cone
 	 */
 	public Cone( double height, double radius) {
 		this.radius = radius;
@@ -44,7 +39,9 @@ public class Cone extends Shape {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * Gets the volume of the Cone
+	 * 
+	 * @return volume of the Cone
 	 */
 	@Override
 	public double calcVolume() {
@@ -52,17 +49,24 @@ public class Cone extends Shape {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * Gets the base area of the Cone
+	 * 
+	 * @return base area of the Cone
 	 */
 	@Override
 	public double calcBaseArea() {
 		// TODO Auto-generated method stub
 		return Math.PI * Math.pow(radius, 2);
 	}
-	
+
+	/**
+	 * Prints the Cone Shape
+	 *
+	 * @return String Returns the Cone Object
+	 */
 	@Override
 	public String toString() {
-		return "Cone" + " "+ this.getHeight() + " " + this.getRadius() + "\n";
+		return "Cone:= " + "Radius: " + this.getRadius() + ", " + super.toString() + "\n";
 	}
 
 }

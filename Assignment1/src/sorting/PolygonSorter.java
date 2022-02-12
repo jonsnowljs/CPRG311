@@ -5,146 +5,175 @@ import java.io.FileNotFoundException;
 import java.util.Comparator;
 import java.util.Scanner;
 
-import compareInterface.BaseAreaComp;
-import compareInterface.VolumeComp;
-import shapes.Cylinder;
-import shapes.Cone;
-import shapes.OctagonalPrism;
-import shapes.PentagonalPrism;
-import shapes.Pyramid;
-import shapes.Shape;
-import shapes.SquarePrism;
-import shapes.TrianglePrism;
+import compare_interface.*;
+import shapes.*;
+
+/**
+ * Identifies and parses Input from the user and uses appropriate type of sort
+ * and sorting method.
+ *
+ * @author Jiasheng Lu, Hardish Chander, Desmond Yuen
+ *
+ */
 
 public class PolygonSorter extends Exception {
 
+	// Fields
 	private String[] args;
-	private String file;
-	private String type;
-	private String sort;
-	private Shape[] shapes;
-	private Comparator comparator;
+	private String file; // The file address to be read
+	private String type; // The type to be compared
+	private String sort; // The sort method to be used
+	private Shape[] shapes; // The shapes array
+	private Comparator comparator; // Comparator used to compare the shape
 
-	public PolygonSorter(String[] args) {
+	/**
+	 * Constructor for Polygon Sorter
+	 * 
+	 * @param args user input array from the commandline
+	 * @throws Exception throws an exception if the user input has more than 3
+	 *                   arguments
+	 */
+	public PolygonSorter(String[] args) throws Exception {
 
-		try {
-			if (args.length != 3) {
-				throw new Exception("Please use three arguments");
-			}
-			this.args = args;
-
-		} catch (Exception e) {
-
+		if (args.length != 3) {
+			throw new Exception("Please use three arguments, one for File, one for type of comparison, one for type of sort");
 		}
+		this.args = args;
 
 	}
 
-	
 	/**
-	 * @return the args
+	 * Gets the user input (args) array
+	 * 
+	 * @return the args array
 	 */
 	public String[] getArgs() {
 		return args;
 	}
 
 	/**
-	 * @param args the args to set
+	 * Sets the user input to args array
+	 * 
+	 * @param new args array
 	 */
 	public void setArgs(String[] args) {
 		this.args = args;
 	}
 
 	/**
-	 * @return the file
+	 * Gets the file input from args array
+	 * 
+	 * @return file input from args array
 	 */
 	public String getFile() {
 		return file;
 	}
 
 	/**
-	 * @param file the file to set
+	 * Sets the file input to specified file
+	 * 
+	 * @param new file input
 	 */
 	public void setFile(String file) {
 		this.file = file;
 	}
 
 	/**
-	 * @return the type
+	 * Gets the type of compare input from args array
+	 * 
+	 * @return type of compare input from args array
 	 */
 	public String getType() {
 		return type;
 	}
 
 	/**
-	 * @param type the type to set
+	 * Sets the type of compare to specified type
+	 * 
+	 * @param new type of compare input
 	 */
 	public void setType(String type) {
 		this.type = type;
 	}
 
 	/**
-	 * @return the sort
+	 * Gets the sort type input from args array
+	 * 
+	 * @return sort type input from args array
 	 */
 	public String getSort() {
 		return sort;
 	}
 
 	/**
-	 * @param sort the sort to set
+	 * Sets the sort type to specified sort
+	 * 
+	 * @param new sort type input
 	 */
 	public void setSort(String sort) {
 		this.sort = sort;
 	}
-	
-	
 
 	/**
-	 * @return the shapes
+	 * Gets the Shape array
+	 * 
+	 * @return the shape array
 	 */
 	public Shape[] getShapes() {
 		return shapes;
 	}
 
 	/**
-	 * @param shapes the shapes to set
+	 * Parses user input in the appropriate fields; file input in File, type input
+	 * in Type, sort input in Sort
+	 *
+	 * @param args input array
+	 * @throws Exception throws an exception if user uses wrong arguments
 	 */
-	public void setShapes(Shape[] shapes) {
-		this.shapes = shapes;
-	}
-
-	public void argsParser(String arg) {
-		int dashIndex = arg.indexOf("-");
-		char commandCheck = arg.charAt(dashIndex + 1);
-		if (dashIndex == 0) {
-			switch (commandCheck) {
-				case 'f':
-					this.file = arg.substring(arg.indexOf(commandCheck) + 1);
-					break;
-				case 't':
-					this.type = arg.substring(arg.indexOf(commandCheck) + 1);
-					break;
-				case 's':
-					this.sort = arg.substring(arg.indexOf(commandCheck) + 1);
-					break;
+	public void argsParser(String[] args) throws Exception {
+		for (int i = 0; i < 3; i++) {
+			String arg = args[i].toLowerCase();
+			int dashIndex = arg.indexOf("-");
+			char commandCheck = arg.charAt(dashIndex + 1);
+			if (dashIndex == 0) {
+				switch (commandCheck) {
+					case 'f':
+						this.file = arg.substring(arg.indexOf(commandCheck) + 1);
+						break;
+					case 't':
+						this.type = arg.substring(arg.indexOf(commandCheck) + 1);
+						break;
+					case 's':
+						this.sort = arg.substring(arg.indexOf(commandCheck) + 1);
+						break;
+					default:
+						throw new Exception(
+								"Please use proper arguments. -f for file name, -t for type of comparison and -s for sort method");
+				}
 			}
 		}
+
 	}
 
+	/**
+	 * Reads the file and loads all the shapes in the Shapes array
+	 */
 	public void loadPolygonArray() {
-		// TODO Auto-generated method stub
-		File file = new File(this.file);
+
 		try {
+			File file = new File("data/" + this.file);
+
 			Scanner in = new Scanner(file);
 
+			// Total number of shapes specified in the beginning of the input file
 			int totalShapes = in.nextInt();
 			shapes = new Shape[totalShapes];
 
+			// Loop through the file and create objects depending on the shape
 			for (int i = 0; i < totalShapes; i++) {
 				String shape = in.next();
 				double height = Double.parseDouble(in.next());
 				double side = Double.parseDouble(in.next());
-
-				// Class reflected = Class.forName(shape);
 
 				switch (shape) {
 					case "Cylinder": {
@@ -179,16 +208,23 @@ public class PolygonSorter extends Exception {
 			}
 
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			System.out.println("Please only write the name of the txt file.");
 		}
 	}
 
-	public void Sortpolygon() {
+	/**
+	 * Determines which kind of comparison and sorting method to use depending on
+	 * the input
+	 *
+	 * @throws Exception throws an exception if wrong input is used
+	 */
+	public void Sortpolygon() throws Exception {
+		// finds the type of comparison
 		switch (type) {
 			case "v":
 				comparator = new VolumeComp();
 				break;
-			
+
 			case "h":
 				comparator = null;
 				break;
@@ -198,29 +234,29 @@ public class PolygonSorter extends Exception {
 				break;
 
 			default:
-				new Exception("v is volume, h is height, a is base area");
-				break;
+				throw new Exception(
+						"Please use v for volume comparison, h for height comparison and a for base area comparison");
 
 		}
 
-
+		// finds the type of sorting method to use
 		switch (sort) {
 			case "b":
-				if (comparator == null){
+				if (comparator == null) {
 					AllSorts.bubbleSort(shapes);
 					break;
 				}
 				AllSorts.bubbleSort(shapes, comparator);
-				
+
 				break;
 			case "s":
-				if (comparator == null){
+				if (comparator == null) {
 					AllSorts.selectionSort(shapes);
 					break;
 				}
 				AllSorts.selectionSort(shapes, comparator);
 				break;
-		
+
 			case "i":
 				if (comparator == null) {
 					AllSorts.insertionSort(shapes);
@@ -249,7 +285,8 @@ public class PolygonSorter extends Exception {
 				AllSorts.heapSort(shapes, comparator);
 				break;
 			default:
-				new Exception("b is bubble, s is selection, i is insertion, m is merge, q is quick, and your choice of sorting algorithm is z");
+				throw new Exception(
+						"Please use -b for bubble sort, -s for selection sort, -i for insertion sort, -m for merge sort, -q for quick sort or -z for heap sort");
 		}
 	}
 

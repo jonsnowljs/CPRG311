@@ -1,9 +1,16 @@
 package shapes;
 
+/**
+ * Inherit from shape class, represent the Pentagonal Prism shape
+ * 
+ * @author Desmond Yuen
+ *
+ */
+
 public class PentagonalPrism extends Prism {
 
 	/**
-	 * Constructor with height and side
+	 * Constructor with height and side for Pentagonal Prism
 	 * 
 	 * @param height height of the PentagonalPrism
 	 * @param side   side of the PentagonalPrism
@@ -12,11 +19,21 @@ public class PentagonalPrism extends Prism {
 		super(height, side);
 	}
 
+	/**
+	 * Calculates volume of a Pentagonal Prism
+	 *
+	 * @return double returns the volume of a given Pentagonal Prism
+	 */
 	@Override
 	public double calcVolume() {
 		return calcBaseArea() * this.height;
 	}
 
+	/**
+	 * Calculates base area of a Pentagonal Prism
+	 *
+	 * @return double returns the base area of a given Pentagonal Prism
+	 */
 	@Override
 	public double calcBaseArea() {
 		return 0.25 * Math.sqrt(5 * (5 + 2 * Math.sqrt(5))) * Math.pow(getSide(), 2);
@@ -59,11 +76,13 @@ public class PentagonalPrism extends Prism {
 	}
 
 	/**
-	 * toString method to display the object
+	 * Prints the PentagonalPrism Shape
+	 *
+	 * @return String Returns the PentagonalPrism Object
 	 */
 	@Override
 	public String toString() {
-		return "Pentagonal Prism: " + getHeight() + " " + getSide() + "\n";
+		return "Pentagonal " + super.toString() + "\n";
 	}
 
 }

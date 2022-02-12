@@ -6,7 +6,7 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.Scanner;
 
-import compareInterface.BaseAreaComp;
+import compare_interface.BaseAreaComp;
 import shapes.Cylinder;
 import shapes.Cone;
 import shapes.OctagonalPrism;
@@ -19,6 +19,10 @@ import sorting.AllSorts;
 
 public class MyTestShape {
 
+	
+	/** 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		File file = new File("./data/polyfor1.txt");
 		try {

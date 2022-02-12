@@ -1,22 +1,26 @@
 package sorting;
 
 import java.util.Comparator;
-import java.util.Iterator;
-
-import compareInterface.BaseAreaComp;
-import compareInterface.VolumeComp;
 import shapes.Shape;
 
+/**
+ * Class for different kinds of sorts, BubbleSort, SelectionSort, InsertionSort,
+ * MergeSort, QuickSort, HeapSort
+ *
+ * @author Jiasheng Lu, Hardish Chander, Desmond Yuen
+ *
+ */
+
 public class AllSorts {
+
 	/**
-	 * This is bubble sort method with a comparable array as parameter.
+	 * Bubble sort method with a comparable array as parameter.
 	 * 
 	 * @param <T> This describes the array type. It's upper boundary is Comparable
 	 * @param arr This is the array to be compared
 	 */
 	public static <T extends Comparable<? super T>> void bubbleSort(T[] arr) {
 		int N = arr.length;
-
 		for (int i = N - 1; i > 0; --i) {
 			for (int j = 0; j < i; ++j) {
 				if (arr[j].compareTo(arr[j + 1]) > 0) {
@@ -30,7 +34,7 @@ public class AllSorts {
 	}
 
 	/**
-	 * This is Heap sort method use comparator as a way to compare the elements in
+	 * Bubble sort method using comparator as a way to compare the elements in
 	 * the array.
 	 * 
 	 * @param <T>        This describes the array type.
@@ -53,10 +57,10 @@ public class AllSorts {
 	}
 
 	/**
-	 * selection sort for comparable array
+	 * Selection sort method with a comparable array as parameter.
 	 * 
-	 * @param <T>
-	 * @param arr
+	 * @param <T> This describes the array type. It's upper boundary is Comparable
+	 * @param arr This is the array to be compared
 	 */
 	public static <T extends Comparable<? super T>> void selectionSort(T[] arr) {
 
@@ -83,11 +87,12 @@ public class AllSorts {
 	}
 
 	/**
-	 * selection sort for comparable array and comparator
+	 * Selection sort method using comparator as a way to compare the elements in
+	 * the array.
 	 * 
-	 * @param <T>
-	 * @param arr
-	 * @param comparator
+	 * @param <T>        This describes the array type.
+	 * @param arr        This is the array to be compared
+	 * @param comparator This is the way of the array is compared
 	 */
 	public static <T extends Comparable<? super T>> void selectionSort(T[] arr, Comparator<T> comparator) {
 
@@ -115,14 +120,13 @@ public class AllSorts {
 	}
 
 	/**
-	 * insertion sort for comparable array
+	 * Insertion sort method with a comparable array as parameter.
 	 * 
-	 * @param <T>
-	 * @param arr
+	 * @param <T> This describes the array type. It's upper boundary is Comparable
+	 * @param arr This is the array to be compared
 	 */
 	public static <T extends Comparable<? super T>> void insertionSort(T[] arr) {
 
-		
 		for (int i = 1; i < arr.length; i++) {
 			T temp = arr[i];
 			int j;
@@ -136,11 +140,12 @@ public class AllSorts {
 	}
 
 	/**
-	 * insertion sort for comparable array and comparator
+	 * Insertion sort method using comparator as a way to compare the elements in
+	 * the array.
 	 * 
-	 * @param <T>
-	 * @param arr
-	 * @param comparator
+	 * @param <T>        This describes the array type.
+	 * @param arr        This is the array to be compared
+	 * @param comparator This is the way of the array is compared
 	 */
 	public static <T extends Comparable<? super T>> void insertionSort(T[] arr, Comparator<T> comparator) {
 
@@ -157,10 +162,10 @@ public class AllSorts {
 	}
 
 	/**
-	 * merge sorting using comparable
+	 * Merge sort method with a comparable array as parameter. Sorts recursively.
 	 * 
-	 * @param <T>
-	 * @param arr
+	 * @param <T> This describes the array type. It's upper boundary is Comparable
+	 * @param arr This is the array to be compared
 	 */
 	public static <T extends Comparable<? super T>> void mergeSort(T[] arr) {
 		if (arr == null) {
@@ -215,11 +220,12 @@ public class AllSorts {
 	}
 
 	/**
-	 * merge sorting using comparator
+	 * Merge sort method using comparator as a way to compare the elements in
+	 * the array. Sorts recursively.
 	 * 
-	 * @param <T>
-	 * @param arr
-	 * @param comparator
+	 * @param <T>        This describes the array type.
+	 * @param arr        This is the array to be compared
+	 * @param comparator This is the way of the array is compared
 	 */
 	public static <T> void mergeSort(T[] arr, Comparator<T> comparator) {
 		if (arr == null) {
@@ -272,12 +278,25 @@ public class AllSorts {
 		}
 	}
 
+	/**
+	 * Quick sort method with a comparable array as parameter. Sorts recursively.
+	 * 
+	 * @param <T> This describes the array type. It's upper boundary is Comparable
+	 * @param arr This is the array to be compared
+	 */
 	public static <T extends Comparable<? super T>> void quickSort(T[] arr) {
 		int low = 0;
 		int high = arr.length - 1;
 		quickSorting(arr, low, high);
 	}
 
+	/**
+	 * Quick sort partition method that splits the array.
+	 * 
+	 * @param arr  This is the array to be split
+	 * @param low  lower bound of the split array
+	 * @param high upper bound of the split array
+	 */
 	public static <T extends Comparable<? super T>> void quickSorting(T[] arr, int low, int high) {
 		// check for empty or null array
 		if (arr == null || arr.length == 0) {
@@ -320,12 +339,29 @@ public class AllSorts {
 		}
 	}
 
+	/**
+	 * Quick sort method using comparator as a way to compare the elements in
+	 * the array. Sorts recursively.
+	 * 
+	 * @param <T>        This describes the array type.
+	 * @param arr        This is the array to be compared
+	 * @param comparator This is the way of the array is compared
+	 */
 	public static <T> void quickSort(T[] arr, Comparator<T> comparator) {
 		int low = 0;
 		int high = arr.length - 1;
 		quickSorting(arr, low, high, comparator);
 	}
 
+	/**
+	 * Quick sort method that sorts the arrays split by Quick Sort Partition method
+	 * 
+	 * @param <T>        This describes the array type.
+	 * @param arr        This is the array to be sorted
+	 * @param low        lower bound of the array to be sorted
+	 * @param high       upper bound of the array to be sorted
+	 * @param comparator This is the way of the array is compared
+	 */
 	public static <T> void quickSorting(T[] arr, int low, int high, Comparator<T> comparator) {
 		// check for empty or null array
 		if (arr == null || arr.length == 0) {
@@ -368,16 +404,31 @@ public class AllSorts {
 		}
 	}
 
+	/**
+	 * Method for quick sort to swap values after comparison
+	 * 
+	 * @param <T> This describes the array type.
+	 * @param arr This is the array to be compared
+	 * @param x   Value 1 to be compared
+	 * @param y   Value 2 to be compared
+	 */
 	public static <T> void swapQuick(T[] arr, int x, int y) {
 		T temp = arr[x];
 		arr[x] = arr[y];
 		arr[y] = temp;
 	}
 
-	// Jiasheng
+	/*
+		Description:
+		Heap sort can be divided into two parts: 1. Build up a heap 2. created a sorted array repeatedly removing the largest elements from the heap and inserting into the array
+	
+		Complexity analysis: 
+		The average, best-case and worst-case time complexity of O(nlogn).
+	*/
 	/**
 	 * This is Heap sort method with a comparable array as parameter.
 	 * 
+	 * @author Jiasheng Lu
 	 * @param <T> This describes the array type. It's upper boundary is Comparable
 	 * @param arr This is the array to be compared
 	 */
@@ -427,6 +478,14 @@ public class AllSorts {
 
 	}
 
+	/**
+	 * Heapify the tree structure
+	 *
+	 * @param arr        This is the array to be compared
+	 * @param n          The size of the tree
+	 * @param i          The index of the root node
+	 * @param comparator This is the way of the array is compared
+	 */
 	// Private methods for heap sort
 	// Function to recursively heapify the tree with comparator.
 	private static <T> void heapify(T[] arr, int n, int i, Comparator<T> comparator) {
@@ -455,6 +514,11 @@ public class AllSorts {
 		}
 	}
 
+	/**
+	 * @param arr
+	 * @param n
+	 * @param i
+	 */
 	// Function to recursively heapify the tree with comparable.
 	private static <T extends Comparable<? super T>> void heapify(T[] arr, int n, int i) {
 		int largest = i;
@@ -482,16 +546,28 @@ public class AllSorts {
 		}
 	}
 
+	/**
+	 * @param i
+	 * @return int
+	 */
 	// Utility function to get the left node index of node i
 	private static int getLeft(int i) {
 		return (i * 2 + 1);
 	}
 
+	/**
+	 * @param i
+	 * @return int
+	 */
 	// Utility function to get the left node index of node i
 	private static int getRight(int i) {
 		return (i * 2 + 2);
 	}
 
+	/**
+	 * @param i
+	 * @return int
+	 */
 	// Utility function to get the parent index of node i
 	private static int getParent(int i) {
 		return i / 2 - 1;

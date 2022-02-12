@@ -2,25 +2,17 @@ package shapes;
 
 /**
  * Inherit from shape class, represent the Cylinder shape
+ * 
  * @author Jiasheng Lu
- * new changes
- *
  */
 public class Cylinder extends Shape {
 	double radius;
 
 	/**
-	 * no-args constructor
-	 */
-	public Cylinder() {
-		// TODO Auto-generated constructor stub
-	}
-	
-	/**
-	 * Constructor with height and radius
+	 * Constructor for a Cylinder with height and radius
 	 * 
-	 * @param height
-	 * @param radius
+	 * @param height height of the Cylinder
+	 * @param radius radius of the Cylinder
 	 */
 	public Cylinder(double height, double radius) {
 		this.height = height;
@@ -36,7 +28,6 @@ public class Cylinder extends Shape {
 		return radius;
 	}
 
-
 	/**
 	 * Set the radius of cylinder
 	 * 
@@ -46,28 +37,36 @@ public class Cylinder extends Shape {
 		this.radius = radius;
 	}
 
-
 	/**
-	 * {@inheritDoc}
+	 * Gets the volume of the Cylinder
+	 * 
+	 * @return volume of the Cylinder
 	 */
 	@Override
 	public double calcVolume() {
-		// TODO Auto-generated method stub
+
 		return Math.PI * Math.pow(radius, 2) * height;
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * Gets the base area of the Cylinder
+	 * 
+	 * @return base area of the Cylinder
 	 */
 	@Override
 	public double calcBaseArea() {
-		// TODO Auto-generated method stub
+
 		return Math.PI * Math.pow(radius, 2);
 	}
-	
+
+	/**
+	 * Prints the Cylinder Shape
+	 *
+	 * @return String Returns the Cylinder Object
+	 */
 	@Override
 	public String toString() {
-		return "Cylinder" + " "+ this.getHeight() + " " + this.getRadius() + "\n";
+		return "Cylinder:= " + "Radius: " + this.getRadius() + ", " + super.toString() + "\n";
 	}
 
 }

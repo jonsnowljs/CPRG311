@@ -3,7 +3,7 @@ package test;
 import java.util.Arrays;
 import java.util.Comparator;
 
-import compareInterface.BaseAreaComp;
+import compare_interface.BaseAreaComp;
 import shapes.Cone;
 import shapes.Cylinder;
 import shapes.Shape;
@@ -12,6 +12,10 @@ import sorting.AllSorts;
 
 public class TestAreaComp {
 
+	
+	/** 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		Cone c1 = new Cone(18, 12);
 		Cone c2 = new Cone(13, 10);

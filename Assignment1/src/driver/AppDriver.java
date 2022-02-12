@@ -4,39 +4,42 @@
 package driver;
 
 import java.util.Arrays;
-
-import shapes.Shape;
 import sorting.PolygonSorter;
 
 /**
- * @author Jiasheng
+ * The Driver for this application
+ * 
+ * @author Hardish Chander, Jiasheng Lu
  *
  */
 public class AppDriver {
 	/**
-	 * @param args
+	 * @param args the args passed by user
+	 * @throws Exception inherits exceptions from PolygonSorter class
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 
-		System.out.println();
+		// Create polygon sorter object
 		PolygonSorter sorter = new PolygonSorter(args);
 
-		sorter.argsParser(args[0]);
-		sorter.argsParser(args[1]);
-		sorter.argsParser(args[2]);
-		sorter.loadPolygonArray();
-		sorter.Sortpolygon();
-		System.out.println(sorter.getFile());
-		System.out.println(sorter.getSort());
-		System.out.println(sorter.getType());
-		System.out.println(sorter.getShapes());
-		System.out.println(Arrays.toString(sorter.getShapes()));
-//		for (Shape shape: sorter.getShapes()) {
-//			shape.toString();
-//		}
+		// Sorter parse the args and check what file, sort, type the user what to use
+		sorter.argsParser(args);
 
-		// sorter.loadPolygonArray();
-		// sorter.Sortpolygon();
+		// Load the array from file
+		sorter.loadPolygonArray();
+
+		// Check how many millisecond it takes to run the sort method
+		long startTime = System.currentTimeMillis();
+		// Run the specified sorting method
+		sorter.Sortpolygon();
+		long endTime = System.currentTimeMillis();
+		long duration = (endTime - startTime);
+
+		// Prints out the sorted shape array
+		System.out.println(Arrays.toString(sorter.getShapes()));
+
+		// Prints the time it took to sort
+		System.out.println("Time taken to perform the sort: " + duration + " ms");
 
 	}
 
