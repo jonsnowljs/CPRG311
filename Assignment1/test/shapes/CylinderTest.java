@@ -1,9 +1,17 @@
+/**
+ * 
+ */
 package shapes;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+/**
+ * 
+ * @author Chinedu Alake
+ *
+ */
 public class CylinderTest {
 
 	@Test
@@ -23,4 +31,9 @@ public class CylinderTest {
 		System.out.println("Test ran succesfully");
 	}
 
+	
+	@Test
+	public void testCaclcBaseAreaOfCylinder() {
+		fail("Not yet implemented");
+	}
 }

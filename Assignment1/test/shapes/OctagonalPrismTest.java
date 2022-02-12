@@ -1,11 +1,29 @@
+/**
+ * 
+ */
 package shapes;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+/**
+ * @author Chinedu Alake
+ *
+ */
 public class OctagonalPrismTest {
 
+	/**
+	 * Test method for {@link shapes.OctagonalPrism#calcVolume()}.
+	 */
+	@Test
+	public void testCalcVolume() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link shapes.OctagonalPrism#calcBaseArea()}.
+	 */
 	@Test
 	public void testCaclcBaseAreaOfOctagonalPrism() {
 		double height = 10;

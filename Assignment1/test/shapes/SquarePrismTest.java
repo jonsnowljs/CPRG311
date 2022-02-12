@@ -22,5 +22,10 @@ public class SquarePrismTest {
 		
 		System.out.println("Test ran succesfully");
 	}
+	
+	@Test
+	public void testCalcBaseArea() {
+		fail("Not yet implemented");
+	}
 
 }

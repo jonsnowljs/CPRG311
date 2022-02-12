@@ -1,10 +1,6 @@
-/**
- * 
- */
 package shapes;
 
 import static org.junit.Assert.*;
-
 import org.junit.Test;
 
 /**
@@ -14,8 +10,7 @@ import org.junit.Test;
 public class ConeTest {
 
 	@Test
-	public void testCaclcVolumeOfCone() {
-		
+	public void testCalcVolume() {
 		double radius = 2;
 		double height = 10;
 		
@@ -30,6 +25,10 @@ public class ConeTest {
 		
 		System.out.println("Test ran succesfully");
 	}
-	
+
+	@Test
+	public void testCalcBaseArea() {
+		fail("Not yet implemented");
+	}
 
 }

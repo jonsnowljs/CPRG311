@@ -1,11 +1,21 @@
+/**
+ * 
+ */
 package shapes;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+/**
+ * @author Chinedu Alake
+ *
+ */
 public class PyramidTest {
 
+	/**
+	 * Test method for {@link shapes.Pyramid#calcVolume()}.
+	 */
 	@Test
 	public void testCalcVolumeOfPyramid() {
 		double height = 25;
@@ -21,6 +31,14 @@ public class PyramidTest {
 		assertEquals(expected, actual, side);
 		
 		System.out.println("Test ran succesfully");
+	}
+
+	/**
+	 * Test method for {@link shapes.Pyramid#calcBaseArea()}.
+	 */
+	@Test
+	public void testCalcBaseArea() {
+		fail("Not yet implemented");
 	}
 
 }

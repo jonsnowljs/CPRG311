@@ -1,6 +1,3 @@
-/**
- * 
- */
 package driver;
 
 import java.util.Arrays;

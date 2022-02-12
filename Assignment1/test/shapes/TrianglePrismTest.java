@@ -1,11 +1,21 @@
+/**
+ * 
+ */
 package shapes;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+/**
+ * @author Chinedu Alake
+ *
+ */
 public class TrianglePrismTest {
 
+	/**
+	 * Test method for {@link shapes.TrianglePrism#calcVolume()}.
+	 */
 	@Test
 	public void testCalcVolumeOfTrianglePrism() {
 		double height = 30;
@@ -21,6 +31,14 @@ public class TrianglePrismTest {
 		assertEquals(expected, actual, side);
 		
 		System.out.println("Test ran succesfully");
+	}
+
+	/**
+	 * Test method for {@link shapes.TrianglePrism#calcBaseArea()}.
+	 */
+	@Test
+	public void testCalcBaseArea() {
+		fail("Not yet implemented");
 	}
 
 }
