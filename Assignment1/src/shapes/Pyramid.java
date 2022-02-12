@@ -66,7 +66,7 @@ public class Pyramid extends Shape {
 	 */
 	@Override
 	public String toString() {
-		return "Pyramid: " + getHeight() + " " + getSide() + "\n";
+		return "Pyramid:= " + "Radius: " + this.getSide() + ", " + super.toString() + "\n";
 	}
 
 }
