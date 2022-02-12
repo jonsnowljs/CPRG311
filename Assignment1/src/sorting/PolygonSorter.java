@@ -268,6 +268,7 @@ public class PolygonSorter extends Exception {
 			case "m":
 				if (comparator == null) {
 					AllSorts.mergeSort(shapes);
+					break;
 				}
 				AllSorts.mergeSort(shapes, comparator);
 				break;
@@ -275,12 +276,14 @@ public class PolygonSorter extends Exception {
 			case "q":
 				if (comparator == null) {
 					AllSorts.quickSort(shapes);
+					break;
 				}
 				AllSorts.quickSort(shapes, comparator);
 				break;
 			case "z":
 				if (comparator == null) {
 					AllSorts.heapSort(shapes);
+					break;
 				}
 				AllSorts.heapSort(shapes, comparator);
 				break;
