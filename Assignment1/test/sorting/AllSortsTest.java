@@ -3,13 +3,19 @@
  */
 package sorting;
 
+
 import static org.junit.Assert.*;
+
+import java.util.Comparator;
 
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import compare_interface.VolumeComp;
+import shapes.*;
 
 /**
  * @author Chinedu Alake
@@ -35,11 +41,30 @@ public class AllSortsTest {
 
 	/**
 	 * Test method for {@link sorting.AllSorts#bubbleSort(T[])}.
+	 * @param <T>
 	 */
 	@Test
 	public void testBubbleSortTArray() {
-		fail("Not yet implemented");
-	}
+		Cone c1 = new Cone(10, 25);
+		Cylinder cy1 = new Cylinder(10, 5);
+		Cylinder cy2 = new Cylinder(25, 7);
+		Cone c2 = new Cone(25, 5);
+		
+		Shape[] shapes = {c1, cy1, cy2, c2};
+		
+		Comparator<Shape> calcVolume = new VolumeComp();
+		
+//		AllSorts sortB = new AllSorts();
+		
+		Shape [] expected = {cy1,c2,cy2,c1};
+		
+		AllSorts.bubbleSort(shapes, calcVolume);
+		
+		assertArrayEquals(expected, shapes);
+		
+		
+     }
+
 
 	/**
 	 * Test method for {@link sorting.AllSorts#bubbleSort(T[], java.util.Comparator)}.

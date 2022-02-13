@@ -13,13 +13,16 @@ import org.junit.Test;
  */
 public class PentagonalPrismTest {
 
+	//Test Values
+	
+	double height = 15;
+	double side = 22;
+	
 	/**
 	 * Test method for {@link shapes.PentagonalPrism#calcVolume()}.
 	 */
 	@Test
 	public void testCalcVolumeOfPentagonalPrism() {
-		double height = 15;
-		double side = 22;
 		
 		PentagonalPrism pri = new PentagonalPrism(height, side); 
 		
@@ -38,7 +41,17 @@ public class PentagonalPrismTest {
 	 */
 	@Test
 	public void testCalcBaseArea() {
-		fail("Not yet implemented");
+		
+		PentagonalPrism pri = new PentagonalPrism(height, side); 
+		
+		//Find baseArea with given parameters (15, 22)
+		double expected = 832;
+		
+		double actual = pri.calcBaseArea();
+		
+		assertEquals(expected, actual, side);
+		
+		System.out.println("Test ran succesfully");
 	}
 
 }
