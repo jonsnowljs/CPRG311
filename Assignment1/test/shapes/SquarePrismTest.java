@@ -5,11 +5,14 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class SquarePrismTest {
+	
+	//TestValues 
+	
+	double height = 100;
+	double side = 20;
 
 	@Test
 	public void testCalcVolumeOfSquarePrism() {
-		double height = 100;
-		double side = 20;
 		
 		SquarePrism sPrism = new SquarePrism(height, side); 
 		
@@ -25,7 +28,17 @@ public class SquarePrismTest {
 	
 	@Test
 	public void testCalcBaseArea() {
-		fail("Not yet implemented");
+		
+		SquarePrism sPrism = new SquarePrism(height, side); 
+		
+		//Find BaseArea with given parameters (100, 20)
+		double expected = 400;
+		
+		double actual = sPrism.calcBaseArea();
+		
+		assertEquals(expected, actual, side);
+		
+		System.out.println("Test ran succesfully");
 	}
 
 }

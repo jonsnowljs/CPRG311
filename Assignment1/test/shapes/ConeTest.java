@@ -28,7 +28,18 @@ public class ConeTest {
 
 	@Test
 	public void testCalcBaseArea() {
-		fail("Not yet implemented");
+		double radius = 12;
+		
+		Cone baseCone = new Cone(0, radius);
+		
+		//Find volume with given parameters (12)
+		double expected = 452;
+		
+		double actual = baseCone.calcBaseArea();
+		
+		assertEquals(expected, actual, radius);
+		
+		System.out.println("Test ran succesfully");
 	}
 
 }

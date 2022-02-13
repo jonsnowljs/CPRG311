@@ -12,15 +12,18 @@ import org.junit.Test;
  *
  */
 public class PyramidTest {
+	
+	//Test Values
+	
+	double height = 25;
+	double side = 5;
 
 	/**
 	 * Test method for {@link shapes.Pyramid#calcVolume()}.
 	 */
 	@Test
 	public void testCalcVolumeOfPyramid() {
-		double height = 25;
-		double side = 5;
-		
+
 		Pyramid pyr = new Pyramid(height, side); 
 		
 		//Find volume with given parameters (25, 5)
@@ -38,7 +41,17 @@ public class PyramidTest {
 	 */
 	@Test
 	public void testCalcBaseArea() {
-		fail("Not yet implemented");
+		
+		PentagonalPrism pri = new PentagonalPrism(height, side); 
+		
+		//Find baseArea with given parameters (15, 22)
+		double expected = 43;
+		
+		double actual = pri.calcBaseArea();
+		
+		assertEquals(expected, actual, side);
+		
+		System.out.println("Test ran succesfully");
 	}
 
 }

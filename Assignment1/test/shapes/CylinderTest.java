@@ -34,6 +34,17 @@ public class CylinderTest {
 	
 	@Test
 	public void testCaclcBaseAreaOfCylinder() {
-		fail("Not yet implemented");
+		double radius = 10;
+		
+		Cylinder baseCylind = new Cylinder(0, radius); 
+		
+		//Find volume with given parameters (10)
+		double expected = 314;
+		
+		double actual = baseCylind.calcBaseArea();
+		
+		assertEquals(expected, actual, radius);
+		
+		System.out.println("Test ran succesfully");
 	}
 }

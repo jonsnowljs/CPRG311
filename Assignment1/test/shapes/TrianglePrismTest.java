@@ -13,14 +13,17 @@ import org.junit.Test;
  */
 public class TrianglePrismTest {
 
+	//Test Values
+	
+	double height = 30;
+	double side = 50;
+	
 	/**
 	 * Test method for {@link shapes.TrianglePrism#calcVolume()}.
 	 */
 	@Test
 	public void testCalcVolumeOfTrianglePrism() {
-		double height = 30;
-		double side = 50;
-		
+
 		TrianglePrism tPrism = new TrianglePrism(height, side); 
 		
 		//Find volume with given parameters (30, 50)
@@ -38,7 +41,17 @@ public class TrianglePrismTest {
 	 */
 	@Test
 	public void testCalcBaseArea() {
-		fail("Not yet implemented");
+		
+		TrianglePrism tPrism = new TrianglePrism(height, side); 
+		
+		//Find baseArea with given parameters (15, 22)
+		double expected = 1082;
+		
+		double actual = tPrism.calcBaseArea();
+		
+		assertEquals(expected, actual, side);
+		
+		System.out.println("Test ran succesfully");
 	}
 
 }

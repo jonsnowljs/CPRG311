@@ -12,13 +12,31 @@ import org.junit.Test;
  *
  */
 public class OctagonalPrismTest {
-
+	
+//Test Values
+	
+	double side = 31;
+	
+	double height = 55;
+	
+	
 	/**
 	 * Test method for {@link shapes.OctagonalPrism#calcVolume()}.
 	 */
 	@Test
 	public void testCalcVolume() {
-		fail("Not yet implemented");
+		
+		//Find volume with given parameters (height 55)
+		
+		OctagonalPrism octa = new OctagonalPrism(height, side);
+		
+		double expected = 363_743;
+		
+		double actual = octa.calcVolume();
+		
+		assertEquals(expected, actual, side);
+		
+		System.out.println("Test ran succesfully");
 	}
 
 	/**
@@ -26,12 +44,10 @@ public class OctagonalPrismTest {
 	 */
 	@Test
 	public void testCaclcBaseAreaOfOctagonalPrism() {
-		double height = 10;
-		double side = 31;
-		
+
 		OctagonalPrism octa = new OctagonalPrism(height, side); 
 		
-		//Find volume with given parameters (10, 31)
+		//Find volume with given parameters (side 31)
 		double expected = 6613;
 		
 		double actual = octa.calcBaseArea();
