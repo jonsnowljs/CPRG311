@@ -4,14 +4,14 @@
 ***
 
 ### What the program does.
-	This program consists of a Shape abstract class which is inherited by various shapes such as Cone, Cylinder, Prism etc. It has 6 Sorting algorithms implemented namely Bubble Sort, Selection Sort, Insertion Sort, Merge Sort, Quick Sort and Heap Sort. It can take in an array of different shapes and can be sorted in ascending order using both height of the shape as comparable method or volume or base area of the shape as comparator method.
-	Testing class consists of JUnit tests.
+This program consists of a Shape abstract class which is inherited by various shapes such as Cone, Cylinder, Prism etc. It has 6 Sorting algorithms implemented namely Bubble Sort, Selection Sort, Insertion Sort, Merge Sort, Quick Sort and Heap Sort. It can take in an array of different shapes and can be sorted in ascending order using both height of the shape as comparable method or volume or base area of the shape as comparator method.
+Testing class consists of JUnit tests.
 
 ### Date
-	12 February, 2022
+12 February, 2022
 
 ### Author
-	Jiasheng Lu, Hardish Chander, Desmond Yuen, Chinedu Alake
+Jiasheng Lu, Hardish Chander, Desmond Yuen, Chinedu Alake
 
 
 
