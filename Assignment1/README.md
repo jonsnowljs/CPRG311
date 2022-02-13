@@ -1,7 +1,6 @@
 # Sorting out Sorting
 
 ## INTRODUCTION
-***
 
 ### What the program does.
 This program consists of a Shape abstract class which is inherited by various shapes such as Cone, Cylinder, Prism etc. It has 6 Sorting algorithms implemented namely Bubble Sort, Selection Sort, Insertion Sort, Merge Sort, Quick Sort and Heap Sort. It can take in an array of different shapes and can be sorted in ascending order using both height of the shape as comparable method or volume or base area of the shape as comparator method.
@@ -16,14 +15,13 @@ Jiasheng Lu, Hardish Chander, Desmond Yuen, Chinedu Alake
 
 
 ## REQUIREMENTS
-***
+
 
 	This program requires JDK1.8 installed on the computer.
 
 
 
 ## INSTRUCTIONS
-***
 
 ### How to run the program
 
@@ -61,6 +59,5 @@ Jiasheng Lu, Hardish Chander, Desmond Yuen, Chinedu Alake
 
 
 ## TESTS
-***
 
 Various JUnit tests can be performed with this program.
