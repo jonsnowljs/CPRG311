@@ -33,10 +33,10 @@ public class PolygonSorter extends Exception {
 	 * @throws Exception throws an exception if the user input has more than 3
 	 *                   arguments
 	 */
-	public PolygonSorter(String[] args) throws Exception {
+	public PolygonSorter(String[] args) {
 
 		if (args.length != 3) {
-			throw new Exception("Please use three arguments, one for File, one for type of comparison, one for type of sort");
+			throw new IllegalArgumentException("Please use three arguments, one for File, one for type of comparison, one for type of sort");
 		}
 		this.args = args;
 
@@ -121,6 +121,25 @@ public class PolygonSorter extends Exception {
 	 */
 	public Shape[] getShapes() {
 		return shapes;
+	}
+	
+
+	/**
+	 * Get the comparator
+	 * 
+	 * @return the comparator
+	 */
+	public Comparator getComparator() {
+		return comparator;
+	}
+
+	/**
+	 * Set the comparator
+	 * 
+	 * @param comparator the comparator to set
+	 */
+	public void setComparator(Comparator comparator) {
+		this.comparator = comparator;
 	}
 
 	/**
