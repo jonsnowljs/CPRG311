@@ -56,7 +56,7 @@ public class AllSortsTest {
 		
 //		AllSorts sortB = new AllSorts();
 		
-		Shape [] expected = {cy1,c2,cy2,c1};
+		Shape [] expected = {c2,cy1,cy2,c1};
 		
 		AllSorts.bubbleSort(shapes, calcVolume);
 		
@@ -71,7 +71,20 @@ public class AllSortsTest {
 	 */
 	@Test
 	public void testBubbleSortTArrayComparatorOfT() {
-		fail("Not yet implemented");
+		Cone c1 = new Cone(10, 25);
+		Cylinder cy1 = new Cylinder(10, 5);
+		Cylinder cy2 = new Cylinder(25, 7);
+		Cone c2 = new Cone(25, 5);
+		
+		Shape[] shapes = {c1, cy1, cy2, c2};
+		
+		Comparator<Shape> calcVolume = new VolumeComp();
+		
+		Shape [] expected = {c2,cy1,cy2,c1};
+		
+		AllSorts.bubbleSort(shapes, calcVolume);
+		
+		assertArrayEquals(expected, shapes);
 	}
 
 	/**
@@ -79,7 +92,20 @@ public class AllSortsTest {
 	 */
 	@Test
 	public void testSelectionSortTArray() {
-		fail("Not yet implemented");
+		Cone c1 = new Cone(5, 10);
+		Cylinder cy1 = new Cylinder(20, 25);
+		Cylinder cy2 = new Cylinder(50, 15);
+		Cone c2 = new Cone(12, 20);
+		
+		Shape[] shapes = {c1, cy1, cy2, c2};
+		
+		Comparator<Shape> calcVolume = new VolumeComp();
+			
+		Shape [] expected = {c1,c2,cy2,cy1};
+		
+		AllSorts.selectionSort(shapes, calcVolume);
+		
+		assertArrayEquals(expected, shapes);
 	}
 
 	/**
@@ -87,7 +113,20 @@ public class AllSortsTest {
 	 */
 	@Test
 	public void testSelectionSortTArrayComparatorOfT() {
-		fail("Not yet implemented");
+		Cone c1 = new Cone(5, 10);
+		Cylinder cy1 = new Cylinder(20, 25);
+		Cylinder cy2 = new Cylinder(50, 15);
+		Cone c2 = new Cone(12, 20);
+		
+		Shape[] shapes = {c1, cy1, cy2, c2};
+		
+		Comparator<Shape> calcVolume = new VolumeComp();
+			
+		Shape [] expected = {c1,c2,cy2,cy1};
+		
+		AllSorts.selectionSort(shapes, calcVolume);
+		
+		assertArrayEquals(expected, shapes);
 	}
 
 	/**
@@ -95,7 +134,20 @@ public class AllSortsTest {
 	 */
 	@Test
 	public void testInsertionSortTArray() {
-		fail("Not yet implemented");
+		Cone c1 = new Cone(5, 10);
+		Cylinder cy1 = new Cylinder(20, 25);
+		Cylinder cy2 = new Cylinder(50, 15);
+		Cone c2 = new Cone(12, 20);
+		
+		Shape[] shapes = {c1, cy1, cy2, c2};
+		
+		Comparator<Shape> calcVolume = new VolumeComp();
+			
+		Shape [] expected = {c1,c2,cy2,cy1};
+		
+		AllSorts.selectionSort(shapes, calcVolume);
+		
+		assertArrayEquals(expected, shapes);
 	}
 
 	/**
@@ -103,7 +155,20 @@ public class AllSortsTest {
 	 */
 	@Test
 	public void testInsertionSortTArrayComparatorOfT() {
-		fail("Not yet implemented");
+		Cone c1 = new Cone(5, 10);
+		Cylinder cy1 = new Cylinder(20, 25);
+		Cylinder cy2 = new Cylinder(50, 15);
+		Cone c2 = new Cone(12, 20);
+		
+		Shape[] shapes = {c1, cy1, cy2, c2};
+		
+		Comparator<Shape> calcVolume = new VolumeComp();
+			
+		Shape [] expected = {c1,c2,cy2,cy1};
+		
+		AllSorts.selectionSort(shapes, calcVolume);
+		
+		assertArrayEquals(expected, shapes);
 	}
 
 	/**
@@ -111,7 +176,20 @@ public class AllSortsTest {
 	 */
 	@Test
 	public void testMergeSortTArray() {
-		fail("Not yet implemented");
+		Cone c1 = new Cone(15, 25);
+		Cylinder cy1 = new Cylinder(3, 10);
+		Cylinder cy2 = new Cylinder(50, 10);
+		Cone c2 = new Cone(22, 5);
+		
+		Shape[] shapes = {c1, cy1, cy2, c2};
+		
+		Comparator<Shape> calcVolume = new VolumeComp();
+			
+		Shape [] expected = {c2,cy1,c1,cy2};
+		
+		AllSorts.mergeSort(shapes, calcVolume);
+		
+		assertArrayEquals(expected, shapes);
 	}
 
 	/**
@@ -119,7 +197,20 @@ public class AllSortsTest {
 	 */
 	@Test
 	public void testMergeSortTArrayComparatorOfT() {
-		fail("Not yet implemented");
+		Cone c1 = new Cone(15, 25);
+		Cylinder cy1 = new Cylinder(3, 10);
+		Cylinder cy2 = new Cylinder(50, 10);
+		Cone c2 = new Cone(22, 5);
+		
+		Shape[] shapes = {c1, cy1, cy2, c2};
+		
+		Comparator<Shape> calcVolume = new VolumeComp();
+			
+		Shape [] expected = {c2,cy1,c1,cy2};
+		
+		AllSorts.mergeSort(shapes, calcVolume);
+		
+		assertArrayEquals(expected, shapes);
 	}
 
 	/**
@@ -127,7 +218,20 @@ public class AllSortsTest {
 	 */
 	@Test
 	public void testQuickSortTArray() {
-		fail("Not yet implemented");
+		Cone c1 = new Cone(20, 50);
+		Cylinder cy1 = new Cylinder(10, 25);
+		Cylinder cy2 = new Cylinder(7, 30);
+		Cone c2 = new Cone(26, 10);
+		
+		Shape[] shapes = {c1, cy1, cy2, c2};
+		
+		Comparator<Shape> calcVolume = new VolumeComp();
+			
+		Shape [] expected = {c2,cy1,cy2,c1};
+		
+		AllSorts.quickSort(shapes, calcVolume);
+		
+		assertArrayEquals(expected, shapes);
 	}
 
 	/**
@@ -143,7 +247,20 @@ public class AllSortsTest {
 	 */
 	@Test
 	public void testQuickSortTArrayComparatorOfT() {
-		fail("Not yet implemented");
+		Cone c1 = new Cone(20, 50);
+		Cylinder cy1 = new Cylinder(10, 25);
+		Cylinder cy2 = new Cylinder(7, 30);
+		Cone c2 = new Cone(26, 10);
+		
+		Shape[] shapes = {c1, cy1, cy2, c2};
+		
+		Comparator<Shape> calcVolume = new VolumeComp();
+			
+		Shape [] expected = {c2,cy1,cy2,c1};
+		
+		AllSorts.quickSort(shapes, calcVolume);
+		
+		assertArrayEquals(expected, shapes);
 	}
 
 	/**
@@ -167,7 +284,20 @@ public class AllSortsTest {
 	 */
 	@Test
 	public void testHeapSortTArray() {
-		fail("Not yet implemented");
+		Cone c1 = new Cone(8, 20);
+		Cylinder cy1 = new Cylinder(17, 10);
+		Cylinder cy2 = new Cylinder(35, 5);
+		Cone c2 = new Cone(20, 5);
+		
+		Shape[] shapes = {c1, cy1, cy2, c2};
+		
+		Comparator<Shape> calcVolume = new VolumeComp();
+			
+		Shape [] expected = {c2,cy2,c1,cy1};
+		
+		AllSorts.heapSort(shapes, calcVolume);
+		
+		assertArrayEquals(expected, shapes);
 	}
 
 	/**
@@ -175,7 +305,20 @@ public class AllSortsTest {
 	 */
 	@Test
 	public void testHeapSortTArrayComparatorOfT() {
-		fail("Not yet implemented");
+		Cone c1 = new Cone(8, 20);
+		Cylinder cy1 = new Cylinder(17, 10);
+		Cylinder cy2 = new Cylinder(35, 5);
+		Cone c2 = new Cone(20, 5);
+		
+		Shape[] shapes = {c1, cy1, cy2, c2};
+		
+		Comparator<Shape> calcVolume = new VolumeComp();
+			
+		Shape [] expected = {c2,cy2,c1,cy1};
+		
+		AllSorts.heapSort(shapes, calcVolume);
+		
+		assertArrayEquals(expected, shapes);
 	}
 
 }
