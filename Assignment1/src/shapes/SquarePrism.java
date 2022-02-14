@@ -64,6 +64,6 @@ public class SquarePrism extends Prism {
 	 */
 	@Override
 	public String toString() {
-		return "Square " + super.toString() + "\n";
+		return String.format("%-20s %s\n", "Square Prism:=", super.toString());
 	}
 }

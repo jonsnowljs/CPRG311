@@ -66,7 +66,7 @@ public class Cylinder extends Shape {
 	 */
 	@Override
 	public String toString() {
-		return "Cylinder:= " + "Radius: " + this.getRadius() + ", " + super.toString() + "\n";
+		return String.format("%-20s Radius: %10.2f, %s\n","Cylinder:=", this.getRadius(), super.toString());
 	}
 
 }

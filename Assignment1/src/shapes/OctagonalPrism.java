@@ -57,7 +57,7 @@ public class OctagonalPrism extends Prism {
 	 */
 	@Override
 	public String toString() {
-		return "Octagonal " + super.toString() + "\n";
+		return String.format("%-20s %s\n", "Octagonal Prism:=", super.toString());
 
 	}
 }

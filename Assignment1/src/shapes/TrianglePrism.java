@@ -64,7 +64,7 @@ public class TrianglePrism extends Prism {
 	 */
 	@Override
 	public String toString() {
-		return "Triangle " + super.toString() + "\n";
+		return String.format("%-20s %s\n", "Triangle Prism:=", super.toString());
 
 	}
 

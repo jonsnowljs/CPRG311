@@ -82,7 +82,7 @@ public class PentagonalPrism extends Prism {
 	 */
 	@Override
 	public String toString() {
-		return "Pentagonal " + super.toString() + "\n";
+		return String.format("%-20s %s\n", "Pentagonal Prism:=", super.toString());
 	}
 
 }

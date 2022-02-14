@@ -235,14 +235,6 @@ public class AllSortsTest {
 	}
 
 	/**
-	 * Test method for {@link sorting.AllSorts#quickSorting(T[], int, int)}.
-	 */
-	@Test
-	public void testQuickSortingTArrayIntInt() {
-		fail("Not yet implemented");
-	}
-
-	/**
 	 * Test method for {@link sorting.AllSorts#quickSort(T[], java.util.Comparator)}.
 	 */
 	@Test
@@ -261,22 +253,6 @@ public class AllSortsTest {
 		AllSorts.quickSort(shapes, calcVolume);
 		
 		assertArrayEquals(expected, shapes);
-	}
-
-	/**
-	 * Test method for {@link sorting.AllSorts#quickSorting(T[], int, int, java.util.Comparator)}.
-	 */
-	@Test
-	public void testQuickSortingTArrayIntIntComparatorOfT() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link sorting.AllSorts#swapQuick(T[], int, int)}.
-	 */
-	@Test
-	public void testSwapQuick() {
-		fail("Not yet implemented");
 	}
 
 	/**

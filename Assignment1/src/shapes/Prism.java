@@ -67,6 +67,6 @@ public class Prism extends Shape {
 	 */
 	@Override
 	public String toString() {
-		return "Prism:= " + "Radius: " + this.getSide() + ", " + super.toString();
+		return String.format("Side:   %10.2f, %s", this.getSide(), super.toString());
 	}
 }

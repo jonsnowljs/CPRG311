@@ -66,7 +66,7 @@ public class Cone extends Shape {
 	 */
 	@Override
 	public String toString() {
-		return "Cone:= " + "Radius: " + this.getRadius() + ", " + super.toString() + "\n";
+		return String.format("%-20s Radius: %10.2f, %s\n", "Cone:=", this.getRadius(), super.toString());
 	}
 
 }
