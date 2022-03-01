@@ -8,7 +8,7 @@ import java.io.Serializable;
  * the Linear data structures that will be developed in the CPRG 311 class at 
  * SAIT. The implementors of this interface will be required to add all the 
  * functionality.
- * </p>
+ * </p>  
  * 
  * @param <E> The type of elements this list holds.
  */
