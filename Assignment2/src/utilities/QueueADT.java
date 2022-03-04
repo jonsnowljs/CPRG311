@@ -1,6 +1,6 @@
 package utilities;
 
-public interface QueueADT<T> {
+public interface QueueADT<E> {
 
     /**
      * Returns the number of elements in the queue.
@@ -12,33 +12,33 @@ public interface QueueADT<T> {
     /**
      * Adds data to the rear(end) of the queue
      */
-    public void enqueue(T data);
+    public void enqueue(E data);
 
     /**
      * Removes data at the front of the queue
      */
-    public void dequeue(T data);
+    public void dequeue(E data);
 
     /**
      * Gets the element at the front of queue without removing it
      * 
-     * @return T the element at the rear of the queue
+     * @return E the element at the rear of the queue
      */
-    public T peek();
+    public E peek();
 
     /**
      * Returns true if two queues contain equal items appearing in the same order
      * 
      * @return true if both queues contain same items in the same order
      */
-    public boolean equals(QueueADT<T> queue);
+    public boolean equals(QueueADT<E> queue);
 
     /**
      * Returns an iterator over the items contained in the queue
      * 
      * @return iterator over the queue
      */
-    public Iterator<T> iterator();
+    public Iterator<E> iterator();
 
     // TODO
     // ASK REETA
@@ -46,7 +46,7 @@ public interface QueueADT<T> {
 
     // TODO
     // ASK REETA
-    public T[] toArray(T[] copy);
+    public E[] toArray(E[] copy);
 
     /**
      * Returns true if this queue contains no elements.

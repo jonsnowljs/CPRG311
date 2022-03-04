@@ -1,6 +1,6 @@
 package utilities;
 
-public interface StackADT<T> {
+public interface StackADT<E> {
 
     /**
      * Returns the number of elements in this stack.
@@ -14,7 +14,7 @@ public interface StackADT<T> {
      * 
      * @param data data to be pushed on the stack
      */
-    public void push(T data);
+    public void push(E data);
 
     /**
      * Removes the top element from the stack
@@ -24,23 +24,23 @@ public interface StackADT<T> {
     /**
      * Access the topmost element in a stack without removing it
      * 
-     * @return T the topmost element in the stack
+     * @return E the topmost element in the stack
      */
-    public T peek();
+    public E peek();
 
     /**
      * Returns true if two stacks contain equal items appearing in the same order
      * 
      * @return true if both stacks contain same items in the same order
      */
-    public boolean equals(StackADT<T> stack);
+    public boolean equals(StackADT<E> stack);
 
     /**
      * Returns an iterator over the items contained in the stack
      * 
      * @return iterator over the stack
      */
-    public Iterator<T> iterator();
+    public Iterator<E> iterator();
 
     // TODO
     // ASK REETA
@@ -48,21 +48,21 @@ public interface StackADT<T> {
 
     // TODO
     // ASK REETA
-    public T[] toArray(T[] copy);
+    public E[] toArray(E[] copy);
 
     /**
      * Searches and returns for the specified element in the stack
      * 
      * @return returns the position of the element in the stack
      */
-    public int search(T obj);
+    public int search(E obj);
 
     /**
      * Returns true if element is in the stack
      * 
      * @return true if element is in the stack
      */
-    public boolean contains(T obj);
+    public boolean contains(E obj);
 
     /**
      * Returns true if this stack contains no elements.
