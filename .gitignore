@@ -1,5 +1,4 @@
-/demo01-ComplexityAnalysis
-/demo02-SortingAlgorithms
+/demo*
 /test
 /Algorithm
 /.metadata
@@ -15,3 +14,4 @@
 *.iml
 **/.idea
 *.zip
+/SysAnalysis
