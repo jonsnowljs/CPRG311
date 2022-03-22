@@ -1,8 +1,12 @@
 package utilities;
 
+
+import java.util.NoSuchElementException;
+
+
 import exceptions.EmptyQueueException;
 
-public class MyQueue <E> implements QueueADT{
+public class MyQueue <E> implements QueueADT<E>, Iterator<E>{
 	
 	private MyDLL<E> list;
 	
@@ -12,22 +16,33 @@ public class MyQueue <E> implements QueueADT{
 	}
 
 	@Override
-	public void enqueue(Object toAdd) throws NullPointerException {
+	public boolean hasNext() {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 
 	@Override
-	public Object dequeue() throws EmptyQueueException {
+	public E next() throws NoSuchElementException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Object peek() throws EmptyQueueException {
+	public void enqueue(E toAdd) throws NullPointerException {
 		// TODO Auto-generated method stub
 		
-		return list.get(0);
+	}
+
+	@Override
+	public E dequeue() throws EmptyQueueException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public E peek() throws EmptyQueueException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
@@ -43,13 +58,13 @@ public class MyQueue <E> implements QueueADT{
 	}
 
 	@Override
-	public Iterator iterator() {
+	public Iterator<E> iterator() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public boolean equals(QueueADT that) {
+	public boolean equals(QueueADT<E> that) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -61,7 +76,7 @@ public class MyQueue <E> implements QueueADT{
 	}
 
 	@Override
-	public Object[] toArray(Object[] holder) throws NullPointerException {
+	public E[] toArray(E[] holder) throws NullPointerException {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -75,7 +90,9 @@ public class MyQueue <E> implements QueueADT{
 	@Override
 	public int size() {
 		// TODO Auto-generated method stub
-		return list.size();
+		return 0;
 	}
+
+
 
 }
