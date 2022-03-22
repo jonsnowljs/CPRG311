@@ -137,4 +137,5 @@ public interface StackADT<E> extends Serializable
 	 * @return the current size to the stack as an integer.
 	 */
 	public int size();
+
 }

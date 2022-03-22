@@ -1,21 +1,61 @@
 package utilities;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.NoSuchElementException;
 
-public class MyDLL <E> implements List<E>{
-	
-	private DLLNode head;
-	private DLLNode tail;
-	private int size;
-	
+public class MyDLL <E> implements ListADT<E>, Iterator<E>{
 
 	@Override
 	public int size() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public void clear() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean add(int index, E toAdd) throws NullPointerException, IndexOutOfBoundsException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean add(E toAdd) throws NullPointerException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean addAll(ListADT<? extends E> toAdd) throws NullPointerException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public E get(int index) throws IndexOutOfBoundsException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public E remove(int index) throws IndexOutOfBoundsException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public E remove(E toRemove) throws NullPointerException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public E set(int index, E toChange) throws NullPointerException, IndexOutOfBoundsException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
@@ -25,13 +65,13 @@ public class MyDLL <E> implements List<E>{
 	}
 
 	@Override
-	public boolean contains(Object o) {
+	public boolean contains(E toFind) throws NullPointerException {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public Iterator<E> iterator() {
+	public E[] toArray(E[] toHold) throws NullPointerException {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -43,111 +83,23 @@ public class MyDLL <E> implements List<E>{
 	}
 
 	@Override
-	public <T> T[] toArray(T[] a) {
+	public utilities.Iterator<E> iterator() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public boolean add(E e) {
+	public boolean hasNext() {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean remove(Object o) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean containsAll(Collection<?> c) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean addAll(Collection<? extends E> c) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean addAll(int index, Collection<? extends E> c) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean removeAll(Collection<?> c) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean retainAll(Collection<?> c) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void clear() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public E get(int index) {
+	public E next() throws NoSuchElementException {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	@Override
-	public E set(int index, E element) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void add(int index, E element) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public E remove(int index) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int indexOf(Object o) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int lastIndexOf(Object o) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public ListIterator<E> listIterator() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ListIterator<E> listIterator(int index) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<E> subList(int fromIndex, int toIndex) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
+	
 
 }
