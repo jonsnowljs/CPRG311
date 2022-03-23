@@ -4,6 +4,13 @@ import java.util.EmptyStackException;
 import java.util.NoSuchElementException;
 
 public class MyStack <E> implements StackADT<E>, Iterator<E>{
+	
+	private MyArrayList<E> list;
+	
+	public MyStack() {
+		list = new MyArrayList<E>();
+		
+	}
 
 	@Override
 	public boolean hasNext() {
