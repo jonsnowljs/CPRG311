@@ -50,7 +50,81 @@ public class MyArrayListTest {
 		int actual = mylist.size();
 		assertEquals(expected,actual);
 		
-		
+	}
+
+	@Test
+	public void testClear() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testAddIntE() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testAddE() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testAddAll() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGet() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testRemoveInt() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testRemoveE() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testSet() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testIsEmpty() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testContains() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testToArrayEArray() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testToArray() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testIterator() {
+		mylist.add(11);
+		mylist.add(12);
+		mylist.add(13);
+		mylist.add(14);
+		mylist.add(15);
+		Iterator<Integer> mylistIterator = mylist.iterator();
+		while (mylistIterator.hasNext()) {
+			int i = (int) mylistIterator.next();
+			System.out.print(i);
+			
+		}
 	}
 
 }
