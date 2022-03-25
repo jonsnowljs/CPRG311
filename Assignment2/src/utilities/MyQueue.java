@@ -9,16 +9,22 @@ import exceptions.EmptyQueueException;
 public class MyQueue <E> implements QueueADT<E>, Iterator<E>{
 	
 	private MyDLL<E> list;
+	private int queueSize; //Size of Queue
 	
 	public MyQueue() {
 		list = new MyDLL<E>();
-		
+		queueSize = list.size();
 	}
 
 	@Override
 	public boolean hasNext() {
 		// TODO Auto-generated method stub
-		return false;
+		// Check if Queue list has next. Returns true if yes
+		if (list.hasNext()) {
+			return true;
+		} else {
+			return false;
+		}	
 	}
 
 	@Override
@@ -30,7 +36,7 @@ public class MyQueue <E> implements QueueADT<E>, Iterator<E>{
 	@Override
 	public void enqueue(E toAdd) throws NullPointerException {
 		// TODO Auto-generated method stub
-		
+	
 	}
 
 	@Override
@@ -54,7 +60,12 @@ public class MyQueue <E> implements QueueADT<E>, Iterator<E>{
 	@Override
 	public boolean isEmpty() {
 		// TODO Auto-generated method stub
-		return false;
+		// Checks if queue is empty returns true if it is
+		if (queueSize == 0) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Override
@@ -84,15 +95,20 @@ public class MyQueue <E> implements QueueADT<E>, Iterator<E>{
 	@Override
 	public boolean isFull() {
 		// TODO Auto-generated method stub
-		return false;
+		if (queueSize > list.size()) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Override
 	public int size() {
 		// TODO Auto-generated method stub
-		return 0;
+		//Checks size of queue
+		queueSize = this.size();
+		return queueSize;
 	}
-
 
 
 }
