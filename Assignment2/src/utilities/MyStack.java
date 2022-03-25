@@ -11,6 +11,7 @@ public class MyStack <E> implements StackADT<E>, Iterator<E>{
 		list = new MyArrayList<E>();
 		
 	}
+	MyArrayList<E> stack = new MyArrayList<>(); 
 
 	@Override
 	public boolean hasNext() {
@@ -26,55 +27,59 @@ public class MyStack <E> implements StackADT<E>, Iterator<E>{
 
 	@Override
 	public void push(E toAdd) throws NullPointerException {
-		
-		
+		stack.add(toAdd);	
 	}
 
 	@Override
 	public E pop() throws EmptyStackException {
-		// TODO Auto-generated method stub
-		return null;
+		return stack.remove(stack.size() - 1);
 	}
 
 	@Override
 	public E peek() throws EmptyStackException {
-		// TODO Auto-generated method stub
-		return null;
+		return stack.get(stack.size() - 1);
 	}
 
 	@Override
 	public void clear() {
-		// TODO Auto-generated method stub
-		
+		stack.clear();
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return stack.isEmpty();
 	}
 
 	@Override
 	public Object[] toArray() {
-		// TODO Auto-generated method stub
-		return null;
+		Object[] stackArray = new Object[stack.size()];
+		
+		
+			
+		return stackArray;
 	}
 
 	@Override
 	public E[] toArray(E[] holder) throws NullPointerException {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Object[] stackArray = new Object[stack.size()];
+		
+		// USE ITERATOR
+		
+		
+		return (E[]) stackArray;
 	}
 
 	@Override
 	public boolean contains(E toFind) throws NullPointerException {
-		// TODO Auto-generated method stub
-		return false;
+		return stack.contains(toFind);
 	}
 
 	@Override
 	public int search(E toFind) {
-		// TODO Auto-generated method stub
+		int size = stack.size();
+		int index = 0;
+		// USE ITERATOR
 		return 0;
 	}
 
@@ -92,8 +97,7 @@ public class MyStack <E> implements StackADT<E>, Iterator<E>{
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return stack.size();
 	}
 	
 }
