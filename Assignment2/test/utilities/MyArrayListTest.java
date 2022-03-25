@@ -111,8 +111,12 @@ public class MyArrayListTest {
 		list.add(1);
 		list.add(1);
 		list.add(1);
+		list.add(1);
+		list.add(1);
+		list.add(1);
+		list.add(1);
 		int actual = list.size();
-		assertEquals(6, actual);
+		assertEquals(10, actual);
 
 	}
 	
@@ -216,9 +220,10 @@ public class MyArrayListTest {
 		list.add(3);
 		assertEquals(true, list.hasNext());
 		int actual = list.next();
-		assertEquals(2, actual);
+		assertEquals(1, actual);
+		int actual2 = list.next();
+		assertEquals(2, actual2);
 		
-
 	}
 
 }

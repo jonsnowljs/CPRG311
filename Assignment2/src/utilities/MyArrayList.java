@@ -59,7 +59,7 @@ public class MyArrayList<E> implements ListADT<E>, Iterator<E> {
 		} else if (index < 0 || index > this.size || index > a.length) {
 			throw new IndexOutOfBoundsException();
 		}
-		if (this.size == a.length) {
+		if (this.size >= a.length * DEFAULT_RATE) {
 			grow();
 		}
 		if (index == this.size) {
@@ -80,7 +80,7 @@ public class MyArrayList<E> implements ListADT<E>, Iterator<E> {
 		if (toAdd == null) {
 			throw new NullPointerException();
 		}
-		if (this.size == a.length) {
+		if (this.size >= a.length * DEFAULT_RATE) {
 			grow();
 		}
 		a[this.size] = toAdd;
@@ -95,7 +95,7 @@ public class MyArrayList<E> implements ListADT<E>, Iterator<E> {
 		}
 		for (int i = 0; i < toAdd.size(); i++) {
 			if (toAdd.get(i) != null) {
-				if (this.size == a.length) {
+				if (this.size >= a.length * DEFAULT_RATE) {
 					grow();
 				}
 				a[size] = (toAdd.get(i));
@@ -156,10 +156,8 @@ public class MyArrayList<E> implements ListADT<E>, Iterator<E> {
 		} else if (index < 0 || index >= this.size) {
 			throw new IndexOutOfBoundsException();
 		}
-		if (index >= a.length) {
-			for (int i = a.length; i <= index + 1; i++) {
-				grow();
-			}
+		if (this.size >= a.length * DEFAULT_RATE) {
+			grow();
 		}
 		E returnElement = a[index];
 		a[index] = toChange;
@@ -240,7 +238,7 @@ public class MyArrayList<E> implements ListADT<E>, Iterator<E> {
 
 	private void grow() {
 		int arrayLength = a.length;
-		E[] tempArray = (E[]) new Object[arrayLength + 1];
+		E[] tempArray = (E[]) new Object[arrayLength * 2];
 		for (int i = 0; i < this.size; i++) {
 			tempArray[i] = a[i];
 		}
