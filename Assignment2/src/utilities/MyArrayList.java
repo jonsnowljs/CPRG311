@@ -50,6 +50,9 @@ public class MyArrayList <E> implements ListADT<E>{
 		if (index < 0 || index > length ) {
 			throw new IndexOutOfBoundsException();
 		}
+		if (toAdd == null) {
+			throw new NullPointerException();
+		}
 		//add the toAdd element to the end of the array
 		add(toAdd);
 		
