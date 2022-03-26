@@ -3,28 +3,15 @@ package utilities;
 import java.util.EmptyStackException;
 import java.util.NoSuchElementException;
 
-public class MyStack <E> implements StackADT<E>, Iterator<E>{
+public class MyStack <E> implements StackADT<E>{
 	
-	private MyArrayList<E> list;
+	private MyArrayList<E> stack;
 	
 	public MyStack() {
-		list = new MyArrayList<E>();
+		stack = new MyArrayList<E>();
 		
 	}
-	MyArrayList<E> stack = new MyArrayList<>(); 
-
-	@Override
-	public boolean hasNext() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public E next() throws NoSuchElementException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 	@Override
 	public void push(E toAdd) throws NullPointerException {
 		stack.add(toAdd);	
@@ -85,8 +72,19 @@ public class MyStack <E> implements StackADT<E>, Iterator<E>{
 
 	@Override
 	public Iterator<E> iterator() {
-		// TODO Auto-generated method stub
-		return null;
+		MyArrayList<E> stackArrayList = new MyArrayList<E>();
+		stackArrayList.addAll(stack);
+		int stackSize = stack.size();	
+		int lastIndex = stackSize - 1;
+		
+		for (int i = 0; i < stackSize; i++) {
+			E next = stack.get(i);
+			stackArrayList.set(lastIndex, next);
+			lastIndex--;
+		}
+
+		Iterator stackIterator = stackArrayList.iterator();	
+		return stackIterator;
 	}
 
 	@Override
