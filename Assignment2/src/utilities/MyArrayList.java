@@ -204,8 +204,7 @@ public class MyArrayList <E> implements ListADT<E>{
 
 			@Override
 			public E next() throws NoSuchElementException {
-				index++;
-				E temp = array[index];
+				E temp = array[index++];
 				return temp;
 			}
 			

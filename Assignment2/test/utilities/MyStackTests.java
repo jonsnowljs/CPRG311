@@ -2,6 +2,8 @@ package utilities;
 
 import static org.junit.Assert.*;
 
+import java.util.NoSuchElementException;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -122,6 +124,11 @@ public class MyStackTests<E> {
 	public void testIterator() {
 		 Iterator<Integer> iterator = stack.iterator();
 		 assertEquals(iterator.next(), five);
+		 assertEquals(iterator.next(), four);
+		 assertEquals(iterator.next(), three);
+		 assertEquals(iterator.next(), two);
+		 assertEquals(iterator.next(), one);
+		 assertEquals(iterator.next(), zero);
 		 
 	}
 
