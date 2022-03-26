@@ -7,27 +7,36 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class MyDLLTest {
-	
-	MyDLL<Integer>  myDLL = new MyDLL<>();
-	private Integer one = 11;
-	private Integer two = 12;
-	private Integer three = 13;
-	private Integer four = 14;
-	private Integer five = 15;
-	private Integer six = 16;
-	private Integer new1 = 17;
-	private Integer new2 = 18;
-	
+
+	MyDLL<Integer> myDLL = new MyDLL<>();
+	private Integer zero;
+	private Integer one;
+	private Integer two;
+	private Integer three;
+	private Integer four;
+	private Integer five;
+	private Integer new1;
+	private Integer new2;
+	private Integer nullInteger;
+
 	@Before
 	public void setUp() throws Exception {
-		one = new Integer(11);
-		two = new Integer(12);
-		three = new Integer(13);
-		four = new Integer(14);
-		five = new Integer(15);
-		
+		zero = Integer.valueOf(10);
+		one = Integer.valueOf(11);
+		two = Integer.valueOf(12);
+		three = Integer.valueOf(13);
+		four = Integer.valueOf(14);
+		five = Integer.valueOf(15);
+		new1 = Integer.valueOf(16);
+		new2 = Integer.valueOf(17);
+
+		myDLL.add(zero);
+		myDLL.add(one);
+		myDLL.add(two);
+		myDLL.add(three);
+		myDLL.add(four);
+		myDLL.add(five);
 	}
-	
 
 	@After
 	public void tearDown() throws Exception {
@@ -37,14 +46,15 @@ public class MyDLLTest {
 		three = null;
 		four = null;
 		five = null;
+		new1 = null;
+		new2 = null;
 	}
-
 
 	@Test
 	public void testSize() {
-		int expected = 5;
+		int expected = 6;
 		int actual = myDLL.size();
-		assertEquals(exptected, actual);
+		assertEquals(expected, actual);
 	}
 
 	@Test
@@ -57,32 +67,159 @@ public class MyDLLTest {
 
 	@Test
 	public void testAddIntE() {
-		myDLL.add(6, six);
+		// test on exceptions
+		assertThrows(IndexOutOfBoundsException.class, () -> myDLL.add(8, new1));
+		assertThrows(IndexOutOfBoundsException.class, () -> myDLL.add(7, new1));
+		assertThrows(NullPointerException.class, () -> myDLL.add(2, nullInteger));
+
+		// test if new node is added
+		myDLL.add(6, new1);
+		Integer expected = myDLL.get(6);
+		Integer actual = new1;
+		assertEquals(expected, actual);
+
+		myDLL.add(3, new2);
+		Integer expected1 = myDLL.get(3);
+		Integer actual1 = new2;
+		assertEquals(expected1, actual1);
+
 	}
 
 	@Test
 	public void testAddE() {
-		fail("Not yet implemented");
+		// test if nullpointException is thrown
+		assertThrows(NullPointerException.class, () -> myDLL.add(nullInteger));
+
+		// test if new node is added
+		myDLL.add(new1);
+		Integer expected = myDLL.get(6);
+		Integer actual = new1;
+		assertEquals(expected, actual);
+
+		myDLL.add(7, new2);
+		Integer expected1 = myDLL.get(7);
+		Integer actual1 = new2;
+		assertEquals(expected1, actual1);
 	}
 
 	@Test
 	public void testAddAll() {
-		fail("Not yet implemented");
+		// create new toadd DLL
+		MyDLL<Integer> newMyDLL = new MyDLL<>();
+		// test if nullpointException is thrown
+		assertThrows(NullPointerException.class, () -> myDLL.addAll(newMyDLL));
+		// setup
+		newMyDLL.add(new1);
+		newMyDLL.add(new2);
+
+		// test if all the new DLL is added
+		myDLL.addAll(newMyDLL);
+		Integer expected = myDLL.get(6);
+		Integer actual = new1;
+		assertEquals(expected, actual);
+
+		Integer expected1 = myDLL.get(7);
+		Integer actual1 = new2;
+		assertEquals(expected1, actual1);
 	}
 
 	@Test
 	public void testGet() {
-		fail("Not yet implemented");
+		// test if indexOutOfBoundsException is thrown
+		assertThrows(IndexOutOfBoundsException.class, () -> myDLL.get(6));
+		// test if can get right number
+		Integer expected = myDLL.get(0);
+		Integer actual = zero;
+		assertEquals(expected, actual);
+
+		Integer expected1 = myDLL.get(1);
+		Integer actual1 = one;
+		assertEquals(expected1, actual1);
+
+		Integer expected2 = myDLL.get(2);
+		Integer actual2 = two;
+		assertEquals(expected2, actual2);
+
+		Integer expected3 = myDLL.get(3);
+		Integer actual3 = three;
+		assertEquals(expected3, actual3);
+
+		Integer expected4 = myDLL.get(4);
+		Integer actual4 = four;
+		assertEquals(expected4, actual4);
+
+		Integer expected5 = myDLL.get(5);
+		Integer actual5 = five;
+		assertEquals(expected5, actual5);
 	}
 
 	@Test
 	public void testRemoveInt() {
-		fail("Not yet implemented");
+		
+		Integer expected = myDLL.remove(0);;
+		Integer actual = zero;
+		assertEquals(expected, actual);
+
+		Integer expected1 = myDLL.remove(1);
+		Integer actual1 = one;
+		assertEquals(expected1, actual1);
+
+		Integer expected2 = myDLL.remove(2);
+		Integer actual2 = two;
+		assertEquals(expected2, actual2);
+
+		Integer expected3 = myDLL.remove(3);
+		Integer actual3 = three;
+		assertEquals(expected3, actual3);
+
+		Integer expected4 = myDLL.remove(4);
+		Integer actual4 = four;
+		assertEquals(expected4, actual4);
+
+		Integer expected5 = myDLL.remove(5);
+		Integer actual5 = five;
+		assertEquals(expected5, actual5);
 	}
 
 	@Test
 	public void testRemoveE() {
-		fail("Not yet implemented");
+		//set up
+		Integer zeroDuplicate = Integer.valueOf(10);
+		myDLL.add(0, zeroDuplicate);
+		// test if only first elements are removed
+		Integer expected = myDLL.remove(zero);
+		Integer actual = zero;
+		assertEquals(expected, actual);
+
+		// test if the elements are removed
+		Integer actual1 = myDLL.get(1);
+		myDLL.remove(one);
+		Integer expected1 = myDLL.get(0);
+		assertEquals(expected1, actual1);
+
+		actual1 = myDLL.get(1);
+		myDLL.remove(two);
+		expected1 = myDLL.get(0);
+		assertEquals(expected1, actual1);
+		
+		actual1 = myDLL.get(1);
+		myDLL.remove(three);
+		expected1 = myDLL.get(0);
+		assertEquals(expected1, actual1);
+		
+		actual1 = myDLL.get(1);
+		myDLL.remove(four);
+		expected1 = myDLL.get(0);
+		assertEquals(expected1, actual1);
+		
+		actual1 = myDLL.get(1);
+		myDLL.remove(five);
+		expected1 = myDLL.get(0);
+		assertEquals(expected1, actual1);
+		
+		assertTrue(myDLL.size() == 0);
+		
+		
 	}
 
 	@Test

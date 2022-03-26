@@ -35,10 +35,9 @@ public class MyDLL <E> implements ListADT<E>{
 
 	@Override
 	public boolean add(int index, E toAdd) throws NullPointerException, IndexOutOfBoundsException {
-		if (index < 0 || index + 1 > size  ) {
+		if (index > size || index < 0) {
 			throw new IndexOutOfBoundsException();
 		}
-		
 		if (toAdd == null) {
 			throw new NullPointerException();
 		}
@@ -56,7 +55,7 @@ public class MyDLL <E> implements ListADT<E>{
 				head.setPrev(toAddNode);
 				head = toAddNode;
 			// add after tail
-			} else if (index > size -1) {
+			} else if (index == size) {
 				tail.setNext(toAddNode);
 				toAddNode.setPrev(tail);
 				tail = toAddNode;
@@ -81,22 +80,22 @@ public class MyDLL <E> implements ListADT<E>{
 		if (toAdd == null) {
 			throw new NullPointerException();
 		}
+		add(size, toAdd);
 		
-		DLLNode<E> toAddNode = new DLLNode<E>(toAdd, null, null);
-		tail.setNext(toAddNode);
-		toAddNode.setPrev(tail);
-		tail = toAddNode;
-		
-		size++;
+//		DLLNode<E> toAddNode = new DLLNode<E>(toAdd, null, null);
+//		tail.setNext(toAddNode);
+//		toAddNode.setPrev(tail);
+//		tail = toAddNode;
+//		
+//		size++;
 		return true;
 	}
 
 	@Override
 	public boolean addAll(ListADT<? extends E> toAdd) throws NullPointerException {
-		if (toAdd == null) {
+		if (toAdd == null || toAdd.size() == 0) {
 			throw new NullPointerException();
 		}
-		
 		for (int i = 0; i < toAdd.size(); i++) {
 			E toAddElement = toAdd.get(i);
 			this.add(toAddElement);
@@ -108,10 +107,9 @@ public class MyDLL <E> implements ListADT<E>{
 
 	@Override
 	public E get(int index) throws IndexOutOfBoundsException {
-		if (index < 0 || index + 1 > size  ) {
+		if (index >= size || index < 0) {
 			throw new IndexOutOfBoundsException();
 		}
-		
 		DLLNode<E> currentNode = getNode(index);
 
 		return (E)currentNode.getElement();
@@ -119,10 +117,9 @@ public class MyDLL <E> implements ListADT<E>{
 
 	@Override
 	public E remove(int index) throws IndexOutOfBoundsException {
-		if (index < 0 || index + 1 > size  ) {
+		if (index > size || index < 0) {
 			throw new IndexOutOfBoundsException();
 		}
-		
 		DLLNode<E> currentNode = getNode(index);
 		currentNode.getPrev().setNext(currentNode.getNext());
 		currentNode.getNext().setPrev(currentNode.getPrev());
@@ -137,7 +134,6 @@ public class MyDLL <E> implements ListADT<E>{
 		if (toRemove == null) {
 			throw new NullPointerException();
 		}
-		
 		for (int i = 0; i < size; i++) {
 			if (this.get(i) == toRemove) {
 				this.remove(i);
@@ -149,7 +145,7 @@ public class MyDLL <E> implements ListADT<E>{
 
 	@Override
 	public E set(int index, E toChange) throws NullPointerException, IndexOutOfBoundsException {
-		if (index < 0 || index + 1 > size  ) {
+		if (index > size || index < 0) {
 			throw new IndexOutOfBoundsException();
 		}
 		if (toChange == null) {
