@@ -9,6 +9,7 @@ public class MyDLL <E> implements ListADT<E>{
 	private int size;
 	
 	
+	
 	/**
 	 * @param head
 	 * @param tail
@@ -120,11 +121,20 @@ public class MyDLL <E> implements ListADT<E>{
 		if (index > size || index < 0) {
 			throw new IndexOutOfBoundsException();
 		}
+		
 		DLLNode<E> currentNode = getNode(index);
-		currentNode.getPrev().setNext(currentNode.getNext());
-		currentNode.getNext().setPrev(currentNode.getPrev());
+		if (index == 0) {
+			head = currentNode.getNext();
+			head.setPrev(null);
+		}else if (index == size -1) {
+			tail = currentNode.getPrev();
+			tail.setNext(null);
+		}else {
+			currentNode.getPrev().setNext(currentNode.getNext());
+			currentNode.getNext().setPrev(currentNode.getPrev());
+		}
 		E currElement = (E) currentNode.getElement();
-		currentNode = null;
+		currentNode = null;	
 		size--;
 		return currElement;
 	}
@@ -134,6 +144,7 @@ public class MyDLL <E> implements ListADT<E>{
 		if (toRemove == null) {
 			throw new NullPointerException();
 		}
+		
 		for (int i = 0; i < size; i++) {
 			if (this.get(i) == toRemove) {
 				this.remove(i);
@@ -183,16 +194,17 @@ public class MyDLL <E> implements ListADT<E>{
 		if (toHold == null) {
 			throw new NullPointerException();
 		}
+		
 		// expand the toHold array size if it's not enought to hold the elements in this double link list
 		if (toHold.length < size) {
-			toHold = (E[]) Array.newInstance(getClass(), size);
+			toHold = (E[]) Array.newInstance(this.get(0).getClass(), size);
 		}
 	
 		for (int i = 0; i < size; i++) {
 			toHold[i] = this.get(i);
 		}
 
-		return toHold;
+		return (E[])toHold;
 	}
 
 	@Override

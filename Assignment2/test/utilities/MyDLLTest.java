@@ -217,8 +217,7 @@ public class MyDLLTest {
 		expected1 = myDLL.get(0);
 		assertEquals(expected1, actual1);
 		
-		assertTrue(myDLL.size() == 0);
-		
+		assertTrue(myDLL.size() == 0);	
 		
 	}
 
@@ -239,7 +238,12 @@ public class MyDLLTest {
 
 	@Test
 	public void testToArrayEArray() {
-		fail("Not yet implemented");
+		Integer[] holdList = new Integer[5];
+		holdList = myDLL.toArray(holdList);
+		Integer expected = zero; 
+		Integer actual = holdList[0];
+		assertEquals(expected, actual);		
+	
 	}
 
 	@Test
