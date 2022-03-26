@@ -11,7 +11,7 @@ import utilities.MyStack;
 
 public class MyStackTests<E> {
 	//Attributes
-	MyStack<Integer> stack;
+	MyStack<Integer> stack = new MyStack<>();
 	private Integer zero;
 	private Integer one;
 	private Integer two;
@@ -121,7 +121,7 @@ public class MyStackTests<E> {
 	@Test
 	public void testIterator() {
 		 Iterator<Integer> iterator = stack.iterator();
-		 assertEquals(iterator.next(), zero);
+		 assertEquals(iterator.next(), five);
 		 
 	}
 
