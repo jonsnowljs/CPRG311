@@ -9,7 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class MyDLLTest {
-
+	// Attributes for Integer test
 	MyDLL<Integer> myDLL = new MyDLL<>();
 
 	private Integer element0;
@@ -24,8 +24,23 @@ public class MyDLLTest {
 	private Integer expected;
 	private Integer actual;
 
+	// Attributes for String test
+	MyDLL<String> myStringDLL = new MyDLL<>();
+	private String string0;
+	private String string1;
+	private String string2;
+	private String string3;
+	private String string4;
+	private String string5;
+	private String newString1;
+	private String newString2;
+	private String nullString;
+	private String expectedString;
+	private String actualString;
+
 	@Before
 	public void setUp() throws Exception {
+		// Integer test
 		element0 = Integer.valueOf(10);
 		element1 = Integer.valueOf(11);
 		element2 = Integer.valueOf(12);
@@ -42,10 +57,27 @@ public class MyDLLTest {
 		myDLL.add(element4);
 		myDLL.add(element5);
 
+		// String test
+		string0 = "Hello";
+		string1 = "World";
+		string2 = "!";
+		string3 = "?";
+		string4 = ".";
+		string5 = ",";
+		newString1 = "How";
+		newString2 = "are";
+
+		myStringDLL.add(string0);
+		myStringDLL.add(string1);
+		myStringDLL.add(string2);
+		myStringDLL.add(string3);
+		myStringDLL.add(string4);
+		myStringDLL.add(string5);
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		// Integer test
 		myDLL = null;
 		element1 = null;
 		element2 = null;
@@ -54,25 +86,49 @@ public class MyDLLTest {
 		element5 = null;
 		newElement1 = null;
 		newElement2 = null;
+
+		// String test
+		myStringDLL = null;
+		string1 = null;
+		string2 = null;
+		string3 = null;
+		string4 = null;
+		string5 = null;
+		newString1 = null;
+		newString2 = null;
 	}
 
 	@Test
 	public void testSize() {
+		// Integer test
 		int expected = 6;
 		int actual = myDLL.size();
 		assertEquals(expected, actual);
+
+		// String test
+		int expectedString = 6;
+		int actualString = myStringDLL.size();
+		assertEquals(expectedString, actualString);
 	}
 
 	@Test
 	public void testClear() {
+		// Integer test
 		int expected = 0;
 		myDLL.clear();
 		int actual = myDLL.size();
 		assertEquals(expected, actual);
+
+		// String test
+		int expectedString = 0;
+		myStringDLL.clear();
+		int actualString = myStringDLL.size();
+		assertEquals(expectedString, actualString);
 	}
 
 	@Test
 	public void testAddIntE() {
+		// Integer test
 		// test on exceptions
 		assertThrows(IndexOutOfBoundsException.class, () -> myDLL.add(8, newElement1));
 		assertThrows(IndexOutOfBoundsException.class, () -> myDLL.add(7, newElement1));
@@ -89,10 +145,23 @@ public class MyDLLTest {
 		actual = newElement2;
 		assertEquals(expected, actual);
 
+		// String test
+		// test if new node is added
+		myStringDLL.add(6, newString1);
+		expectedString = myStringDLL.get(6);
+		actualString = newString1;
+		assertEquals(expectedString, actualString);
+
+		myStringDLL.add(3, newString2);
+		expectedString = myStringDLL.get(3);
+		actualString = newString2;
+		assertEquals(expectedString, actualString);
+
 	}
 
 	@Test
 	public void testAddE() {
+		// Integer test
 		// test if nullpointException is thrown
 		assertThrows(NullPointerException.class, () -> myDLL.add(nullInteger));
 
@@ -106,10 +175,23 @@ public class MyDLLTest {
 		expected = myDLL.get(7);
 		actual = newElement2;
 		assertEquals(expected, actual);
+
+		// String test
+		// test if new node is added
+		myStringDLL.add(newString1);
+		expectedString = myStringDLL.get(6);
+		actualString = newString1;
+		assertEquals(expectedString, actualString);
+
+		myStringDLL.add(7, newString2);
+		expectedString = myStringDLL.get(7);
+		actualString = newString2;
+		assertEquals(expectedString, actualString);
 	}
 
 	@Test
 	public void testAddAll() {
+		// Integer test
 		// create new toadd DLL
 		MyDLL<Integer> newMyDLL = new MyDLL<>();
 		// test if nullpointException is thrown
@@ -127,10 +209,29 @@ public class MyDLLTest {
 		expected = myDLL.get(7);
 		actual = newElement2;
 		assertEquals(expected, actual);
+
+		// String test
+		// create new toadd DLL
+		MyDLL<String> newMyStringDLL = new MyDLL<>();
+		// setup
+		newMyStringDLL.add(newString1);
+		newMyStringDLL.add(newString2);
+
+		// test if all the new DLL is added
+		myStringDLL.addAll(newMyStringDLL);
+		expectedString = myStringDLL.get(6);
+		actualString = newString1;
+		assertEquals(expectedString, actualString);
+
+		expectedString = myStringDLL.get(7);
+		actualString = newString2;
+		assertEquals(expectedString, actualString);
+
 	}
 
 	@Test
 	public void testGet() {
+		// Integer test
 		// test if indexOutOfBoundsException is thrown
 		assertThrows(IndexOutOfBoundsException.class, () -> myDLL.get(6));
 		// test if can get right number
@@ -157,10 +258,37 @@ public class MyDLLTest {
 		expected = myDLL.get(5);
 		actual = element5;
 		assertEquals(expected, actual);
+
+		// String test
+		// test if can get right string
+		expectedString = myStringDLL.get(0);
+		actualString = string0;
+		assertEquals(expectedString, actualString);
+
+		expectedString = myStringDLL.get(1);
+		actualString = string1;
+		assertEquals(expectedString, actualString);
+
+		expectedString = myStringDLL.get(2);
+		actualString = string2;
+		assertEquals(expectedString, actualString);
+
+		expectedString = myStringDLL.get(3);
+		actualString = string3;
+		assertEquals(expectedString, actualString);
+
+		expectedString = myStringDLL.get(4);
+		actualString = string4;
+		assertEquals(expectedString, actualString);
+
+		expectedString = myStringDLL.get(5);
+		actualString = string5;
+		assertEquals(expectedString, actualString);
 	}
 
 	@Test
 	public void testRemoveInt() {
+		// Integer test
 		// test if IndexOutOfBoundsException is thrown
 		assertThrows(IndexOutOfBoundsException.class, () -> myDLL.remove(6));
 		assertThrows(IndexOutOfBoundsException.class, () -> myDLL.remove(-1));
@@ -192,10 +320,40 @@ public class MyDLLTest {
 		assertEquals(expected, actual);
 
 		assertEquals(0, myDLL.size());
+
+		// String test
+		// test if the element is removed at position
+		expectedString = myStringDLL.remove(0);
+		actualString = string0;
+		assertEquals(expectedString, actualString);
+
+		expectedString = myStringDLL.remove(0);
+		actualString = string1;
+		assertEquals(expectedString, actualString);
+
+		expectedString = myStringDLL.remove(0);
+		actualString = string2;
+		assertEquals(expectedString, actualString);
+
+		expectedString = myStringDLL.remove(0);
+		actualString = string3;
+		assertEquals(expectedString, actualString);
+
+		expectedString = myStringDLL.remove(0);
+		actualString = string4;
+		assertEquals(expectedString, actualString);
+
+		expectedString = myStringDLL.remove(0);
+		actualString = string5;
+		assertEquals(expectedString, actualString);
+
+		assertEquals(0, myStringDLL.size());
+
 	}
 
 	@Test
 	public void testRemoveE() {
+		// Integer test
 		// set up
 		Integer zeroDuplicate = Integer.valueOf(10);
 		myDLL.add(0, zeroDuplicate);
@@ -239,10 +397,52 @@ public class MyDLLTest {
 
 		assertTrue(myDLL.size() == 0);
 
+		// String test
+		// set up
+		String helloDuplicateString = "Hello";
+		myStringDLL.add(0, helloDuplicateString);
+		// test if only first elements are removed
+		expectedString = myStringDLL.remove(string0);
+		actualString = string0;
+		assertEquals(expectedString, actualString);
+
+		// test if the elements are removed
+		actualString = myStringDLL.get(1);
+		myStringDLL.remove(string0);
+		expectedString = myStringDLL.get(0);
+		assertEquals(expectedString, actualString);
+
+		actualString = myStringDLL.get(1);
+		myStringDLL.remove(string1);
+		expectedString = myStringDLL.get(0);
+		assertEquals(expectedString, actualString);
+
+		actualString = myStringDLL.get(1);
+		myStringDLL.remove(string2);
+		expectedString = myStringDLL.get(0);
+		assertEquals(expectedString, actualString);
+
+		actualString = myStringDLL.get(1);
+		myStringDLL.remove(string3);
+		expectedString = myStringDLL.get(0);
+		assertEquals(expectedString, actualString);
+
+		actualString = myStringDLL.get(1);
+		myStringDLL.remove(string4);
+		expectedString = myStringDLL.get(0);
+		assertEquals(expectedString, actualString);
+
+		expectedString = myStringDLL.get(0);
+		actualString = myStringDLL.remove(string5);
+		assertEquals(expectedString, actualString);
+
+		assertTrue(myStringDLL.size() == 0);
+
 	}
 
 	@Test
 	public void testSet() {
+		// Integer test
 		// test if excpetions are thrown
 		assertThrows(IndexOutOfBoundsException.class, () -> myDLL.set(6, newElement1));
 		assertThrows(NullPointerException.class, () -> myDLL.set(1, nullInteger));
@@ -258,10 +458,23 @@ public class MyDLLTest {
 		actual = myDLL.get(0);
 		assertEquals(expected, actual);
 
+		// String test
+		String actualAfterSetString;
+		// test the return value after set
+		expectedString = myStringDLL.get(0);
+		actualString = myStringDLL.set(0, newString1);
+		assertEquals(expectedString, actualString);
+
+		// test if the value is set
+		expectedString = newString1;
+		actualString = myStringDLL.get(0);
+		assertEquals(expectedString, actualString);
+
 	}
 
 	@Test
 	public void testIsEmpty() {
+		// Integer test
 		// set up a new empty DLL
 		MyDLL<Integer> myNullDLL = new MyDLL<>();
 
@@ -270,10 +483,22 @@ public class MyDLLTest {
 
 		// check if is not empty
 		assertFalse(myDLL.isEmpty());
+
+		// String test
+		// set up a new empty DLL
+		MyDLL<String> myNullStringDLL = new MyDLL<>();
+
+		// check if is empty
+		assertTrue(myNullStringDLL.isEmpty());
+
+		// check if is not empty
+		assertFalse(myStringDLL.isEmpty());
+
 	}
 
 	@Test
 	public void testContains() {
+		// Integer test
 		// check if the element is in the DLL
 		assertTrue(myDLL.contains(element0));
 		assertTrue(myDLL.contains(element1));
@@ -286,10 +511,25 @@ public class MyDLLTest {
 		// check if newElement1 is added to the DLL
 		myDLL.add(newElement1);
 		assertTrue(myDLL.contains(newElement1));
+
+		// String test
+		// check if the element is in the DLL
+		assertTrue(myStringDLL.contains(string0));
+		assertTrue(myStringDLL.contains(string1));
+		assertTrue(myStringDLL.contains(string2));
+		assertTrue(myStringDLL.contains(string3));
+		assertTrue(myStringDLL.contains(string4));
+		assertTrue(myStringDLL.contains(string5));
+		// check if the element is not in the DLL
+		assertFalse(myStringDLL.contains(newString1));
+		// check if newString1 is added to the DLL
+		myStringDLL.add(newString1);
+		assertTrue(myStringDLL.contains(newString1));
 	}
 
 	@Test
 	public void testToArrayEArray() {
+		// Integer test
 		// test if NUllPointerException is thrown
 		assertThrows(NullPointerException.class, () -> myDLL.toArray(null));
 
@@ -307,19 +547,42 @@ public class MyDLLTest {
 			assertEquals(myDLL.get(i), holdList[i]);
 		}
 
+		// String test
+		// test if DLL is transformed to array when toHold is smaller than DLL
+		String[] holdListString = new String[2];
+		holdListString = myStringDLL.toArray(holdListString);
+		for (int i = 0; i < myStringDLL.size(); i++) {
+			assertEquals(myStringDLL.get(i), holdListString[i]);
+		}
+
+		// test if DLL is transformed to array when toHold is bigger than DLL
+		holdListString = new String[10];
+		holdListString = myStringDLL.toArray(holdListString);
+		for (int i = 0; i < myStringDLL.size(); i++) {
+			assertEquals(myStringDLL.get(i), holdListString[i]);
+		}
 	}
 
 	@Test
 	public void testToArray() {
+		// Integer test
 		// test if DLL is transformed to array
 		Object[] actualArray = myDLL.toArray();
 		Object[] expectedArray = { 10, 11, 12, 13, 14, 15 };
 		assertArrayEquals(expectedArray, actualArray);
 
+		// String test
+		// test if DLL is transformed to array
+		Object[] actualArrayString = myStringDLL.toArray();
+
+		Object[] expectedArrayString = { "Hello", "World", "!", "?", ".", "," };
+		assertArrayEquals(expectedArrayString, actualArrayString);
+
 	}
 
 	@Test
 	public void testIterator() {
+		// Integer test
 		// setup before test
 		Iterator<Integer> iterator = myDLL.iterator();
 
@@ -358,6 +621,47 @@ public class MyDLLTest {
 
 		// test if NullPointerException is thrown
 		assertThrows(NoSuchElementException.class, () -> iterator.next());
+
+		// String test
+		// setup before test
+		Iterator<String> stringIterator = myStringDLL.iterator();
+
+		// test if the first element is returned
+		expectedString = stringIterator.next();
+		actualString = string0;
+		assertEquals(expectedString, actualString);
+
+		// test if the second element is returned
+		expectedString = stringIterator.next();
+		actualString = string1;
+		assertEquals(expectedString, actualString);
+
+		// test if the third element is returned
+		expectedString = stringIterator.next();
+		actualString = string2;
+		assertEquals(expectedString, actualString);
+
+		// test if the fourth element is returned
+		expectedString = stringIterator.next();
+		actualString = string3;
+		assertEquals(expectedString, actualString);
+
+		// test if the fifth element is returned
+		expectedString = stringIterator.next();
+		actualString = string4;
+		assertEquals(expectedString, actualString);
+
+		// test if the sixth element is returned
+		expectedString = stringIterator.next();
+		actualString = string5;
+		assertEquals(expectedString, actualString);
+
+		// test if there is no more elements
+		assertFalse(stringIterator.hasNext());
+
+		// test if NullPointerException is thrown
+		assertThrows(NoSuchElementException.class, () -> stringIterator.next());
+
 	}
 
 }

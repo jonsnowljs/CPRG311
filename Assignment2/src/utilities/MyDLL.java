@@ -3,13 +3,11 @@ package utilities;
 import java.lang.reflect.Array;
 import java.util.NoSuchElementException;
 
-public class MyDLL <E> implements ListADT<E>{
+public class MyDLL<E> implements ListADT<E> {
 	private DLLNode<E> head;
 	private DLLNode<E> tail;
 	private int size;
-	
-	
-	
+
 	/**
 	 * @param head
 	 * @param tail
@@ -23,7 +21,6 @@ public class MyDLL <E> implements ListADT<E>{
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
 		return size;
 	}
 
@@ -42,25 +39,25 @@ public class MyDLL <E> implements ListADT<E>{
 		if (toAdd == null) {
 			throw new NullPointerException();
 		}
-		
+
 		DLLNode<E> toAddNode = new DLLNode<E>(toAdd, null, null);
-		
+
 		if (size == 0) {
 			head = toAddNode;
 			tail = toAddNode;
-			
-		} else if (size > 0 ) {
+
+		} else if (size > 0) {
 			// add before head node
-			if (index == 0 ) {
+			if (index == 0) {
 				toAddNode.setNext(head);
 				head.setPrev(toAddNode);
 				head = toAddNode;
-			// add after tail
+				// add after tail
 			} else if (index == size) {
 				tail.setNext(toAddNode);
 				toAddNode.setPrev(tail);
 				tail = toAddNode;
-			// add at index 
+				// add at index
 			} else {
 				DLLNode<E> currentNode = head;
 				currentNode = getNode(index);
@@ -72,7 +69,7 @@ public class MyDLL <E> implements ListADT<E>{
 		}
 
 		size++;
-		
+
 		return true;
 	}
 
@@ -82,13 +79,6 @@ public class MyDLL <E> implements ListADT<E>{
 			throw new NullPointerException();
 		}
 		add(size, toAdd);
-		
-//		DLLNode<E> toAddNode = new DLLNode<E>(toAdd, null, null);
-//		tail.setNext(toAddNode);
-//		toAddNode.setPrev(tail);
-//		tail = toAddNode;
-//		
-//		size++;
 		return true;
 	}
 
@@ -102,7 +92,7 @@ public class MyDLL <E> implements ListADT<E>{
 			this.add(toAddElement);
 			size++;
 		}
-		
+
 		return true;
 	}
 
@@ -113,7 +103,7 @@ public class MyDLL <E> implements ListADT<E>{
 		}
 		DLLNode<E> currentNode = getNode(index);
 
-		return (E)currentNode.getElement();
+		return (E) currentNode.getElement();
 	}
 
 	@Override
@@ -121,7 +111,7 @@ public class MyDLL <E> implements ListADT<E>{
 		if (index >= size || index < 0 || size == 0) {
 			throw new IndexOutOfBoundsException();
 		}
-		
+
 		DLLNode<E> currentNode = getNode(index);
 
 		if (size == 1) {
@@ -131,16 +121,16 @@ public class MyDLL <E> implements ListADT<E>{
 			if (index == 0) {
 				head = currentNode.getNext();
 				head.setPrev(null);
-			}else if (index == size -1) {
+			} else if (index == size - 1) {
 				tail = currentNode.getPrev();
 				tail.setNext(null);
-			}else {
+			} else {
 				currentNode.getPrev().setNext(currentNode.getNext());
 				currentNode.getNext().setPrev(currentNode.getPrev());
-			}	
+			}
 		}
 		E currElement = (E) currentNode.getElement();
-		currentNode = null;	
+		currentNode = null;
 		size--;
 		return currElement;
 	}
@@ -150,7 +140,7 @@ public class MyDLL <E> implements ListADT<E>{
 		if (toRemove == null) {
 			throw new NullPointerException();
 		}
-		
+
 		for (int i = 0; i < size; i++) {
 			if (this.get(i) == toRemove || this.get(i).equals(toRemove)) {
 				this.remove(i);
@@ -171,13 +161,13 @@ public class MyDLL <E> implements ListADT<E>{
 		DLLNode<E> prevNode = this.getNode(index);
 		E prevElement = (E) prevNode.getElement();
 		this.getNode(index).setElement(toChange);
-		
+
 		return prevElement;
 	}
 
 	@Override
 	public boolean isEmpty() {
-		
+
 		return this.size == 0;
 	}
 
@@ -187,11 +177,11 @@ public class MyDLL <E> implements ListADT<E>{
 			throw new NullPointerException();
 		}
 		for (int i = 0; i < size; i++) {
-			if (this.get(i) == toFind || this.get(i).equals(toFind)) { 
+			if (this.get(i) == toFind || this.get(i).equals(toFind)) {
 				return true;
 			}
 		}
-		
+
 		return false;
 	}
 
@@ -200,35 +190,37 @@ public class MyDLL <E> implements ListADT<E>{
 		if (toHold == null) {
 			throw new NullPointerException();
 		}
-		
-		// expand the toHold array size if it's not enought to hold the elements in this double link list
+
+		// expand the toHold array size if it's not enought to hold the elements in this
+		// double link list
 		if (toHold.length < size) {
 			toHold = (E[]) Array.newInstance(this.get(0).getClass(), size);
 		}
-	
+
 		for (int i = 0; i < size; i++) {
 			toHold[i] = this.get(i);
 		}
 
-		return (E[])toHold;
+		return (E[]) toHold;
 	}
 
 	@Override
-	public Object[] toArray() {		
+	public Object[] toArray() {
 		Object[] objectArray = new Object[size];
 		for (int i = 0; i < size; i++) {
 			objectArray[i] = this.get(i);
 		}
-		
+
 		return objectArray;
 	}
 
 	MyDLL<E> myDLL = this;
+
 	@Override
 	public Iterator<E> iterator() {
 		Iterator<E> iterator = new Iterator<E>() {
 			private int index = 0;
-			
+
 			@Override
 			public boolean hasNext() {
 				if (index < size) {
@@ -244,11 +236,11 @@ public class MyDLL <E> implements ListADT<E>{
 				}
 				return myDLL.get(index++);
 			}
-			
+
 		};
 		return iterator;
 	}
-	
+
 	// Get the node at index position
 	private DLLNode<E> getNode(int index) {
 		DLLNode<E> currentNode = head;
@@ -257,8 +249,5 @@ public class MyDLL <E> implements ListADT<E>{
 		}
 		return currentNode;
 	}
-
-	
-	
 
 }
