@@ -19,6 +19,7 @@ public class MyDLL<E> implements ListADT<E> {
 		this.size = 0;
 	}
 
+
 	@Override
 	public int size() {
 		return size;
@@ -249,5 +250,7 @@ public class MyDLL<E> implements ListADT<E> {
 		}
 		return currentNode;
 	}
+
+
 
 }

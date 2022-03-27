@@ -6,37 +6,61 @@ import java.util.NoSuchElementException;
 
 import exceptions.EmptyQueueException;
 
+//Chinedu
 public class MyQueue <E> implements QueueADT<E>, Iterator<E>{
 	
+	private MyDLL<E> rear;
+	private MyDLL<E> front;
 	private MyDLL<E> list;
 	private int queueSize; //Size of Queue
-	
+	private int index; //Position of element
+	private E[] elementData;
+ 	
 	public MyQueue() {
 		list = new MyDLL<E>();
 		queueSize = list.size();
 	}
+	
+	MyQueue<E> myDLL = this;
 
 	@Override
 	public boolean hasNext() {
 		// TODO Auto-generated method stub
-		// Check if Queue list has next. Returns true if yes
-		if (list.hasNext()) {
-			return true;
-		} else {
-			return false;
-		}	
+		// Check if Queue list has next. Returns true if yes	
+		 Iterator<E> itr = list.iterator();
+		if(itr.hasNext()) {
+			 return true;
+		 } else {
+			 return false;
+		 }
 	}
+		 
+//		if(queueSize == 0)
+//        {
+//            return false;
+//        }
+//        else
+//        {
+//            return (index < queueSize);
+//    //Either this return or return above should give same result
+//            //return true;
+//        }
+//	}
 
 	@Override
 	public E next() throws NoSuchElementException {
 		// TODO Auto-generated method stub
-		return null;
+		Iterator<E> itr = list.iterator();
+		if (itr.hasNext()) {
+		index++;
+	}
+		return elementData[index];
 	}
 
 	@Override
 	public void enqueue(E toAdd) throws NullPointerException {
 		// TODO Auto-generated method stub
-	
+		
 	}
 
 	@Override
@@ -46,9 +70,10 @@ public class MyQueue <E> implements QueueADT<E>, Iterator<E>{
 	}
 
 	@Override
+	//Returns first element in queue without removing element
 	public E peek() throws EmptyQueueException {
 		// TODO Auto-generated method stub
-		return null;
+		return this.peek();
 	}
 
 	@Override
@@ -68,11 +93,13 @@ public class MyQueue <E> implements QueueADT<E>, Iterator<E>{
 		}
 	}
 
+	
 	@Override
 	public Iterator<E> iterator() {
-		// TODO Auto-generated method stub
-		return null;
+		//Returns an iterator over the queue
+		return iterator();
 	}
+
 
 	@Override
 	public boolean equals(QueueADT<E> that) {
@@ -105,7 +132,7 @@ public class MyQueue <E> implements QueueADT<E>, Iterator<E>{
 	@Override
 	public int size() {
 		// TODO Auto-generated method stub
-		//Checks size of queue
+		//Checks size of queue and number of elements in queue
 		queueSize = this.size();
 		return queueSize;
 	}
