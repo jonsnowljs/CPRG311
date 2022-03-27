@@ -2,6 +2,8 @@ package utilities;
 
 import static org.junit.Assert.*;
 
+import java.util.NoSuchElementException;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -39,6 +41,21 @@ public class MyArrayListTest {
 	}
 
 	@Test
+	public void testHasNextAndNext() {
+		MyArrayList<Integer> list = new MyArrayList<Integer>();
+		assertThrows(NoSuchElementException.class, () -> list.next());
+		list.add(1);
+		list.add(2);
+		list.add(3);
+		assertEquals(true, list.hasNext());
+		int actual = list.next();
+		assertEquals(1, actual);
+		int actual2 = list.next();
+		assertEquals(2, actual2);
+		
+	}
+	
+	@Test
 	public void testSize() {
 		mylist.add(11);
 		mylist.add(12);
@@ -47,76 +64,6 @@ public class MyArrayListTest {
 		mylist.add(15);
 		int actual = mylist.size();
 		assertEquals(5, actual);
-
-	}
-
-	@Test
-	public void testGet() {
-		MyArrayList<String> list = new MyArrayList<String>();
-		list.add(0, "test");
-		String actual = list.get(0);
-		assertEquals("test", actual);
-
-	}
-
-	@Test
-	public void testAdd() {
-		MyArrayList<String> list = new MyArrayList<String>();
-		boolean actual = list.add("test");
-		list.add("test");
-		list.add("test");
-		list.add("test");
-		list.add("test");
-		list.add("test");
-		list.add("test");
-		list.add("test");
-		list.add("test");
-		assertEquals(true, actual);
-
-	}
-
-	@Test
-	public void testAddWithIndex() {
-		MyArrayList<Integer> list = new MyArrayList<Integer>();
-		list.add(1);
-		list.add(2);
-		list.add(3);
-		list.add(0, 0);
-		int actual = list.get(0);
-		assertEquals(0, actual);
-
-	}
-
-	@Test
-	public void testAddAll() {
-		MyArrayList<Integer> list = new MyArrayList<Integer>();
-		list.add(1);
-		list.add(2);
-		list.add(3);
-		MyArrayList<Integer> list2 = new MyArrayList<Integer>();
-		list2.add(4);
-		list2.add(5);
-		list2.add(6);
-		boolean actual = list.addAll(list2);
-		assertEquals(true, actual);
-
-	}
-
-	@Test
-	public void testGrow() {
-		MyArrayList<Integer> list = new MyArrayList<Integer>();
-		list.add(1);
-		list.add(1);
-		list.add(1);
-		list.add(1);
-		list.add(1);
-		list.add(1);
-		list.add(1);
-		list.add(1);
-		list.add(1);
-		list.add(1);
-		int actual = list.size();
-		assertEquals(10, actual);
 
 	}
 	
@@ -132,25 +79,57 @@ public class MyArrayListTest {
 		assertEquals(0, actual);
 
 	}
-	
+
 	@Test
-	public void testRemove() {
+	public void testAdd() {
 		MyArrayList<Integer> list = new MyArrayList<Integer>();
+		assertThrows(NullPointerException.class, () -> list.add(null));
 		list.add(1);
 		list.add(2);
-		list.remove(0);
-		int actual = list.get(0);
-		assertEquals(2, actual);
+		list.add(3);
+		list.add(0, 0);
+		int actual = list.get(1);
+		assertEquals(1, actual);
+
+	}
+
+	@Test
+	public void testAddAll() {
+		MyArrayList<Integer> list = new MyArrayList<Integer>();
+		assertThrows(NullPointerException.class, () -> list.addAll(null));
+		list.add(1);
+		list.add(2);
+		list.add(3);
+		MyArrayList<Integer> list2 = new MyArrayList<Integer>();
+		list2.add(4);
+		list2.add(5);
+		list2.add(6);
+		boolean actual = list.addAll(list2);
+		assertEquals(true, actual);
 
 	}
 	
 	@Test
-	public void testRemoveByElement() {
+	public void testGet() {
+		MyArrayList<String> list = new MyArrayList<String>();
+		list.add(0, "test");
+		String actual = list.get(0);
+		assertEquals("test", actual);
+		assertThrows(IndexOutOfBoundsException.class, () -> list.get(1));
+
+	}
+	
+	@Test
+	public void testRemove() {
 		MyArrayList<String> list = new MyArrayList<String>();
 		list.add("test");
 		list.add("test2");
-		list.remove("test");
-		assertEquals("test2", list.get(0));
+		list.add("test3");
+		list.remove(0);
+		list.remove("test2");
+		String actual = list.get(0);
+		assertEquals("test3", actual);
+		assertThrows(IndexOutOfBoundsException.class, () -> list.remove(3));
 
 	}
 	
@@ -163,6 +142,8 @@ public class MyArrayListTest {
 		list.set(0, 5);
 		int actual = list.get(0);
 		assertEquals(5, actual);
+		assertThrows(NullPointerException.class, () -> list.set(0, null));
+		assertThrows(IndexOutOfBoundsException.class, () -> list.set(5, 1));
 
 	}
 	
@@ -184,19 +165,7 @@ public class MyArrayListTest {
 		list.add(2);
 		list.add(3);
 		assertEquals(true, list.contains(3));
-
-	}
-	
-	@Test
-	public void testToArrayByToHold() {
-		MyArrayList<Integer> list = new MyArrayList<Integer>();
-		list.add(1);
-		list.add(2);
-		list.add(3);
-		Integer[] toHold = new Integer[2];
-		Object[] tempArray = list.toArray(toHold);
-		int actual = (int) tempArray[0];
-		assertEquals(1, actual);
+		assertThrows(NullPointerException.class, () -> list.contains(null));
 
 	}
 	
@@ -209,21 +178,30 @@ public class MyArrayListTest {
 		Object[] tempArray = list.toArray();
 		int actual = (int) tempArray[0];
 		assertEquals(1, actual);
+		Integer[] toHold = new Integer[2];
+		tempArray = list.toArray(toHold);
+		actual = (int) tempArray[0];
+		assertEquals(1, actual);
+		assertThrows(NullPointerException.class, () -> list.toArray(null));
 
 	}
-	
+
 	@Test
-	public void testHasNextAndNext() {
+	public void testGrow() {
 		MyArrayList<Integer> list = new MyArrayList<Integer>();
 		list.add(1);
-		list.add(2);
-		list.add(3);
-		assertEquals(true, list.hasNext());
-		int actual = list.next();
-		assertEquals(1, actual);
-		int actual2 = list.next();
-		assertEquals(2, actual2);
-		
+		list.add(1);
+		list.add(1);
+		list.add(1);
+		list.add(1);
+		list.add(1);
+		list.add(1);
+		list.add(1);
+		list.add(1);
+		list.add(1);
+		int actual = list.size();
+		assertEquals(10, actual);
+
 	}
 
 }
