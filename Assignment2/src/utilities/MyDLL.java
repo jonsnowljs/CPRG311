@@ -152,7 +152,7 @@ public class MyDLL <E> implements ListADT<E>{
 		}
 		
 		for (int i = 0; i < size; i++) {
-			if (this.get(i) == toRemove) {
+			if (this.get(i) == toRemove || this.get(i).equals(toRemove)) {
 				this.remove(i);
 				return toRemove;
 			}
@@ -187,7 +187,7 @@ public class MyDLL <E> implements ListADT<E>{
 			throw new NullPointerException();
 		}
 		for (int i = 0; i < size; i++) {
-			if (this.get(i) == toFind) {
+			if (this.get(i) == toFind || this.get(i).equals(toFind)) { 
 				return true;
 			}
 		}
@@ -242,8 +242,7 @@ public class MyDLL <E> implements ListADT<E>{
 				if (!this.hasNext()) {
 					throw new NoSuchElementException();
 				}
-				E element = myDLL.get(index++);
-				return element;
+				return myDLL.get(index++);
 			}
 			
 		};
