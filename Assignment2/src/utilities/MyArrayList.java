@@ -55,6 +55,20 @@ public class MyArrayList<E> implements ListADT<E>, Iterator<E> {
 		current = 0;
 		a = (E[]) new Object[DEFAULT_SIZE];
 	}
+	
+
+	@Override
+	public boolean add(E toAdd) throws NullPointerException {
+		if (toAdd == null) {
+			throw new NullPointerException();
+		}
+		if (this.size >= a.length * DEFAULT_RATE) {
+			grow();
+		}
+		a[this.size] = toAdd;
+		this.size++;
+		return true;
+	}
 
 	@Override
 	public boolean add(int index, E toAdd) throws NullPointerException, IndexOutOfBoundsException {
@@ -76,19 +90,6 @@ public class MyArrayList<E> implements ListADT<E>, Iterator<E> {
 			this.size++;
 			return true;
 		}
-	}
-
-	@Override
-	public boolean add(E toAdd) throws NullPointerException {
-		if (toAdd == null) {
-			throw new NullPointerException();
-		}
-		if (this.size >= a.length * DEFAULT_RATE) {
-			grow();
-		}
-		a[this.size] = toAdd;
-		this.size++;
-		return true;
 	}
 
 	@Override
@@ -190,6 +191,15 @@ public class MyArrayList<E> implements ListADT<E>, Iterator<E> {
 		}
 		return false;
 	}
+	
+	@Override
+	public Object[] toArray() {
+		E[] tempArray = (E[]) new Object[this.size];
+		for (int i = 0; i < this.size; i++) {
+			tempArray[i] = a[i];
+		}
+		return tempArray;
+	}
 
 	@Override
 	public E[] toArray(E[] toHold) throws NullPointerException {
@@ -210,17 +220,6 @@ public class MyArrayList<E> implements ListADT<E>, Iterator<E> {
 		}
 
 	}
-
-	@Override
-	public Object[] toArray() {
-		E[] tempArray = (E[]) new Object[this.size];
-		for (int i = 0; i < this.size; i++) {
-			tempArray[i] = a[i];
-		}
-		return tempArray;
-	}
-
-
 
 	@Override
 	public Iterator<E> iterator() {
