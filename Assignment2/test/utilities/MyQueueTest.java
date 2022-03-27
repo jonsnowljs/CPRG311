@@ -6,14 +6,23 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class MyQueueTest {
+public class MyQueueTest<E> {
+	//Attributes
+	MyQueue<Integer> queueInteger = new MyQueue<>();
+	private int intElement1 = 25;
+	private int intElement2 = 26;
+	private int intElement3 = 27;
+
+
 
 	@Before
 	public void setUp() throws Exception {
+
 	}
 
 	@After
 	public void tearDown() throws Exception {
+
 	}
 
 	@Test
