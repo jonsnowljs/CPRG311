@@ -1,5 +1,6 @@
 package utilities;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 
@@ -12,10 +13,12 @@ public class MyArrayList<E> implements ListADT<E>, Iterator<E> {
 	private static final double DEFAULT_RATE = 0.75; // load factor
 
 	private E[] a;
+	// length of the array,it represent the available space in the array
 	private int current;
 	private int length;
 	// size of the array, it count the availbale elements in the array
 	private int size;
+	// Current size/length rate, represent how many space have been took up in the array
 	private double rate;
 
 	// constructor to set the size of array
@@ -62,7 +65,7 @@ public class MyArrayList<E> implements ListADT<E>, Iterator<E> {
 		if (toAdd == null) {
 			throw new NullPointerException();
 		}
-		if (this.size >= a.length * DEFAULT_RATE) {
+		if (this.size >= a.length * DEFAULT_RATE ) {
 			grow();
 		}
 		a[this.size] = toAdd;
@@ -99,11 +102,7 @@ public class MyArrayList<E> implements ListADT<E>, Iterator<E> {
 		}
 		for (int i = 0; i < toAdd.size(); i++) {
 			if (toAdd.get(i) != null) {
-				if (this.size >= a.length * DEFAULT_RATE) {
-					grow();
-				}
-				a[size] = (toAdd.get(i));
-				size++;
+				add(toAdd.get(i));
 			}
 		}
 		return true;
@@ -114,8 +113,8 @@ public class MyArrayList<E> implements ListADT<E>, Iterator<E> {
 		if (index >= this.size || index < 0) {
 			throw new IndexOutOfBoundsException();
 		}
-		E e = (E) a[index];
-		return e;
+		
+		return a[index];
 	}
 
 	@Override
@@ -159,9 +158,7 @@ public class MyArrayList<E> implements ListADT<E>, Iterator<E> {
 		} else if (index < 0 || index >= this.size) {
 			throw new IndexOutOfBoundsException();
 		}
-		if (this.size >= a.length * DEFAULT_RATE) {
-			grow();
-		}
+
 		E returnElement = a[index];
 		a[index] = toChange;
 		if (returnElement == null) {
@@ -207,7 +204,7 @@ public class MyArrayList<E> implements ListADT<E>, Iterator<E> {
 			throw new NullPointerException();
 		}
 		if (toHold.length < this.size) {
-			E[] tempArray = (E[]) new Object[this.size];
+			E[] tempArray = (E[]) Array.newInstance(this.get(0).getClass(), size);
 			for (int i = 0; i < this.size; i++) {
 				tempArray[i] = a[i];
 			}
@@ -232,12 +229,16 @@ public class MyArrayList<E> implements ListADT<E>, Iterator<E> {
 
 			@Override
 			public E next() {
+				if (!this.hasNext()) {
+					throw new NoSuchElementException();
+				}
 				return a[current++];
 			}
 		};
 		return it;
 	}
 
+	// double the array size 
 	private void grow() {
 		int arrayLength = a.length;
 		E[] tempArray = (E[]) new Object[arrayLength * 2];
