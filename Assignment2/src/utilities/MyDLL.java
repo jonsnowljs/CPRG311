@@ -118,20 +118,26 @@ public class MyDLL <E> implements ListADT<E>{
 
 	@Override
 	public E remove(int index) throws IndexOutOfBoundsException {
-		if (index > size || index < 0) {
+		if (index >= size || index < 0 || size == 0) {
 			throw new IndexOutOfBoundsException();
 		}
 		
 		DLLNode<E> currentNode = getNode(index);
-		if (index == 0) {
-			head = currentNode.getNext();
-			head.setPrev(null);
-		}else if (index == size -1) {
-			tail = currentNode.getPrev();
-			tail.setNext(null);
-		}else {
-			currentNode.getPrev().setNext(currentNode.getNext());
-			currentNode.getNext().setPrev(currentNode.getPrev());
+
+		if (size == 1) {
+			this.head = null;
+			this.tail = null;
+		} else {
+			if (index == 0) {
+				head = currentNode.getNext();
+				head.setPrev(null);
+			}else if (index == size -1) {
+				tail = currentNode.getPrev();
+				tail.setNext(null);
+			}else {
+				currentNode.getPrev().setNext(currentNode.getNext());
+				currentNode.getNext().setPrev(currentNode.getPrev());
+			}	
 		}
 		E currElement = (E) currentNode.getElement();
 		currentNode = null;	
@@ -156,7 +162,7 @@ public class MyDLL <E> implements ListADT<E>{
 
 	@Override
 	public E set(int index, E toChange) throws NullPointerException, IndexOutOfBoundsException {
-		if (index > size || index < 0) {
+		if (index >= size || index < 0) {
 			throw new IndexOutOfBoundsException();
 		}
 		if (toChange == null) {
@@ -233,8 +239,10 @@ public class MyDLL <E> implements ListADT<E>{
 
 			@Override
 			public E next() throws NoSuchElementException {
-				index++;
-				E element = myDLL.get(index);
+				if (!this.hasNext()) {
+					throw new NoSuchElementException();
+				}
+				E element = myDLL.get(index++);
 				return element;
 			}
 			
