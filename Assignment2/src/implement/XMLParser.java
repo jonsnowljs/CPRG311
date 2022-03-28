@@ -38,7 +38,6 @@ public class XMLParser {
 		errorQueue.enqueue(new XMLTag("startOfError",-1, false));
 		this.inputXML();
 		this.parseXML();
-		this.parse();
 		this.errorCheck(this.parse());
 
 	}
@@ -111,7 +110,7 @@ public class XMLParser {
 					
 					// ignore self closing tag
 					if (line.charAt(k-1) != END_TAG ) {
-						XMLTag xmlTag = new XMLTag(tag,j, ifEndTag);
+						XMLTag xmlTag = new XMLTag(tag,i + 1, ifEndTag);
 						this.queue.enqueue(xmlTag);				
 					}
 					
@@ -138,7 +137,7 @@ public class XMLParser {
 			
 			// if End tag
 			if (closeTag) {
-				if (currXML == stack.peek()) {
+				if (currXML.compareTagName(stack.peek())) {
 					stack.pop();
 				} else if (currXML == errorQueue.peek()) {
 					queue.dequeue();
@@ -148,30 +147,23 @@ public class XMLParser {
 					Iterator<XMLTag> stackInIterator = stack.iterator();
 					Boolean ifMatch = false;
 					// check if have match tag name in stack
+					int counter = 0;
 					while (stackInIterator.hasNext()) {
 						XMLTag tempXmlTag = stackInIterator.next();
 						if (currXML.compareTagName(tempXmlTag)) {
 							ifMatch = true;
+							counter++;
 						}
 					}
 					if (ifMatch) {
-						do {
-							errorQueue.enqueue(stack.pop());
-						} while (!currXML.compareTagName(stack.peek()));
-						errorQueue.enqueue(stack.pop());
+						for (int i = 0; i <= counter; i++) {
+							System.out.println("An error occurred in line" + currXML.getLine() + ". Tagname is:" + currXML.getTagName() );
+							errorQueue.enqueue(stack.pop());							
+						}
 					} else {
 						extrasQueue.enqueue(currXML);
 					}
 
-					if (stack.contains(currXML)) {
-//						int index = stack.search(currXML);
-//						for (int i = 0; i < index; i++) {
-						errorQueue.enqueue(stack.pop());
-//						}
-						System.out.println("An error occurred.");
-					} else {
-						extrasQueue.enqueue(currXML);
-					}
 
 				}
 			}
@@ -181,6 +173,7 @@ public class XMLParser {
 
 		if (!errorQueue.isEmpty()) {
 
+			System.out.println("No error detected in this file");
 			return true;
 		}
 		return false;

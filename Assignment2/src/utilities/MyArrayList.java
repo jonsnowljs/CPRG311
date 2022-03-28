@@ -131,7 +131,7 @@ public class MyArrayList<E> implements ListADT<E>, Iterator<E> {
 		for (int i = index + 1; i < this.size; i++) {
 			a[i - 1] = a[i];
 		}
-		a[this.size] = null;
+		a[index] = null;
 		this.size--;
 		return returnElement;
 	}
