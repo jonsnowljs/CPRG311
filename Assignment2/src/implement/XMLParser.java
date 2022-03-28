@@ -171,7 +171,7 @@ public class XMLParser {
 		}
 		
 
-		if (!errorQueue.isEmpty()) {
+		if (errorQueue.size() ==1) {
 
 			System.out.println("No error detected in this file");
 			return true;
