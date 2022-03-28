@@ -31,10 +31,16 @@ public class XMLParser {
 	 */
 	public XMLParser(String fileName) {
 		this.fileName = fileName;
+		this.stack = new MyStack<>();
+		this.queue = new MyQueue<>();
+		this.errorQueue = new MyQueue<>();
+		this.extrasQueue = new MyQueue<>();
+		errorQueue.enqueue(new XMLTag("startOfError",-1, false));
 		this.inputXML();
 		this.parseXML();
 		this.parse();
-		this.errorCheck();
+		this.errorCheck(this.parse());
+
 	}
 
 	/**
@@ -42,6 +48,7 @@ public class XMLParser {
 	 * String per line of XML.
 	 */
 	private void inputXML() {
+
 		try {
 			File file = new File(this.fileName);
 			FileReader fileReader = new FileReader(file);
@@ -50,8 +57,10 @@ public class XMLParser {
 
 			while (scanner.hasNextLine()) {
 				String line = scanner.nextLine();
+				line = line.substring(line.indexOf(OPEN_TAG));
 				this.xmlLines.add(line);
 			}
+
 			scanner.close();
 
 		} catch (FileNotFoundException e) {
@@ -63,85 +72,71 @@ public class XMLParser {
 	 * Method to parse lines of XML from MyArrayList to a queue of XMLTag
 	 * Objects. Some error checking occurs here (unnecessary close tags)
 	 */
-	// private void parseXML() {
-	// for (int i = 0; i < this.xmlLines.size(); i++) {
-	// String line = this.xmlLines.get(i);
-
-	// if (line.contains(XML_OPEN)) {
-	// continue;
-	// }
-
-	// if (line.contains(String.valueOf(OPEN_TAG))) {
-	// String tagName = line.substring(1, line.indexOf(CLOSE_TAG));
-
-	// if (line.contains(END_TAG)) {
-	// this.queue.enqueue(new XMLTag(tagName, true));
-	// } else {
-	// this.queue.enqueue(new XMLTag(tagName, false));
-	// }
-	// } else if (line.contains(String.valueOf(CLOSE_TAG))) {
-	// String tagName = line.substring(0, line.indexOf(CLOSE_TAG));
-
-	// if (this.queue.isEmpty()) {
-	// System.out.println("Error: Unnecessary close tag.");
-	// } else {
-	// XMLTag tag = this.queue.dequeue();
-
-	// if (!tag.getTagName().equals(tagName)) {
-	// System.out.println("Error: Unnecessary close tag.");
-	// } else {
-	// this.stack.push(tag);
-	// }
-	// }
-	// }
-	// }
-	// }
-
 	private void parseXML() {
-		int size = xmlLines.size();
+		for (int i = 0; i < this.xmlLines.size(); i++) {
+			String line = this.xmlLines.get(i);
 
-		queue = new MyQueue<>();
+			if (line.contains(XML_OPEN)) {
+				continue;
+			}
 
-		String line;
+			// Convert string to XMLtag
+			for (int j = 0; j < line.length(); j++) {
+				char c = line.charAt(j);
 
-		for (int i = 0; i < size; i++) {
-			line = xmlLines.get(i);
-			if (!line.equals(XML_OPEN)) {
-				if (line.charAt(0) == OPEN_TAG && line.charAt(line.length() - 1) == CLOSE_TAG
-						&& line.charAt(line.length() - 2) != END_TAG) {
-					if (line.contains(" ")) {
-						queue.enqueue(new XMLTag(line.substring(1, line.indexOf(" ")), false));
-					} else {
-						queue.enqueue(new XMLTag(line.substring(1, line.length() - 1), false));
+				if (c == OPEN_TAG) {
+					String tag = "";
+					int k = j + 1;
+					boolean ifEndTag = false;
+					boolean ifSpacefound = false;
+					
+					while (line.charAt(k) != CLOSE_TAG) {
+						// check if meet space in tags if found any skip until end tag
+						if (line.charAt(k) == ' ') {
+							ifSpacefound = true;
+						} 
+						// Skip endtag and make this XMLtag be a close tag
+						if (line.charAt(k) == END_TAG) {
+
+							ifEndTag = true;
+							k++;
+							continue;
+						}
+
+						if(!ifSpacefound) {
+							tag += line.charAt(k);	
+						}
+						k++;
 					}
-				}
-				if (line.charAt(0) == OPEN_TAG && line.charAt(line.length() - 1) == CLOSE_TAG
-						&& line.charAt(1) == END_TAG) {
-					if (line.contains(" ")) {
-						queue.enqueue(new XMLTag(line.substring(1, line.indexOf(" ")), true));
-					} else {
-						queue.enqueue(new XMLTag(line.substring(1, line.length() - 1), true));
+					
+					// ignore self closing tag
+					if (line.charAt(k-1) != END_TAG ) {
+						XMLTag xmlTag = new XMLTag(tag,j, ifEndTag);
+						this.queue.enqueue(xmlTag);				
 					}
+					
 				}
-
+				
 			}
 		}
 	}
 
-	private void parse() {
-		stack = new MyStack<XMLTag>();
-		errorQueue = new MyQueue<XMLTag>();
+	private boolean parse() {
+
 		XMLTag currXML;
 		boolean closeTag;
-		Iterator queueIterator = queue.iterator();
-
+		Iterator<XMLTag> queueIterator = queue.iterator();
+		
+		
 		while (queueIterator.hasNext()) {
 			currXML = (XMLTag) queueIterator.next();
 			closeTag = currXML.isCloseTag();
-
+			// if Start Tag
 			if (!closeTag) {
 				stack.push(currXML);
 			}
+			
+			// if End tag
 			if (closeTag) {
 				if (currXML == stack.peek()) {
 					stack.pop();
@@ -150,11 +145,29 @@ public class XMLParser {
 				} else if (stack.isEmpty()) {
 					queue.enqueue(currXML);
 				} else {
-					if (stack.contains(currXML)) {
-						int index = stack.search(currXML);
-						for (int i = 0; i < index; i++) {
-							errorQueue.enqueue(stack.pop());
+					Iterator<XMLTag> stackInIterator = stack.iterator();
+					Boolean ifMatch = false;
+					// check if have match tag name in stack
+					while (stackInIterator.hasNext()) {
+						XMLTag tempXmlTag = stackInIterator.next();
+						if (currXML.compareTagName(tempXmlTag)) {
+							ifMatch = true;
 						}
+					}
+					if (ifMatch) {
+						do {
+							errorQueue.enqueue(stack.pop());
+						} while (!currXML.compareTagName(stack.peek()));
+						errorQueue.enqueue(stack.pop());
+					} else {
+						extrasQueue.enqueue(currXML);
+					}
+
+					if (stack.contains(currXML)) {
+//						int index = stack.search(currXML);
+//						for (int i = 0; i < index; i++) {
+						errorQueue.enqueue(stack.pop());
+//						}
 						System.out.println("An error occurred.");
 					} else {
 						extrasQueue.enqueue(currXML);
@@ -164,44 +177,53 @@ public class XMLParser {
 			}
 
 		}
+		
+
+		if (!errorQueue.isEmpty()) {
+
+			return true;
+		}
+		return false;
 	}
 
-	private void errorCheck() {
-		if (!stack.isEmpty()) {
-			while (!stack.isEmpty()) {
-				errorQueue.enqueue(stack.pop());
-			}
-		}
-		if ((queue.isEmpty() && !extrasQueue.isEmpty()) || (!queue.isEmpty() && extrasQueue.isEmpty())) {
-			if (queue.isEmpty()) {
-				while (!queue.isEmpty()) {
-					System.out.println("Errors occurred in" + queue.dequeue());
-					System.out.println("Errors occurred in" + extrasQueue.dequeue());
+	private void errorCheck(boolean process) {
+		if (process) {
+			if (!stack.isEmpty()) {
+				while (!stack.isEmpty()) {
+					errorQueue.enqueue(stack.pop());
 				}
-			} else {
-				while (!extrasQueue.isEmpty()) {
-					System.out.println("Errors occurred in" + queue.dequeue());
-					System.out.println("Errors occurred in" + extrasQueue.dequeue());
-				}
-
 			}
-			if (!queue.isEmpty() && !extrasQueue.isEmpty()) {
-				if (queue.equals(extrasQueue)) {
+			if ((queue.isEmpty() && !extrasQueue.isEmpty()) || (!queue.isEmpty() && extrasQueue.isEmpty())) {
+				if (queue.isEmpty()) {
 					while (!queue.isEmpty()) {
-						queue.dequeue();
-					}
-					while (!extrasQueue.isEmpty()) {
-						extrasQueue.dequeue();
+						System.out.println("Errors occurred in" + queue.dequeue());
+						System.out.println("Errors occurred in" + extrasQueue.dequeue());
 					}
 				} else {
-					while (!errorQueue.isEmpty()) {
-						errorQueue.dequeue();
+					while (!extrasQueue.isEmpty()) {
+						System.out.println("Errors occurred in" + queue.dequeue());
+						System.out.println("Errors occurred in" + extrasQueue.dequeue());
 					}
-					System.out.println("An error occurred. Queue and Extras Queue are not equal.");
-				}
-			}
 
+				}
+				if (!queue.isEmpty() && !extrasQueue.isEmpty()) {
+					if (queue.equals(extrasQueue)) {
+						while (!queue.isEmpty()) {
+							queue.dequeue();
+						}
+						while (!extrasQueue.isEmpty()) {
+							extrasQueue.dequeue();
+						}
+					} else {
+						while (!errorQueue.isEmpty()) {
+							errorQueue.dequeue();
+						}
+						System.out.println("An error occurred. Queue and Extras Queue are not equal.");
+					}
+				}
+
+			}
+			/// ----some more methods ------
 		}
-		/// ----some more methods ------
 	}
 }
