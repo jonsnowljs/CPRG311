@@ -6,7 +6,12 @@ import java.util.NoSuchElementException;
 
 import exceptions.EmptyQueueException;
 
-//Chinedu
+/**
+ * MyQueue from scratch implemented using QueueADT
+ * 
+ * @author Chinedu Alake, Desmond Yuen, Hardish Chander, Jiasheng Lu
+ *
+ */
 public class MyQueue <E> implements QueueADT<E>{
 	
 	private MyDLL<E> list;

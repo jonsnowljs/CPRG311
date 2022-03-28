@@ -4,7 +4,12 @@ import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 
-@SuppressWarnings("unchecked")
+/**
+ * MyArrayList object implemented from scratch, Uses ListADT and Iterator
+ * 
+ * @author Chinedu Alake, Desmond Yuen, Hardish Chander, Jiasheng Lu
+ *
+ */
 
 public class MyArrayList<E> implements ListADT<E>, Iterator<E> {
 

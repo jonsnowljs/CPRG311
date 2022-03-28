@@ -9,7 +9,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 import exceptions.EmptyQueueException;
-
+/**
+ * JUnit Testing for MyQueue
+ * 
+ * @author Chinedu Alake, Desmond Yuen, Hardish Chander, Jiasheng Lu
+ *
+ */
 public class MyQueueTest<E> {
 	//Attributes
 	//Integer data

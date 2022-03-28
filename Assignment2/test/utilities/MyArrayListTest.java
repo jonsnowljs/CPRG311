@@ -9,7 +9,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 import utilities.MyArrayList;
-
+/**
+ * JUnit testing for MyArrayList
+ * 
+ * @author Chinedu Alake, Desmond Yuen, Hardish Chander, Jiasheng Lu
+ *
+ */
 public class MyArrayListTest {
 
 	// Attributes

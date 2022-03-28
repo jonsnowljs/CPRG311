@@ -3,6 +3,12 @@ package utilities;
 import java.lang.reflect.Array;
 import java.util.NoSuchElementException;
 
+/**
+ * MyDLL class implements ListADT
+ * 
+ * @author Chinedu Alake, Desmond Yuen, Hardish Chander, Jiasheng Lu
+ *
+ */
 public class MyDLL<E> implements ListADT<E> {
 	private DLLNode<E> head;
 	private DLLNode<E> tail;

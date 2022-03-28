@@ -1,7 +1,12 @@
 package implement;
 
 
-
+/**
+ * XMLTag class
+ * 
+ * @author Chinedu Alake, Desmond Yuen, Hardish Chander, Jiasheng Lu
+ *
+ */
 public class XMLTag {
 	
 	//Attributes

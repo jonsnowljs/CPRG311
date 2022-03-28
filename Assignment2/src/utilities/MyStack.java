@@ -2,6 +2,12 @@ package utilities;
 
 import java.util.EmptyStackException;
 
+/**
+ * MyStack from scratch implemented using StackADT
+ * 
+ * @author Chinedu Alake, Desmond Yuen, Hardish Chander, Jiasheng Lu
+ *
+ */
 public class MyStack<E> implements StackADT<E> {
 
 	private MyArrayList<E> stack;

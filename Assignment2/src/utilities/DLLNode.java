@@ -1,7 +1,12 @@
 package utilities;
 
 import java.io.Serializable;
-
+/**
+ * DLLNode Object
+ * 
+ * @author Chinedu Alake, Desmond Yuen, Hardish Chander, Jiasheng Lu
+ *
+ */
 public class DLLNode<E> implements Serializable{
 		//Constants
 		//private static final long	serialVersionUID	= 7989585453298881119L;

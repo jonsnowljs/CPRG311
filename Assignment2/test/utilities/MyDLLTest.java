@@ -7,7 +7,12 @@ import java.util.NoSuchElementException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
+/**
+ * JUnit Testing for MyDLL
+ * 
+ * @author Chinedu Alake, Desmond Yuen, Hardish Chander, Jiasheng Lu
+ *
+ */
 public class MyDLLTest {
 	// Attributes for Integer test
 	MyDLL<Integer> myDLL = new MyDLL<>();

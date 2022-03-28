@@ -10,7 +10,12 @@ import org.junit.Test;
 
 import utilities.MyArrayList;
 import utilities.MyStack;
-
+/**
+ * JUnit testing for MyStack
+ * 
+ * @author Chinedu Alake, Desmond Yuen, Hardish Chander, Jiasheng Lu
+ *
+ */
 public class MyStackTests<E> {
 	// Attributes
 	MyStack<Integer> stackInteger = new MyStack<>();
