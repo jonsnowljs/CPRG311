@@ -8,6 +8,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import exceptions.EmptyQueueException;
+
 public class MyQueueTest<E> {
 	//Attributes
 	//Integer data
@@ -44,19 +46,24 @@ public class MyQueueTest<E> {
 
 	@Test
 	public void testEnqueue() {
-		//Testing if int data is added to queue 
-		int testInt = 25;
-		queueInteger.enqueue(testInt);
-		int actualInt = queueInteger.peek();
-		
-		assertEquals(testInt, actualInt);
-		
-		//Testing if string data is added to queue 
-		String testString = "Twenty-five";
+				
+		//Test 1: if string data is added to queue 
+		String testString = stringElement3;
 		queueString.enqueue(testString);
-		String actualString = queueString.peek();
 		
+		String[] stringArray = new String[queueString.size()];
+		stringArray = queueString.toArray(stringArray);
+		
+		String actualString = stringArray[2];
 		assertEquals(testString, actualString);
+		
+		//Test 2
+		String testString2 = stringElement1;
+		queueString.enqueue(testString2);
+		
+		String actualString2 = stringArray[0];
+		assertEquals(testString2, actualString2);
+		
 		
 		//Throws exception if data being added is null
 		assertThrows(NullPointerException.class, () -> queueInteger.enqueue(null));
@@ -78,9 +85,10 @@ public class MyQueueTest<E> {
 		
 		assertEquals(testString, actualString);
 		
-		//Throws exception when queue is empty
-//		queueInteger.dequeueAll();
-//		assertThrows(EmptyStackException.class, () -> queueInteger.dequeue());
+		
+//		Throws exception when queue is empty
+		queueInteger.dequeueAll();
+		assertThrows(EmptyQueueException.class, () -> queueInteger.dequeue());
 	}
 	
 	@Test
@@ -90,6 +98,12 @@ public class MyQueueTest<E> {
 		int testInt = 0;
 		int actualInt = queueInteger.size();
 		assertEquals(testInt, actualInt);
+		
+		//Returns false if element is in queue
+		assertFalse(actualInt > 0);
+		
+		queueInteger.dequeueAll();
+		assertThrows(EmptyQueueException.class, () -> queueInteger.dequeue());
 	}
 	
 	@Test
@@ -103,6 +117,10 @@ public class MyQueueTest<E> {
 		String testString = "Twenty-five";
 		String actualString = queueString.peek();
 		assertEquals(testString, actualString);
+		
+		//Throw exception when queue is empty
+		queueInteger.dequeueAll();
+		assertThrows(EmptyQueueException.class, () -> queueInteger.dequeue());
 	}
 	
 	@Test
@@ -114,6 +132,12 @@ public class MyQueueTest<E> {
 		int expectedInt = intElement1;
 		int actualInt = iterator.next();
 		
+		assertEquals(expectedInt, actualInt);
+		
+		//Expected int is 2nd Element in queueInteger
+		expectedInt = intElement2;
+		actualInt = iterator.next();
+
 		assertEquals(expectedInt, actualInt);
 	}
 	
@@ -130,6 +154,10 @@ public class MyQueueTest<E> {
 		//Should return true
 		assertTrue(queueInteger.equals(queueTest));
 		
+		queueTest.dequeue();
+		assertFalse(queueInteger.equals(queueTest));
+		
+		
 	}
 	
 	@Test
@@ -138,6 +166,10 @@ public class MyQueueTest<E> {
 		//Queue cleared first for test
 		queueInteger.dequeueAll();
 		assertTrue(queueInteger.isEmpty());
+		
+		int firstT = 10;
+		queueInteger.enqueue(firstT);
+		assertFalse(queueInteger.isEmpty());
 	}
 	
 	@Test
@@ -146,6 +178,10 @@ public class MyQueueTest<E> {
 		 int size = queueInteger.size();
 		 int actualIntegrSize = queueInteger.size();
 		assertEquals(size, actualIntegrSize);
+		
+		int size2 = 5;
+		assertFalse(queueInteger.equals(size2));
+		
 	}
 	
 	@Test
@@ -164,12 +200,22 @@ public class MyQueueTest<E> {
 	
 	@Test
 	public void testToArrayEArray() {
-		int[] arrayInt = new int[3];
+		String[] arrayString = new String[3];
+		
+		queueString.toArray(arrayString);
 		
 		int queueSize = queueInteger.size();
-		int arraySize = arrayInt.length;
+		int arraySize = arrayString.length;
 		
 		assertEquals(queueSize, arraySize);
+		
+		assertEquals(arrayString[0], stringElement1);
+		
+		assertEquals(arrayString[2], stringElement3);
+		
+		//Throw null exception if data is null
+		assertThrows(NullPointerException.class, () -> queueInteger.enqueue(null));
+		
 	}
 	
 	@Test
@@ -185,6 +231,15 @@ public class MyQueueTest<E> {
 		expectedSize = 5;
 		actualSize = queueInteger.size();
 		assertEquals(expectedSize, actualSize);		
+		
+		queueInteger.dequeue();
+		expectedSize = 4;
+		actualSize = queueInteger.size();
+		assertEquals(expectedSize, actualSize);
+		
+		//Throws exception if queue empty OR Therefore if Size = 0 throw exception;
+		queueInteger.dequeueAll();
+		assertThrows(EmptyQueueException.class, () -> queueInteger.dequeue());
 	}
 
 }
