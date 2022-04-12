@@ -155,10 +155,12 @@ public class XMLParser {
 							counter++;
 						}
 					}
+					// if stack has match after top of the stack
 					if (ifMatch) {
 						for (int i = 0; i <= counter; i++) {
-							System.out.println("An error occurred in line" + currXML.getLine() + ". Tagname is:" + currXML.getTagName() );
-							errorQueue.enqueue(stack.pop());							
+							XMLTag popedXmlTag = stack.pop();
+							System.out.println("An error occurred in line" + popedXmlTag.getLine() + ". Tagname is:" + popedXmlTag.getTagName() );
+							errorQueue.enqueue(popedXmlTag);							
 						}
 					} else {
 						extrasQueue.enqueue(currXML);
