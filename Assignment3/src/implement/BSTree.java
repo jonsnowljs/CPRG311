@@ -9,57 +9,102 @@ import utilities.Iterator;
 import utilities.TreeException;
 
 /**
- * @author Jason
+ * @author Jason, Desmond Yuen
  * @param <E>
  *
  */
 public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
 
+	private BSTreeNode<E> root;
+	private int size = 0;
+
+	public BSTree() {
+		this.root = null;
+	}
+
+	public BSTree(E element) {
+		this.root = new BSTreeNode<E>(element);
+	}
+
 	@Override
 	public BSTreeNode<E> getRoot() throws TreeException {
-		// TODO Auto-generated method stub
-		return null;
+		if (this.root == null) {
+			throw new TreeException();
+		}
+		return root;
+	}
+
+	private BSTreeNode<E> recursiveInsert(BSTreeNode<E> root, E element) {
+		if (root == null) {
+			root = new BSTreeNode<E>(element);
+			return root;
+		}
+
+		if (element.compareTo(root.getData()) < 0) {
+			root.setLeft(recursiveInsert(root.getLeft(), element));
+		} else if (element.compareTo(root.getData()) > 0) {
+			root.setRight(recursiveInsert(root.getRight(), element));
+		}
+		return root;
+	}
+
+	private BSTreeNode<E> recursiveSearch(BSTreeNode<E> root, E element) {
+		if (root == null || root.getData().equals(element)) {
+			return root;
+		}
+		if (root.getData().compareTo(element) > 0) {
+			return recursiveSearch(root.getLeft(), element);
+		} else
+			return recursiveSearch(root.getRight(), element);
 	}
 
 	public int getHeight() {
-		// TODO Auto-generated method stub
+		if (root == null) {
+			return 0;
+		}
 		return 0;
 	}
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return size;
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return this.root == null;
 	}
 
 	@Override
 	public void clear() {
-		// TODO Auto-generated method stub
-		
+		this.root = null;
+		this.size = 0;
 	}
 
 	@Override
 	public boolean contains(E entry) throws TreeException {
-		// TODO Auto-generated method stub
+		if (recursiveSearch(this.root, entry) != null) {
+			return true;
+		}
 		return false;
 	}
 
 	@Override
 	public BSTreeNode<E> search(E entry) throws TreeException {
-		// TODO Auto-generated method stub
-		return null;
+		if (this.root == null) {
+			throw new TreeException();
+		}
+		return recursiveSearch(this.root, entry);
 	}
 
 	@Override
 	public boolean add(E newEntry) throws NullPointerException {
-		// TODO Auto-generated method stub
-		return false;
+		if (newEntry == null) {
+			throw new NullPointerException();
+		}
+		root = recursiveInsert(root, newEntry);
+		this.size++;
+		return true;
 	}
 
 	@Override
@@ -79,7 +124,5 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	
 
 }
