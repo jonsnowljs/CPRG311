@@ -24,6 +24,7 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
 
 	public BSTree(E element) {
 		this.root = new BSTreeNode<E>(element);
+		size++;
 	}
 
 	@Override
@@ -60,9 +61,24 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
 
 	public int getHeight() {
 		if (root == null) {
-			return 0;
+			return -1;
 		}
-		return 0;
+		return getHeight(root);
+	}
+
+	private int getHeight(BSTreeNode<E> node) {
+		if (node == null) {
+			return 0;
+		} else {
+			int lHeight = getHeight(node.getLeft());
+			int rHeight = getHeight(node.getRight());
+
+			if (lHeight > rHeight) {
+				return (lHeight + 1);
+			} else {
+				return (rHeight + 1);
+			}
+		}
 	}
 
 	@Override
