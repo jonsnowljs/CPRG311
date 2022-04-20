@@ -3,6 +3,10 @@
  */
 package implement;
 
+import java.util.LinkedList;
+import java.util.NoSuchElementException;
+import java.util.Queue;
+
 import utilities.BSTreeADT;
 import utilities.BSTreeNode;
 import utilities.Iterator;
@@ -125,20 +129,107 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
 
 	@Override
 	public Iterator<E> inorderIterator() {
-		// TODO Auto-generated method stub
-		return null;
+		Queue<E> iteratorQueue = new LinkedList<>();
+		inorderIterator(root, iteratorQueue);
+
+		Iterator<E> iterator = new Iterator<E>() {
+			@Override
+			public boolean hasNext() {
+				if (iteratorQueue.peek() != null) {
+					return true;
+				}
+				return false;
+			}
+
+			@Override
+			public E next() throws NoSuchElementException {
+				if (!this.hasNext()) {
+					return null;
+				}
+				return (E) iteratorQueue.remove();
+			}
+
+		};
+		return iterator;
+	}
+
+	private void inorderIterator(BSTreeNode<E> node, Queue<E> queue) {
+		if (node == null) {
+			return;
+		}
+		inorderIterator(node.getLeft(),queue);
+		queue.add((E) node.getData());
+		inorderIterator(node.getRight(), queue);
 	}
 
 	@Override
 	public Iterator<E> preorderIterator() {
-		// TODO Auto-generated method stub
-		return null;
+		Queue<E> iteratorQueue = new LinkedList<>();
+		preorderIterator(root, iteratorQueue);
+
+		Iterator<E> iterator = new Iterator<E>() {
+			@Override
+			public boolean hasNext() {
+				if (iteratorQueue.peek() != null) {
+					return true;
+				}
+				return false;
+			}
+
+			@Override
+			public E next() throws NoSuchElementException {
+				if (!this.hasNext()) {
+					return null;
+				}
+				return (E) iteratorQueue.remove();
+			}
+
+		};
+		return iterator;
+	}
+
+	private void preorderIterator(BSTreeNode<E> node, Queue<E> queue) {
+		if (node == null) {
+			return;
+		}
+		queue.add((E) node.getData()); 
+		preorderIterator(node.getLeft(), queue);
+		preorderIterator(node.getRight(), queue);
 	}
 
 	@Override
 	public Iterator<E> postorderIterator() {
-		// TODO Auto-generated method stub
-		return null;
+		Queue<E> iteratorQueue = new LinkedList<>();
+		postorderIterator(root, iteratorQueue);
+
+		Iterator<E> iterator = new Iterator<E>() {
+			@Override
+			public boolean hasNext() {
+				if (iteratorQueue.peek() != null) {
+					return true;
+				}
+				return false;
+			}
+
+			@Override
+			public E next() throws NoSuchElementException {
+				if (!this.hasNext()) {
+					return null;
+				}
+				return (E) iteratorQueue.remove();
+			}
+
+		};
+		return iterator;
+	}
+
+	private void postorderIterator(BSTreeNode<E> node, Queue<E> queue) {
+		if (node == null) {
+			return;
+		}
+		postorderIterator(node.getLeft(), queue);
+		postorderIterator(node.getRight(), queue);
+		queue.add((E) node.getData()); 
 	}
 
 }
