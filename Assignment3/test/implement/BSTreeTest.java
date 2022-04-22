@@ -43,6 +43,13 @@ class BSTreeTest {
 	}
 	
 	@Test
+	public void testGetRoot() throws TreeException {
+		strBST.clear();
+		assertThrows(TreeException.class, () -> strBST.getRoot());
+		assertEquals(2, intBST.getRoot().getData());
+	}
+	
+	@Test
 	public void testGetHeight() {
 		assertEquals(2, intBST.getHeight());
 	}
@@ -62,6 +69,20 @@ class BSTreeTest {
 	public void testClear() {
 		intBST.clear();
 		assertEquals(0, intBST.size());
+	}
+	
+	@Test
+	public void testContains() throws TreeException {
+		strBST.clear();
+		assertThrows(TreeException.class, () -> strBST.contains("c"));
+		assertEquals(true, intBST.contains(2));
+	}
+	
+	@Test
+	public void testSearch() throws TreeException {
+		strBST.clear();
+		assertThrows(TreeException.class, () -> strBST.search("c"));
+		assertEquals(2, intBST.search(2).getData());
 	}
 	
 	@Test

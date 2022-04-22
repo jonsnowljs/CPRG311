@@ -103,6 +103,9 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
 
 	@Override
 	public boolean contains(E entry) throws TreeException {
+		if (this.root == null) {
+			throw new TreeException();
+		}
 		if (recursiveSearch(this.root, entry) != null) {
 			return true;
 		}
