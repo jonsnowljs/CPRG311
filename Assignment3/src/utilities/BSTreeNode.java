@@ -2,26 +2,25 @@ package utilities;
 
 public class BSTreeNode<E extends Comparable<? super E>> {
 	E data;
-	BSTreeNode<E> left;
-	BSTreeNode<E> right;
-	
+	BSTreeNode<E> left, right;
+
 	public BSTreeNode(E data) {
 		this.data = data;
 		this.left = null;
 		this.right = null;
 	}
-	
+
 	public BSTreeNode(E data, BSTreeNode<E> left, BSTreeNode<E> right) {
 		this.data = data;
 		this.left = left;
 		this.right = right;
 	}
-	
+
 	public boolean add(BSTreeNode<E> node) {
 		if (node == null) {
 			return false;
 		}
-		
+
 		if (node.data.compareTo(this.data) < 0) {
 			if (this.left == null) {
 				this.left = node;
@@ -37,12 +36,12 @@ public class BSTreeNode<E extends Comparable<? super E>> {
 		}
 		return true;
 	}
-	
+
 	public boolean contains(BSTreeNode<E> node) {
 		if (node == null) {
 			return false;
 		}
-		
+
 		if (node.data.compareTo(this.data) < 0) {
 			this.contains(left);
 		} else if (node.data.compareTo(this.data) > 0) {
@@ -50,22 +49,19 @@ public class BSTreeNode<E extends Comparable<? super E>> {
 		} else {
 			return true;
 		}
-		
+
 		return false;
 	}
-	
-	public void inorder( ) {
+
+	public void inorder() {
 		if (this.left != null) {
 			this.left.inorder();
 		}
-		
+
 		if (this.right != null) {
 			this.right.inorder();
 		}
 	}
-	
- 
-
 
 	/**
 	 * @param data the data to set
@@ -106,7 +102,5 @@ public class BSTreeNode<E extends Comparable<? super E>> {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	
-	
+
 }

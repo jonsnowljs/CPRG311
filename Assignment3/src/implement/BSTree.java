@@ -11,28 +11,54 @@ import utilities.Iterator;
 import utilities.TreeException;
 
 /**
- * @author Jason
+ * @author Jason, Desmond Yuen
  * @param <E>
  *
  */
 public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 2202313053604159123L;
-	
-	BSTreeNode<E> root = null;
-	int size = 0;
-	
-	public BSTree(BSTreeNode<E> root) {
-		this.root = root;
-		this.size = 0;
+	private BSTreeNode<E> root;
+	private int size = 0;
+
+	public BSTree() {
+		this.root = null;
+	}
+
+	public BSTree(E element) {
+		this.root = new BSTreeNode<E>(element);
+		size++;
 	}
 
 	@Override
-	public BSTreeNode<E> getRoot() {
-		return this.root;
+	public BSTreeNode<E> getRoot() throws TreeException {
+		if (this.root == null) {
+			throw new TreeException();
+		}
+		return root;
+	}
+
+	private BSTreeNode<E> recursiveInsert(BSTreeNode<E> root, E element) {
+		if (root == null) {
+			root = new BSTreeNode<E>(element);
+			return root;
+		}
+
+		if (element.compareTo(root.getData()) < 0) {
+			root.setLeft(recursiveInsert(root.getLeft(), element));
+		} else if (element.compareTo(root.getData()) > 0) {
+			root.setRight(recursiveInsert(root.getRight(), element));
+		}
+		return root;
+	}
+
+	private BSTreeNode<E> recursiveSearch(BSTreeNode<E> root, E element) {
+		if (root == null || root.getData().equals(element)) {
+			return root;
+		}
+		if (root.getData().compareTo(element) > 0) {
+			return recursiveSearch(root.getLeft(), element);
+		} else
+			return recursiveSearch(root.getRight(), element);
 	}
 
 	public int getHeight() {
@@ -56,88 +82,155 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
 			}
 		}
 	}
-	
+
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
 		return this.size;
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
 		return size == 0;
 	}
- 
+
 	@Override
 	public void clear() {
 		this.root = null;
-		this.size = 0;	
+		this.size = 0;
 	}
 
 	@Override
 	public boolean contains(E entry) throws TreeException {
-		if (root == null) {
-			return false;
-		} else {
-			return contains(entry);
+		if (this.root == null) {
+			throw new TreeException();
 		}
-		
+		if (recursiveSearch(this.root, entry) != null) {
+			return true;
+		}
+		return false;
 	}
 
 	@Override
 	public BSTreeNode<E> search(E entry) throws TreeException {
-		// TODO Auto-generated method stub
-		return null;
+		if (this.root == null) {
+			throw new TreeException();
+		}
+		return recursiveSearch(this.root, entry);
 	}
 
 	@Override
 	public boolean add(E newEntry) throws NullPointerException {
-		BSTreeNode<E> newNode = new BSTreeNode<E>(newEntry, null, null);
-		
-		if (root == null) {
-			root = newNode;
-			return true;
-		} else {
-			return root.add(newNode);
-			
+		if (newEntry == null) {
+			throw new NullPointerException();
 		}
-
+		root = recursiveInsert(root, newEntry);
+		this.size++;
+		return true;
 	}
 
 	@Override
 	public Iterator<E> inorderIterator() {
-		Iterator<E> it = new Iterator<E>() {
+		Queue<E> iteratorQueue = new LinkedList<>();
+		inorderIterator(root, iteratorQueue);
+
+		Iterator<E> iterator = new Iterator<E>() {
 			@Override
 			public boolean hasNext() {
-				return 
+				if (iteratorQueue.peek() != null) {
+					return true;
+				}
+				return false;
 			}
 
 			@Override
-			public E next() {
+			public E next() throws NoSuchElementException {
 				if (!this.hasNext()) {
-					throw new NoSuchElementException();
+					return null;
 				}
-				return root.
+				return (E) iteratorQueue.remove();
 			}
+
 		};
-		return it;
-		
+		return iterator;
+	}
+
+	private void inorderIterator(BSTreeNode<E> node, Queue<E> queue) {
+		if (node == null) {
+			return;
+		}
+		inorderIterator(node.getLeft(), queue);
+		queue.add((E) node.getData());
+		inorderIterator(node.getRight(), queue);
 	}
 
 	@Override
 	public Iterator<E> preorderIterator() {
-		// TODO Auto-generated method stub
-		return null;
+		Queue<E> iteratorQueue = new LinkedList<>();
+		preorderIterator(root, iteratorQueue);
+
+		Iterator<E> iterator = new Iterator<E>() {
+			@Override
+			public boolean hasNext() {
+				if (iteratorQueue.peek() != null) {
+					return true;
+				}
+				return false;
+			}
+
+			@Override
+			public E next() throws NoSuchElementException {
+				if (!this.hasNext()) {
+					return null;
+				}
+				return (E) iteratorQueue.remove();
+			}
+
+		};
+		return iterator;
+	}
+
+	private void preorderIterator(BSTreeNode<E> node, Queue<E> queue) {
+		if (node == null) {
+			return;
+		}
+		queue.add((E) node.getData());
+		preorderIterator(node.getLeft(), queue);
+		preorderIterator(node.getRight(), queue);
 	}
 
 	@Override
 	public Iterator<E> postorderIterator() {
-		// TODO Auto-generated method stub
-		return null;
+		Queue<E> iteratorQueue = new LinkedList<>();
+		postorderIterator(root, iteratorQueue);
+
+		Iterator<E> iterator = new Iterator<E>() {
+			@Override
+			public boolean hasNext() {
+				if (iteratorQueue.peek() != null) {
+					return true;
+				}
+				return false;
+			}
+
+			@Override
+			public E next() throws NoSuchElementException {
+				if (!this.hasNext()) {
+					return null;
+				}
+				return (E) iteratorQueue.remove();
+			}
+
+		};
+		return iterator;
 	}
 
-
-	
+	private void postorderIterator(BSTreeNode<E> node, Queue<E> queue) {
+		if (node == null) {
+			return;
+		}
+		postorderIterator(node.getLeft(), queue);
+		postorderIterator(node.getRight(), queue);
+		queue.add((E) node.getData());
+	}
 
 }
