@@ -90,7 +90,8 @@ class BSTreeTest {
 	@Test
 	public void testAdd() {
 		assertThrows(NullPointerException.class, () -> intBST.add(null));
-		assertEquals(3, intBST.size());
+		intBST.add(int4);
+		assertEquals(4, intBST.size());
 	}
 
 	@Test

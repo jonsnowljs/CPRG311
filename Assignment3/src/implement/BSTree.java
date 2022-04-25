@@ -3,7 +3,9 @@
  */
 package implement;
 
+import java.util.LinkedList;
 import java.util.NoSuchElementException;
+import java.util.Queue;
 
 import utilities.BSTreeADT;
 import utilities.BSTreeNode;
@@ -35,30 +37,6 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
 			throw new TreeException();
 		}
 		return root;
-	}
-
-	private BSTreeNode<E> recursiveInsert(BSTreeNode<E> root, E element) {
-		if (root == null) {
-			root = new BSTreeNode<E>(element);
-			return root;
-		}
-
-		if (element.compareTo(root.getData()) < 0) {
-			root.setLeft(recursiveInsert(root.getLeft(), element));
-		} else if (element.compareTo(root.getData()) > 0) {
-			root.setRight(recursiveInsert(root.getRight(), element));
-		}
-		return root;
-	}
-
-	private BSTreeNode<E> recursiveSearch(BSTreeNode<E> root, E element) {
-		if (root == null || root.getData().equals(element)) {
-			return root;
-		}
-		if (root.getData().compareTo(element) > 0) {
-			return recursiveSearch(root.getLeft(), element);
-		} else
-			return recursiveSearch(root.getRight(), element);
 	}
 
 	public int getHeight() {
@@ -107,6 +85,7 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
 		if (recursiveSearch(this.root, entry) != null) {
 			return true;
 		}
+		
 		return false;
 	}
 
@@ -123,9 +102,17 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
 		if (newEntry == null) {
 			throw new NullPointerException();
 		}
-		root = recursiveInsert(root, newEntry);
-		this.size++;
-		return true;
+		BSTreeNode<E> newNode = new BSTreeNode<E>(newEntry, null, null);
+
+		if (root == null) {
+			root = newNode;
+			size++;
+			return true;
+		} else {
+			size++;
+			return root.add(newNode);
+		}
+
 	}
 
 	@Override
@@ -231,6 +218,30 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
 		postorderIterator(node.getLeft(), queue);
 		postorderIterator(node.getRight(), queue);
 		queue.add((E) node.getData());
+	}
+	
+	private BSTreeNode<E> recursiveInsert(BSTreeNode<E> root, E element) {
+		if (root == null) {
+			root = new BSTreeNode<E>(element);
+			return root;
+		}
+
+		if (element.compareTo(root.getData()) < 0) {
+			root.setLeft(recursiveInsert(root.getLeft(), element));
+		} else if (element.compareTo(root.getData()) > 0) {
+			root.setRight(recursiveInsert(root.getRight(), element));
+		}
+		return root;
+	}
+
+	private BSTreeNode<E> recursiveSearch(BSTreeNode<E> root, E element) {
+		if (root == null || root.getData().equals(element)) {
+			return root;
+		}
+		if (root.getData().compareTo(element) > 0) {
+			return recursiveSearch(root.getLeft(), element);
+		} else
+			return recursiveSearch(root.getRight(), element);
 	}
 
 }

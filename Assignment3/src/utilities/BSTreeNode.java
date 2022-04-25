@@ -100,7 +100,7 @@ public class BSTreeNode<E extends Comparable<? super E>> {
 
 	public E getData() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.data;
 	}
 
 }
