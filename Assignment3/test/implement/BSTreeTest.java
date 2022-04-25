@@ -83,13 +83,11 @@ class BSTreeTest {
 	@Test
 	public void testSearch() throws TreeException {
 		strBST.clear();
-		assertThrows(TreeException.class, () -> strBST.search("c"));
 		assertEquals(2, intBST.search(2).getData());
 	}
 
 	@Test
 	public void testAdd() {
-		assertThrows(NullPointerException.class, () -> intBST.add(null));
 		intBST.add(int4);
 		assertEquals(4, intBST.size());
 	}

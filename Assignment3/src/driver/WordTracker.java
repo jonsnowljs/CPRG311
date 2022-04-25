@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -33,12 +34,8 @@ public class WordTracker {
 		}
 		
 		constructBSTree(wordsTree, inputFileName);
-		executeCommand(wordsTree, option);
+		executeCommand(wordsTree, option, outputFileName);
 		
-		if (args.length == 4) {
-			exportReport(outputFileName);
-		}
-
 	}
 	
 	private static BSTree<Word> constructBSTree(BSTree<Word> wordsTree, String inputFileName) {
@@ -105,61 +102,98 @@ public class WordTracker {
 
 	}
 	
-	private static void executeCommand(BSTree<Word> wordsTree, String option) {
+	private static void executeCommand(BSTree<Word> wordsTree, String option, String ouputFileName) {
+
 		switch (option) {
 		case "-pf": 
 			try {
-				inOrderPF(wordsTree.getRoot());
+				PrintWriter out = new PrintWriter(ouputFileName);
+				inOrderPF(wordsTree.getRoot(), out);
+				out.flush();
 			} catch (TreeException e) {
 				e.printStackTrace();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
+			break;
 		
 		case "-pl": 
 			try {
-				inOrderPL(wordsTree.getRoot());
+				PrintWriter out = new PrintWriter(ouputFileName);
+				inOrderPL(wordsTree.getRoot(), out);
+				out.flush();
 			} catch (TreeException e) {
 				e.printStackTrace();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
+			break;
 		
 		case "-po":
-			
+			try {
+				PrintWriter out = new PrintWriter(ouputFileName);
+				inOrderPO(wordsTree.getRoot(), out);
+				out.flush();
+			} catch (TreeException e) {
+				e.printStackTrace();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
 		
 		default:
 			throw new IllegalArgumentException("Unexpected value: " + option);
 		}
 	}
 
-	private static void exportReport(String outputFileName) {
-		// TODO Auto-generated method stub
-		
-	}
 	
 	/**
 	 * Print the node value in alphabetical order
 	 * @param node
 	 */
-	public static void inOrderPF(BSTreeNode<Word> node) {
+	public static void inOrderPF(BSTreeNode<Word> node, PrintWriter out) {
 	    if (node == null) {
 	      return;
 	    } 
-	    inOrderPF(node.getLeft());
-	    System.out.println(node.getData().getWord() + " " + node.getData().getFileName());
-	    inOrderPF(node.getRight());
+	    inOrderPF(node.getLeft(), out);
+	    String result = "Word: " + node.getData().getWord() +" File Name: " + node.getData().getFileName();
+	    System.out.println(result);
+	    out.println(result);
+	    inOrderPF(node.getRight(), out );
 	}
 
 	/**
 	 * Print the node value in alphabetical order
 	 * @param node
 	 */
-	public static void inOrderPL(BSTreeNode<Word> node) {
+	public static void inOrderPL(BSTreeNode<Word> node, PrintWriter out) {
 	    if (node == null) {
 	      return;
 	    } 
-	    inOrderPL(node.getLeft());
-	    System.out.println(node.getData().getWord() + " " + node.getData().getLine());
-	    inOrderPL(node.getRight());
+	    inOrderPL(node.getLeft(), out);
+	    String result = "Word: " + node.getData().getWord() +" File Name: " + node.getData().getFileName() + " Line Number: " + node.getData().getLine();
+	    System.out.println(result);
+	    out.println(result);
+	    inOrderPL(node.getRight(), out);
 	}
 
+	/**
+	 * Print the node value in alphabetical order
+	 * @param node
+	 */
+	public static void inOrderPO(BSTreeNode<Word> node, PrintWriter out) {
+	    if (node == null) {
+	      return;
+	    } 
+	    inOrderPO(node.getLeft(), out);
+	    String result ="Word: " + node.getData().getWord() +" File Name: " + node.getData().getFileName() + " Line Number: " + node.getData().getLine() + " Occurence: " + node.getData().getOccurence();
+	    System.out.println(result);
+	    out.println(result);
+	    inOrderPO(node.getRight(),out);
+	}
 
 
 

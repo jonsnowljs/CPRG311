@@ -15,6 +15,7 @@ public class Word implements Comparable<Word>, Serializable{
 	private int occurence = 0;
 	
 	
+	
 	/**
 	 * @param word
 	 * @param line
@@ -25,16 +26,26 @@ public class Word implements Comparable<Word>, Serializable{
 		this.word = word;
 		this.line.add(line);
 		this.fileName.add(fileName);
+		occurence++;
 	}
 	
 	public void wordCounter(int wordLine, String wordFileName) {
-		if (line.contains(wordLine)) {
+
+
+		if (fileName.contains(wordFileName)) {
+			if (line.contains(wordLine)) {
+				occurence++;
+				return;
+			} 
+			this.line.add(wordLine);
 			occurence++;
 		} else {
-			this.line.add(wordLine);
 			this.fileName.add(wordFileName);
+			this.line.add(wordLine);
 			occurence++;
 		}
+
+
 
 	}
 
