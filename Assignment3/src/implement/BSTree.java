@@ -11,6 +11,7 @@ import utilities.BSTreeADT;
 import utilities.BSTreeNode;
 import utilities.Iterator;
 import utilities.TreeException;
+import utilities.Word;
 
 /**
  * @author Jason, Desmond Yuen
@@ -91,7 +92,7 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
 
 	@Override
 	public BSTreeNode<E> search(E entry) throws TreeException {
-		if (this.root == null) {
+		if (entry == null) {
 			throw new TreeException();
 		}
 		return recursiveSearch(this.root, entry);
@@ -240,8 +241,16 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
 		}
 		if (root.getData().compareTo(element) > 0) {
 			return recursiveSearch(root.getLeft(), element);
-		} else
+		} else if (root.getData().compareTo(element) < 0) {
 			return recursiveSearch(root.getRight(), element);
+		} else {
+			return root;
+		}
+			
 	}
+	
+
+
+	
 
 }

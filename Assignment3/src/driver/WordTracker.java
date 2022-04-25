@@ -10,13 +10,14 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 import implement.BSTree;
+import utilities.BSTreeNode;
 import utilities.Iterator;
+import utilities.TreeException;
 import utilities.Word;
 
 public class WordTracker {
-	
-		
 	public static void main(String[] args)  {
+		BSTree<Word> wordsTree = new BSTree<Word>();
 		String inputFileName = null;
 		String option = null;
 		String outputFileName = null;
@@ -31,8 +32,8 @@ public class WordTracker {
 			}
 		}
 		
-		constructBSTree(inputFileName);
-		executeCommand(option);
+		constructBSTree(wordsTree, inputFileName);
+		executeCommand(wordsTree, option);
 		
 		if (args.length == 4) {
 			exportReport(outputFileName);
@@ -40,11 +41,10 @@ public class WordTracker {
 
 	}
 	
-	private static void constructBSTree(String inputFileName) {
+	private static BSTree<Word> constructBSTree(BSTree<Word> wordsTree, String inputFileName) {
 		// TODO Auto-generated method stub
 		
 		try {
-			BSTree<Word> wordsTree = new BSTree<Word>(); 
 			File file = new File(inputFileName);
 			FileReader fileReader = new FileReader(file);
 			Scanner scanner = new Scanner(fileReader);
@@ -58,22 +58,37 @@ public class WordTracker {
 					continue;
 				}
 				for (String string : wordsArray) {
-					if (string != null) {
+					if (string != null ) {
 						Word word = new Word(string.toLowerCase(), lineNum, inputFileName);
-						wordsTree.add(word);
+						
+						try {
+							BSTreeNode<Word> foundWords =  wordsTree.search(word);
+							if (foundWords == null) {
+								wordsTree.add(word);
+							} else {
+								foundWords.getData().wordCounter(lineNum, inputFileName);
+							}
+						} catch (Exception e) {
+							
+						}
+
+						
 					}
 				}
-				
-				
+
 			}
 			
+			
+		
 			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("data/repository.ser"));
 			for (Iterator< Word> iterator = wordsTree.inorderIterator(); iterator.hasNext();) {
 				Word word = (Word) iterator.next();
 				oos.writeObject(word);
 				
 			}
-			oos.close();			
+			oos.close();
+			
+			return wordsTree;
 			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -81,6 +96,36 @@ public class WordTracker {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (TreeException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return wordsTree;
+		
+
+	}
+	
+	private static void executeCommand(BSTree<Word> wordsTree, String option) {
+		switch (option) {
+		case "-pf": 
+			try {
+				inOrderPF(wordsTree.getRoot());
+			} catch (TreeException e) {
+				e.printStackTrace();
+			}
+		
+		case "-pl": 
+			try {
+				inOrderPL(wordsTree.getRoot());
+			} catch (TreeException e) {
+				e.printStackTrace();
+			}
+		
+		case "-po":
+			
+		
+		default:
+			throw new IllegalArgumentException("Unexpected value: " + option);
 		}
 	}
 
@@ -88,11 +133,34 @@ public class WordTracker {
 		// TODO Auto-generated method stub
 		
 	}
-
-	private static void executeCommand(String option) {
-		// TODO Auto-generated method stub
-		
+	
+	/**
+	 * Print the node value in alphabetical order
+	 * @param node
+	 */
+	public static void inOrderPF(BSTreeNode<Word> node) {
+	    if (node == null) {
+	      return;
+	    } 
+	    inOrderPF(node.getLeft());
+	    System.out.println(node.getData().getWord() + " " + node.getData().getFileName());
+	    inOrderPF(node.getRight());
 	}
+
+	/**
+	 * Print the node value in alphabetical order
+	 * @param node
+	 */
+	public static void inOrderPL(BSTreeNode<Word> node) {
+	    if (node == null) {
+	      return;
+	    } 
+	    inOrderPL(node.getLeft());
+	    System.out.println(node.getData().getWord() + " " + node.getData().getLine());
+	    inOrderPL(node.getRight());
+	}
+
+
 
 
 }
